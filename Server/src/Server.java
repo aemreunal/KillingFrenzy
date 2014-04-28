@@ -13,19 +13,24 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicReference;
 
+
 public class Server implements Runnable {
 
-	
+
 
 	public static void main(String[] args) {
-
-		System.out.println("deneme");
+		Server server = new Server();
+		new Thread(server).start();
+	}
+	
+	protected Server() {
+		clientList = new LinkedList<SelectionKey>();
 	}
 
 	private enum State {
 		STOPPED, STOPPING, RUNNING
 	}
-	
+
 	public static final short PORT = 17000;
 	private final AtomicReference<State> state = new AtomicReference<State>(State.STOPPED);
 
@@ -37,42 +42,43 @@ public class Server implements Runnable {
 	public void run() {
 		try {
 			setupSockets();
-			
 			while (state.get() == State.RUNNING) {
 				runServer();
 			}
-			
-		} catch (Exception e) {
-			System.out.println("Server terminated: " + e.getMessage());
-		} finally {
 			closeSockets();
-		}
+		} 
+		catch (Exception e) {
+			System.out.println("Server terminated: " + e.getMessage());
+		} 
 	}
-	
+
 	private void runServer() throws Exception {
 		keySelector.select(0);
-		
 		for (Iterator<SelectionKey> i = keySelector.selectedKeys().iterator(); i.hasNext();) {
 			SelectionKey key = i.next();
 			i.remove();
-			
+
 			if (key.isAcceptable()) {
 				acceptConnection();
 			}
 			if (key.isReadable()) {
-				// READ PACKET ETC.
+				receivePackets(key);
 			}
 		}
-		
+		keySelector.selectedKeys().clear();
 	}
 
-	private void acceptConnection() throws IOException, SocketException,
-			ClosedChannelException {
+	private void receivePackets(SelectionKey key) {
+		
+	}
+	
+	
+	private void acceptConnection() throws IOException, SocketException, ClosedChannelException {
 		SocketChannel client = serverSocket.accept();
 		client.configureBlocking(false);
 		client.socket().setTcpNoDelay(true);
 		SelectionKey newkey = client.register(keySelector, SelectionKey.OP_READ);
-		
+
 		synchronized (clientList) {
 			clientList.add(newkey);
 		}
@@ -84,15 +90,13 @@ public class Server implements Runnable {
 		serverSocket.socket().bind(new InetSocketAddress(PORT));
 		serverSocket.configureBlocking(false);
 		serverSocket.register(keySelector, SelectionKey.OP_ACCEPT);
+		System.out.println("Server has started");
 	}
 
-	private void closeSockets() {
-		try {
-			keySelector.close();
-			serverSocket.socket().close();
-			serverSocket.close();
-		} catch (Exception ex) {
-			System.out.println("Error closing sockets: "+ ex.getMessage());
-		}
+	private void closeSockets() throws IOException {
+		keySelector.close();
+		serverSocket.socket().close();
+		serverSocket.close();
+		System.out.println("Server has been closed.");
 	}
 }
