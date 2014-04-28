@@ -1,4 +1,4 @@
-package src;
+package client;
 
 /*
  * This code belongs to:
