@@ -87,7 +87,7 @@ public class Server implements Runnable {
 		ByteBuffer readBuffer = readBuffers.get(key);
 		if (((ReadableByteChannel) key.channel()).read(readBuffer) == -1) 
 			throw new IOException("Read on closed key");
-		
+
 		readBuffer.flip();
 		List<ByteBuffer> result = new ArrayList<ByteBuffer>();
 		ByteBuffer msg = readFullMessage(key, readBuffer);
@@ -138,6 +138,39 @@ public class Server implements Runnable {
 		return ByteBuffer.wrap(resultMessage);
 	}
 
+
+	public synchronized void sendPacket(SelectionKey channelKey, Packet pk) {
+		byte[] buffer = pk.toByteArray();
+		short len = (short) buffer.length;
+		byte[] lengthBytes = new byte[] { (byte) ((len >>> 8) & 0xff), (byte) (len & 0xff) };
+		ByteBuffer writeBuffer = ByteBuffer.allocate(len + lengthBytes.length);
+		writeBuffer.put(lengthBytes);
+		writeBuffer.put(buffer);
+		writeBuffer.flip();
+		if (buffer != null && state.get() == State.RUNNING) {
+			try {
+				forceSendPacket(channelKey, writeBuffer);
+			}
+			catch (Exception e) {
+				resetKey(channelKey);
+			}
+		}
+	}
+
+	private void forceSendPacket(SelectionKey channelKey,  ByteBuffer writeBuffer) throws IOException, InterruptedException {
+		int bytesWritten = 0;
+		SocketChannel channel = (SocketChannel) channelKey.channel();
+		while (writeBuffer.remaining() > 0) {
+			bytesWritten = channel.write(writeBuffer);
+			if (bytesWritten == -1) {
+				resetKey(channelKey);
+			}
+
+			if (bytesWritten == 0)
+				Thread.sleep(5);
+		}
+
+	}
 
 	private void acceptConnection() throws IOException, SocketException, ClosedChannelException {
 		SocketChannel client = serverSocket.accept();
