@@ -11,6 +11,8 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -25,6 +27,8 @@ public class Server implements Runnable {
 	
 	protected Server() {
 		clientList = new LinkedList<SelectionKey>();
+		readBuffers = new ConcurrentHashMap<SelectionKey, ByteBuffer>();
+		clientMap = new ConcurrentHashMap<SelectionKey, Client>();
 	}
 
 	private enum State {
@@ -32,16 +36,19 @@ public class Server implements Runnable {
 	}
 
 	public static final short PORT = 17000;
+	
 	private final AtomicReference<State> state = new AtomicReference<State>(State.STOPPED);
-
 	protected ServerSocketChannel serverSocket;
 	protected Selector keySelector;
 	private LinkedList<SelectionKey> clientList;
-
+	public ConcurrentHashMap<SelectionKey, Client> clientMap;
+	private ConcurrentHashMap<SelectionKey, ByteBuffer> readBuffers;
+	
 	@Override
 	public void run() {
 		try {
 			setupSockets();
+			state.set(State.STOPPED);
 			while (state.get() == State.RUNNING) {
 				runServer();
 			}
@@ -78,10 +85,14 @@ public class Server implements Runnable {
 		client.configureBlocking(false);
 		client.socket().setTcpNoDelay(true);
 		SelectionKey newkey = client.register(keySelector, SelectionKey.OP_READ);
-
-		synchronized (clientList) {
-			clientList.add(newkey);
-		}
+		readBuffers.put(newkey, ByteBuffer.allocate(20000));
+		clientMap.put(newkey, new Client(newkey));
+	}
+	
+	protected void resetKey(SelectionKey key) {
+		key.cancel();
+		clientMap.remove(key);
+		readBuffers.remove(key);
 	}
 
 	private void setupSockets() throws IOException, ClosedChannelException {
