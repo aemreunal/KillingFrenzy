@@ -1,4 +1,4 @@
-package src;
+package server;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
