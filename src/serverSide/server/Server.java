@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -27,7 +28,6 @@ public class Server implements Runnable {
 	}
 
 	protected Server() {
-		clientList = new LinkedList<SelectionKey>();
 		readBuffers = new ConcurrentHashMap<SelectionKey, ByteBuffer>();
 		clientMap = new ConcurrentHashMap<SelectionKey, Client>();
 	}
@@ -43,7 +43,6 @@ public class Server implements Runnable {
 	private final AtomicReference<State> state = new AtomicReference<State>(State.STOPPED);
 	protected ServerSocketChannel serverSocket;
 	protected Selector keySelector;
-	private LinkedList<SelectionKey> clientList;
 	public ConcurrentHashMap<SelectionKey, Client> clientMap;
 	private ConcurrentHashMap<SelectionKey, ByteBuffer> readBuffers;
 
@@ -169,7 +168,12 @@ public class Server implements Runnable {
 			if (bytesWritten == 0)
 				Thread.sleep(5);
 		}
-
+	}
+	
+	public void broadcast(Packet pk) {
+		for (Entry<SelectionKey, Client> o : clientMap.entrySet()) {
+			sendPacket(o.getKey(), pk);
+		}
 	}
 
 	private void acceptConnection() throws IOException, SocketException, ClosedChannelException {
