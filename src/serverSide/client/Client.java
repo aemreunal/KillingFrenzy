@@ -7,9 +7,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Client {
 	private SelectionKey socket;
-	public Queue<ByteBuffer> packetQueue = new ConcurrentLinkedQueue<ByteBuffer>();
+	public Queue<ByteBuffer> packetQueue;
 	
 	public Client(SelectionKey key) {
 		socket = key;
+		packetQueue = new ConcurrentLinkedQueue<ByteBuffer>();
 	}
 }

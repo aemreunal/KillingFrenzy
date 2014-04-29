@@ -12,11 +12,11 @@ import clientSide.attributes.player.Direction;
  * emre.unal@ozu.edu.tr
  */
 
-public class KeyboardListener implements KeyListener {
+public class KeyboardHandler implements KeyListener {
     private GamePanel panel;
     private boolean usingMac = false;
     
-    public KeyboardListener(GamePanel gamePanel) {
+    public KeyboardHandler(GamePanel gamePanel) {
         // If system is Mac, output will be "Mac OS X"
         // If system is Windows, output will be "Windows ..."
         usingMac = (System.getProperty("os.name").charAt(0) == 'M');

@@ -8,7 +8,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
+
 
 
 
@@ -25,6 +28,11 @@ public class Client implements Runnable {
 	public SocketChannel socketChannel;
 	public static InetAddress IP;
 	public ByteBuffer receiveBuffer;
+	public Queue<Packet> packetQueue;
+	
+	public Client() {
+		packetQueue = new ConcurrentLinkedQueue<Packet>();
+	}
 
 	@Override
 	public void run() {
@@ -32,6 +40,7 @@ public class Client implements Runnable {
 			createSocket();
 			while (state.get() == State.RUNNING) {
 				for (ByteBuffer message : readIncomingMessage(socketChannel)) {
+					packetQueue.add(Packet.fromByteArray(message.array()));
 					//dispatchMessage(message)
 				}
 			}

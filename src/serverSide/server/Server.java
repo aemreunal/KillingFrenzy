@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -27,7 +28,6 @@ public class Server implements Runnable {
 	}
 
 	protected Server() {
-		clientList = new LinkedList<SelectionKey>();
 		readBuffers = new ConcurrentHashMap<SelectionKey, ByteBuffer>();
 		clientMap = new ConcurrentHashMap<SelectionKey, Client>();
 	}
@@ -43,7 +43,6 @@ public class Server implements Runnable {
 	private final AtomicReference<State> state = new AtomicReference<State>(State.STOPPED);
 	protected ServerSocketChannel serverSocket;
 	protected Selector keySelector;
-	private LinkedList<SelectionKey> clientList;
 	public ConcurrentHashMap<SelectionKey, Client> clientMap;
 	private ConcurrentHashMap<SelectionKey, ByteBuffer> readBuffers;
 
@@ -87,7 +86,7 @@ public class Server implements Runnable {
 		ByteBuffer readBuffer = readBuffers.get(key);
 		if (((ReadableByteChannel) key.channel()).read(readBuffer) == -1) 
 			throw new IOException("Read on closed key");
-		
+
 		readBuffer.flip();
 		List<ByteBuffer> result = new ArrayList<ByteBuffer>();
 		ByteBuffer msg = readFullMessage(key, readBuffer);
@@ -138,6 +137,44 @@ public class Server implements Runnable {
 		return ByteBuffer.wrap(resultMessage);
 	}
 
+
+	public synchronized void sendPacket(SelectionKey channelKey, Packet pk) {
+		byte[] buffer = pk.toByteArray();
+		short len = (short) buffer.length;
+		byte[] lengthBytes = new byte[] { (byte) ((len >>> 8) & 0xff), (byte) (len & 0xff) };
+		ByteBuffer writeBuffer = ByteBuffer.allocate(len + lengthBytes.length);
+		writeBuffer.put(lengthBytes);
+		writeBuffer.put(buffer);
+		writeBuffer.flip();
+		if (buffer != null && state.get() == State.RUNNING) {
+			try {
+				forceSendPacket(channelKey, writeBuffer);
+			}
+			catch (Exception e) {
+				resetKey(channelKey);
+			}
+		}
+	}
+
+	private void forceSendPacket(SelectionKey channelKey,  ByteBuffer writeBuffer) throws IOException, InterruptedException {
+		int bytesWritten = 0;
+		SocketChannel channel = (SocketChannel) channelKey.channel();
+		while (writeBuffer.remaining() > 0) {
+			bytesWritten = channel.write(writeBuffer);
+			if (bytesWritten == -1) {
+				resetKey(channelKey);
+			}
+
+			if (bytesWritten == 0)
+				Thread.sleep(5);
+		}
+	}
+	
+	public void broadcast(Packet pk) {
+		for (Entry<SelectionKey, Client> o : clientMap.entrySet()) {
+			sendPacket(o.getKey(), pk);
+		}
+	}
 
 	private void acceptConnection() throws IOException, SocketException, ClosedChannelException {
 		SocketChannel client = serverSocket.accept();
