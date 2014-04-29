@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import clientSide.attributes.Settings;
+import clientSide.attributes.player.Direction;
 
 /*
  * This code belongs to:
@@ -74,8 +75,4 @@ class GamePanel extends JPanel {
         g.setColor(Color.BLACK);
         g.fillRect(x, y, SIZE, SIZE);
     }
-}
-
-enum Direction {
-    NORTH, WEST, SOUTH, EAST
 }

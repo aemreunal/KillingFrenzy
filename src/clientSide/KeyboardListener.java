@@ -3,6 +3,8 @@ package clientSide;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import clientSide.attributes.player.Direction;
+
 /*
  * This code belongs to:
  * Ahmet Emre Unal
