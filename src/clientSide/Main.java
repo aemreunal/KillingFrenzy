@@ -15,6 +15,8 @@ class Main extends JFrame {
     Dimension d;
     
     public Main() {
+    	Client client = new Client();
+    	new Thread(client).start();
         createAndShowGUI();
     }
     

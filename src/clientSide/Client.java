@@ -37,7 +37,7 @@ public class Client implements Runnable {
 			}
 		}
 		catch (Exception ex) {
-
+			ex.printStackTrace();
 		}
 	}
 	
@@ -122,6 +122,7 @@ public class Client implements Runnable {
 	}
 
 	private void createSocket() throws IOException, SocketException {
+		IP = InetAddress.getByName("localhost");
 		socketChannel = SocketChannel.open();
 		socketChannel.configureBlocking(true);
 		socketChannel.connect(new InetSocketAddress(IP, PORT));
