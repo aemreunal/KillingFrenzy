@@ -25,7 +25,6 @@ Dimension d;
         p1.setBackground(Color.GRAY);
         p1.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY,5,true));
         
-        JLabel statusLabel = new JLabel("sdf",JLabel.CENTER); 
         JButton okButton = new JButton("JOIN THE MADNESS"); 
         p1.add(okButton);
         add(p1);
