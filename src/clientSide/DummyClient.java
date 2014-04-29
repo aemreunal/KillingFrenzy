@@ -2,8 +2,6 @@ package clientSide;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,7 +33,7 @@ public class DummyClient extends JFrame {
     private void addPanel() {
         GamePanel panel = new GamePanel();
         add(panel);
-        addKeyListener(new KeyEventListener(panel));
+        addKeyListener(new KeyboardListener(panel));
     }
 }
 
@@ -70,44 +68,6 @@ class GamePanel extends JPanel {
         super.paint(g);
         g.setColor(Color.BLACK);
         g.fillRect(x, y, SIZE, SIZE);
-    }
-}
-
-class KeyEventListener implements KeyListener {
-    private GamePanel panel;
-    
-    public KeyEventListener(GamePanel gamePanel) {
-        panel = gamePanel;
-    }
-    
-    @Override
-    public void keyTyped(KeyEvent e) {
-        // Do nothing
-    }
-    
-    @Override
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-        case KeyEvent.VK_W:
-            panel.move(Direction.NORTH);
-            break;
-        case KeyEvent.VK_D:
-            panel.move(Direction.EAST);
-            break;
-        case KeyEvent.VK_S:
-            panel.move(Direction.SOUTH);
-            break;
-        case KeyEvent.VK_A:
-            panel.move(Direction.WEST);
-            break;
-        default:
-            break;
-        }
-    }
-    
-    @Override
-    public void keyReleased(KeyEvent e) {
-        // Do nothing
     }
 }
 
