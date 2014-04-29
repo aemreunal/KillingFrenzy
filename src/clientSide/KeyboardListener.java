@@ -12,8 +12,12 @@ import java.awt.event.KeyListener;
 
 public class KeyboardListener implements KeyListener {
     private GamePanel panel;
+    private boolean usingMac = false;
     
     public KeyboardListener(GamePanel gamePanel) {
+        // If system is Mac, output will be "Mac OS X"
+        // If system is Windows, output will be "Windows ..."
+        usingMac = (System.getProperty("os.name").charAt(0) == 'M');
         panel = gamePanel;
     }
     
@@ -21,6 +25,10 @@ public class KeyboardListener implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
         case KeyEvent.VK_W:
+            if ((usingMac && e.isMetaDown()) || (!usingMac && e.isControlDown())) {
+                // Close the game
+                break;
+            }
             panel.move(Direction.NORTH);
             break;
         case KeyEvent.VK_D:
@@ -31,8 +39,6 @@ public class KeyboardListener implements KeyListener {
             break;
         case KeyEvent.VK_A:
             panel.move(Direction.WEST);
-            break;
-        default:
             break;
         }
     }
