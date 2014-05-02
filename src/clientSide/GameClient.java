@@ -18,14 +18,14 @@ import clientSide.attributes.player.Direction;
  */
 
 @SuppressWarnings("serial")
-public class DummyClient extends JFrame {
+public class GameClient extends JFrame {
     private GamePanel panel;
     
     public static void main(String[] args) {
-        new DummyClient();
+        new GameClient();
     }
     
-    public DummyClient() {
+    public GameClient() {
         setFrameAttributes();
         addPanel();
         addListeners();
