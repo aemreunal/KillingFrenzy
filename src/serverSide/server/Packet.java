@@ -11,6 +11,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
 
+
+
 public abstract class Packet implements Serializable {
 
 	public byte type = 0;
