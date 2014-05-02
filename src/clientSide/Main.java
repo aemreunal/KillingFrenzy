@@ -11,8 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 class Main extends JFrame {
-    private GameClientWindow gameClient;
-    
     JPanel p1, p2;
     Dimension d;
     
@@ -38,9 +36,7 @@ class Main extends JFrame {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameClient = new GameClientWindow();
-                gameClient.setGameIsRunning(true);
-                new Thread(gameClient).start();
+                new GameClientWindow();
             }
         });
         

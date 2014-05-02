@@ -1,4 +1,4 @@
-package serverSide.server;
+package clientSide;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,6 +10,8 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
 
 public abstract class Packet implements Serializable {
 
@@ -27,11 +29,9 @@ public abstract class Packet implements Serializable {
 			out.writeObject(this);
 			byte[] bytes = bos.toByteArray();
 			return bytes;
-		} 
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-		} 
-		finally {
+		} finally {
 			try {
 				out.close();
 				bos.close();
@@ -50,8 +50,7 @@ public abstract class Packet implements Serializable {
 			in = new ObjectInputStream(bis);
 			Object o = in.readObject();
 			return (Packet)o;
-		} 
-		catch (IOException | ClassNotFoundException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			if (e instanceof StreamCorruptedException) {
 				System.out.println("Caught corrupted packet.");
 				return null;
@@ -61,14 +60,12 @@ public abstract class Packet implements Serializable {
 				return null;
 			}
 			e.printStackTrace();
-		}  
-		finally {
+		}  finally {
 			try {
 				bis.close();
 				if (in != null)
-					in.close();
-			} 
-			catch (IOException e) {
+				in.close();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 

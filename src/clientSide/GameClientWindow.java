@@ -1,10 +1,7 @@
 package clientSide;
 
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.JFrame;
 
-import clientSide.attributes.Settings;
 import clientSide.controllerHandlers.KeyboardHandler;
 
 /*
@@ -15,47 +12,14 @@ import clientSide.controllerHandlers.KeyboardHandler;
  */
 
 @SuppressWarnings("serial")
-public class GameClientWindow extends JFrame implements Runnable {
+public class GameClientWindow extends JFrame {
     private GamePanel panel;
-    private boolean gameIsRunning = false;
     
     public GameClientWindow() {
         setFrameAttributes();
         addPanel();
         addListeners();
         setVisible(true);
-    }
-    
-    public boolean isGameRunning() {
-        return gameIsRunning;
-    }
-    
-    public void setGameIsRunning(boolean gameIsRunning) {
-        this.gameIsRunning = gameIsRunning;
-    }
-    
-    @Override
-    public void run() {
-        // Timer timer = new Timer(100, new ActionListener() {
-        // @Override
-        // public void actionPerformed(ActionEvent e) {
-        // // TODO Auto-generated method stub
-        //
-        // }
-        // });
-        
-        while (gameIsRunning) {
-            panel.repaint();
-            
-            // A wrapper for Thread.sleep(millis)
-            try {
-                TimeUnit.MILLISECONDS.sleep(Settings.SLEEP_TIME);
-            } catch (InterruptedException e1) {
-                System.err.println("Game loop interrupted!");
-                e1.printStackTrace();
-                System.exit(-1);
-            }
-        }
     }
     
     private void addListeners() {

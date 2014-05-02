@@ -13,6 +13,4 @@ public class Client {
 		socket = key;
 		packetQueue = new ConcurrentLinkedQueue<ByteBuffer>();
 	}
-	
-	 
 }
