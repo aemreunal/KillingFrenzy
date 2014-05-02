@@ -16,6 +16,8 @@ public class Settings {
     // Refresh rate unit is FPS
     public static final int REFRESH_RATE = 100;
     
+    public static final long SLEEP_TIME = (long) (1000.0 / Settings.REFRESH_RATE);
+    
     public static final int PLAYER_SPEED = 5;
     public static final int BULLET_SPEED = 5;
     

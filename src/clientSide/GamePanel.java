@@ -7,8 +7,8 @@ import javax.swing.JPanel;
 
 import clientSide.attributes.Settings;
 import clientSide.attributes.player.Direction;
-import clientSide.controllerHandlers.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
+import clientSide.graphics.BlankCursor;
 import clientSide.graphics.Crosshair;
 import clientSide.graphics.Player;
 import clientSide.graphics.WorldGround;
@@ -67,6 +67,7 @@ public class GamePanel extends JPanel {
     public void updateCrosshair(float x, float y) {
         mouseX = x;
         mouseY = y;
+        repaint();
     }
     
     public void updatePlayer(float x, float y) {

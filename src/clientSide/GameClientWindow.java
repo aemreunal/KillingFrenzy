@@ -49,7 +49,7 @@ public class GameClientWindow extends JFrame implements Runnable {
             
             // A wrapper for Thread.sleep(millis)
             try {
-                TimeUnit.MILLISECONDS.sleep((long) (1000.0 / Settings.REFRESH_RATE));
+                TimeUnit.MILLISECONDS.sleep(Settings.SLEEP_TIME);
             } catch (InterruptedException e1) {
                 System.err.println("Game loop interrupted!");
                 e1.printStackTrace();
