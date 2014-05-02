@@ -7,8 +7,8 @@ import javax.swing.JPanel;
 
 import clientSide.attributes.Settings;
 import clientSide.attributes.player.Direction;
-import clientSide.controllerHandlers.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
+import clientSide.graphics.BlankCursor;
 import clientSide.graphics.Crosshair;
 import clientSide.graphics.Player;
 import clientSide.graphics.WorldGround;
@@ -20,6 +20,7 @@ import clientSide.graphics.WorldGround;
  * emre.unal@ozu.edu.tr
  */
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel {
     private float playerX = 100;
     private float playerY = 100;
@@ -72,7 +73,6 @@ public class GamePanel extends JPanel {
     public void updatePlayer(float x, float y) {
         playerX = x;
         playerY = y;
-        repaint();
     }
     
     @Override
