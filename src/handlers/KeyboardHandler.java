@@ -1,8 +1,9 @@
-package clientSide;
+package handlers;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import clientSide.GamePanel;
 import clientSide.attributes.player.Direction;
 
 /*

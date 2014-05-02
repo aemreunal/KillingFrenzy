@@ -15,8 +15,8 @@ class Main extends JFrame {
     Dimension d;
     
     public Main() {
-    	Client client = new Client();
-    	new Thread(client).start();
+        Client client = new Client();
+        new Thread(client).start();
         createAndShowGUI();
     }
     
@@ -36,7 +36,7 @@ class Main extends JFrame {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new GameClient();
             }
         });
         
