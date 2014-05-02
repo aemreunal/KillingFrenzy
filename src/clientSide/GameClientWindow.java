@@ -1,8 +1,8 @@
 package clientSide;
 
-import handlers.KeyboardHandler;
-
 import javax.swing.JFrame;
+
+import clientSide.controllerHandlers.KeyboardHandler;
 
 /*
  * This code belongs to:
@@ -12,10 +12,10 @@ import javax.swing.JFrame;
  */
 
 @SuppressWarnings("serial")
-public class GameClient extends JFrame {
+public class GameClientWindow extends JFrame {
     private GamePanel panel;
     
-    public GameClient() {
+    public GameClientWindow() {
         setFrameAttributes();
         addPanel();
         addListeners();

@@ -1,9 +1,5 @@
 package clientSide;
 
-import handlers.BlankCursor;
-import handlers.MouseHandler;
-
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 
@@ -11,6 +7,11 @@ import javax.swing.JPanel;
 
 import clientSide.attributes.Settings;
 import clientSide.attributes.player.Direction;
+import clientSide.controllerHandlers.BlankCursor;
+import clientSide.controllerHandlers.MouseHandler;
+import clientSide.graphics.Crosshair;
+import clientSide.graphics.Player;
+import clientSide.graphics.WorldGround;
 
 /*
  * This code belongs to:
@@ -24,7 +25,6 @@ public class GamePanel extends JPanel {
     private float playerY = 100;
     private float mouseX = 100;
     private float mouseY = 100;
-    private final int SIZE = 10;
     
     public GamePanel() {
         setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
@@ -78,22 +78,20 @@ public class GamePanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        paintGround(g);
         paintPlayer(g);
         paintCrosshair(g);
     }
     
+    private void paintGround(Graphics g) {
+        WorldGround.paint(g);
+    }
+    
     private void paintCrosshair(Graphics g) {
-        g.setColor(Color.RED);
-        // Draw vertical line
-        g.drawLine((int) mouseX, (int) (mouseY - (Settings.CROSSHAIR_SIZE >> 1)), (int) mouseX, (int) (mouseY + (Settings.CROSSHAIR_SIZE >> 1)));
-        // Draw horizontal line
-        g.drawLine((int) (mouseX - (Settings.CROSSHAIR_SIZE >> 1)), (int) mouseY, (int) (mouseX + (Settings.CROSSHAIR_SIZE >> 1)), (int) mouseY);
-        // Draw oval
-        g.drawOval((int) (mouseX - (Settings.CROSSHAIR_SIZE >> 1)), (int) (mouseY - (Settings.CROSSHAIR_SIZE >> 1)), Settings.CROSSHAIR_SIZE, Settings.CROSSHAIR_SIZE);
+        Crosshair.paint(g, mouseX, mouseY);
     }
     
     private void paintPlayer(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect((int) playerX, (int) playerY, SIZE, SIZE);
+        Player.paint(g, playerX, playerY);
     }
 }

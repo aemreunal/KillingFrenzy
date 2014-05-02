@@ -36,7 +36,7 @@ class Main extends JFrame {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new GameClient();
+                new GameClientWindow();
             }
         });
         
