@@ -7,3 +7,6 @@
 /bin
 
 .classpath
+
+.idea/*
+
