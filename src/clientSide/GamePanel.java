@@ -20,6 +20,7 @@ import clientSide.graphics.WorldGround;
  * emre.unal@ozu.edu.tr
  */
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel {
     private float playerX = 100;
     private float playerY = 100;
@@ -66,13 +67,11 @@ public class GamePanel extends JPanel {
     public void updateCrosshair(float x, float y) {
         mouseX = x;
         mouseY = y;
-        repaint();
     }
     
     public void updatePlayer(float x, float y) {
         playerX = x;
         playerY = y;
-        repaint();
     }
     
     @Override

@@ -13,6 +13,9 @@ public class Settings {
     public static final int GAME_WINDOW_WIDTH = 500;
     public static final int GAME_WINDOW_HEIGHT = 300;
     
+    // Refresh rate unit is FPS
+    public static final int REFRESH_RATE = 100;
+    
     public static final int PLAYER_SPEED = 5;
     public static final int BULLET_SPEED = 5;
     
