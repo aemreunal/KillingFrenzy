@@ -2,6 +2,7 @@ package clientSide;
 
 import java.awt.Cursor;
 import java.awt.Graphics;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -10,6 +11,7 @@ import clientSide.attributes.player.Direction;
 import clientSide.controllerHandlers.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
 import clientSide.graphics.Crosshair;
+import clientSide.graphics.FriendlyPlayer;
 import clientSide.graphics.Player;
 import clientSide.graphics.WorldGround;
 
@@ -92,6 +94,11 @@ public class GamePanel extends JPanel {
     }
     
     private void paintPlayer(Graphics g) {
-        Player.paint(g, playerX, playerY);
+        try {
+			FriendlyPlayer.paintStanding(g, playerX, playerY);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
