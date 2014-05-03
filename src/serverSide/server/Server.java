@@ -18,6 +18,8 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
+import packets.Packet;
+import packets.KeyPressPacket;
 import serverSide.client.Client;
 
 public class Server implements Runnable {
@@ -56,7 +58,7 @@ public class Server implements Runnable {
 			}
 			closeSockets();
 		} catch (Exception e) {
-			System.out.println("Server terminated: " + e.getMessage());
+			System.out.println("Server terminated: " + e.getMessage() + " " + e.getClass());
 		}
 	}
 
@@ -78,7 +80,7 @@ public class Server implements Runnable {
 
 	private void receivePackets(SelectionKey key) throws IOException {
 		for (ByteBuffer message : readMessageFromSocket(key)) {
-			clientMap.get(key).packetQueue.add(message);
+			clientMap.get(key).packetQueue.add(Packet.fromByteArray(message.array()));
 		}
 	}
 
