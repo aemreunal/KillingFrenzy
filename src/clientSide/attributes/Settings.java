@@ -25,4 +25,5 @@ public class Settings {
     public static final String GROUND_TILE_NAME = "grass.jpg";
     public static final String GROUND_TILE_FILE = IMG_PATH + GROUND_TILE_NAME;
     public static final Color DEFAULT_GROUND_COLOR = new Color(110, 133, 61);
+    public static final int PLAYER_ANIMATION_SPEED = 10;
 }
