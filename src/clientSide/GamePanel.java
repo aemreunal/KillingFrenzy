@@ -94,11 +94,8 @@ public class GamePanel extends JPanel {
     }
     
     private void paintPlayer(Graphics g) {
-        try {
-			FriendlyPlayer.paintMoving(g, playerX, playerY);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	FriendlyPlayer.paintMoving(g, playerX, playerY);
+		
+
     }
 }
