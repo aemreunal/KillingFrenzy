@@ -3,5 +3,5 @@ package serverSide.gamemechanics;
 /**
  * Created by Eren Sezener
  */
-public class Wall implements Collidable {
+public class HandGun extends Gun {
 }
