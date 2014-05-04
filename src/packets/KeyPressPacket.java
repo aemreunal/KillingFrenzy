@@ -5,7 +5,7 @@ public class KeyPressPacket extends Packet {
 	public int key;
 
 	public KeyPressPacket() {
-		type=4;
+		type=0;
 	}
 
 }

@@ -24,10 +24,7 @@ import serverSide.client.Client;
 
 public class Server implements Runnable {
 
-	public static void main(String[] args) {
-		Server server = new Server();
-		new Thread(server).start();
-	}
+	
 
 	protected Server() {
 		readBuffers = new ConcurrentHashMap<SelectionKey, ByteBuffer>();
