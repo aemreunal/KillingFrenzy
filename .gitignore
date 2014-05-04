@@ -6,5 +6,5 @@
 *.ear
 /bin
 
-.classpath
+.classpath	
 .idea/*

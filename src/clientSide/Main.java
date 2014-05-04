@@ -10,13 +10,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import packets.KeyPressPacket;
+
 class Main extends JFrame {
     JPanel p1, p2;
     Dimension d;
-    
+    Client client;
     public Main() {
-    	Client client = new Client();
-    	new Thread(client).start();
+        client = new Client();
+        new Thread(client).start();
         createAndShowGUI();
     }
     
@@ -36,7 +38,8 @@ class Main extends JFrame {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+            	client.sendPacket(new KeyPressPacket());
+                new GameClientWindow();
             }
         });
         

@@ -1,4 +1,4 @@
-package clientSide;
+package clientSide.controllerHandlers;
 
 import java.awt.Cursor;
 import java.awt.Point;

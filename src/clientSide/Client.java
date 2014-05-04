@@ -12,6 +12,8 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
+import packets.Packet;
+
 
 
 
@@ -38,6 +40,7 @@ public class Client implements Runnable {
 	public void run() {
 		try {
 			createSocket();
+			state.set(State.RUNNING);
 			while (state.get() == State.RUNNING) {
 				for (ByteBuffer message : readIncomingMessage(socketChannel)) {
 					packetQueue.add(Packet.fromByteArray(message.array()));

@@ -1,14 +1,19 @@
 package clientSide;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
+import java.io.IOException;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import clientSide.attributes.Settings;
 import clientSide.attributes.player.Direction;
+import clientSide.controllerHandlers.BlankCursor;
+import clientSide.controllerHandlers.MouseHandler;
+import clientSide.graphics.Crosshair;
+import clientSide.graphics.FriendlyPlayer;
+import clientSide.graphics.Player;
+import clientSide.graphics.WorldGround;
 
 /*
  * This code belongs to:
@@ -17,43 +22,11 @@ import clientSide.attributes.player.Direction;
  * emre.unal@ozu.edu.tr
  */
 
-@SuppressWarnings("serial")
-public class DummyClient extends JFrame {
-    private GamePanel panel;
-    
-    public static void main(String[] args) {
-        new DummyClient();
-    }
-    
-    public DummyClient() {
-        setFrameAttributes();
-        addPanel();
-        addListeners();
-        setVisible(true);
-    }
-    
-    private void addListeners() {
-        addKeyListener(new KeyboardHandler(panel));
-    }
-    
-    private void setFrameAttributes() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-    
-    private void addPanel() {
-        panel = new GamePanel();
-        add(panel);
-        setSize(panel.getSize());
-    }
-}
-
-@SuppressWarnings("serial")
-class GamePanel extends JPanel {
+public class GamePanel extends JPanel {
     private float playerX = 100;
     private float playerY = 100;
     private float mouseX = 100;
     private float mouseY = 100;
-    private final int SIZE = 10;
     
     public GamePanel() {
         setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
@@ -107,22 +80,25 @@ class GamePanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        paintGround(g);
         paintPlayer(g);
         paintCrosshair(g);
     }
     
+    private void paintGround(Graphics g) {
+        WorldGround.paint(g);
+    }
+    
     private void paintCrosshair(Graphics g) {
-        g.setColor(Color.RED);
-        // Draw vertical line
-        g.drawLine((int) mouseX, (int) (mouseY - (Settings.CROSSHAIR_SIZE >> 1)), (int) mouseX, (int) (mouseY + (Settings.CROSSHAIR_SIZE >> 1)));
-        // Draw horizontal line
-        g.drawLine((int) (mouseX - (Settings.CROSSHAIR_SIZE >> 1)), (int) mouseY, (int) (mouseX + (Settings.CROSSHAIR_SIZE >> 1)), (int) mouseY);
-        // Draw oval
-        g.drawOval((int) (mouseX - (Settings.CROSSHAIR_SIZE >> 1)), (int) (mouseY - (Settings.CROSSHAIR_SIZE >> 1)), Settings.CROSSHAIR_SIZE, Settings.CROSSHAIR_SIZE);
+        Crosshair.paint(g, mouseX, mouseY);
     }
     
     private void paintPlayer(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect((int) playerX, (int) playerY, SIZE, SIZE);
+        try {
+			FriendlyPlayer.paintMoving(g, playerX, playerY);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

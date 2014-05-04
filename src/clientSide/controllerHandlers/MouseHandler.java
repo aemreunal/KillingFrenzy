@@ -1,8 +1,10 @@
-package clientSide;
+package clientSide.controllerHandlers;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
+import clientSide.GamePanel;
 
 /*
  * This code belongs to:
