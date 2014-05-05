@@ -8,5 +8,5 @@ package clientSide.attributes.world;
  */
 
 public class Grid {
-    
+
 }

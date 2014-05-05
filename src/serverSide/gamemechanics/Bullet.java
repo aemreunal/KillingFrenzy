@@ -1,7 +1,5 @@
 package serverSide.gamemechanics;
 
-import java.util.Vector;
-
 /**
  * Created by Eren Sezener
  */

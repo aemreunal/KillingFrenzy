@@ -8,3 +8,5 @@
 
 .classpath	
 .idea/*
+
+*.xml

@@ -9,6 +9,6 @@ package clientSide.attributes.player;
 
 public class Player {
     public Player() {
-        
+
     }
 }

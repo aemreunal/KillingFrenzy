@@ -1,9 +1,8 @@
 package clientSide.graphics;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 import clientSide.attributes.Settings;
+
+import java.awt.*;
 
 /*
  * This code belongs to:

@@ -1,8 +1,6 @@
 package clientSide.controllerHandlers;
 
-import java.awt.Cursor;
-import java.awt.Point;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /*

@@ -1,13 +1,12 @@
 package clientSide.graphics;
 
-import java.awt.Graphics;
+import clientSide.attributes.Settings;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import clientSide.attributes.Settings;
 
 /*
  * This code belongs to:
@@ -18,7 +17,7 @@ import clientSide.attributes.Settings;
 
 public class WorldGround {
     private static boolean errorOcurred = false;
-    
+
     public static void paint(Graphics g) {
         try {
             BufferedImage img = ImageIO.read(new File(Settings.GROUND_TILE_FILE));

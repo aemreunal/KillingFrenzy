@@ -5,7 +5,7 @@ package serverSide.gamemechanics;
  */
 public abstract class Entity {
     private int id;
-//    private World world;
+    //    private World world;
     private PhysicalAttributes physicalAttributes;
 
 

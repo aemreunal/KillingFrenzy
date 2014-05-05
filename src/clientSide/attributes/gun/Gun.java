@@ -8,5 +8,5 @@ package clientSide.attributes.gun;
  */
 
 public class Gun {
-    
+
 }
