@@ -2,6 +2,14 @@ package packets;
 
 import java.io.*;
 
+/* Packet ID (type)  - Packet Name
+ * 0x00 - KeyPressPacket
+ * 0x01 - KeyReleasePacket
+ * 0x02 - CreateEntityPacket
+ * 0x03 - UpdateEntityPacket
+ * 
+ */
+
 public abstract class Packet implements Serializable {
 
     public byte type = 0;
