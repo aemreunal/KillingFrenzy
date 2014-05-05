@@ -9,12 +9,15 @@ import clientSide.attributes.Settings;
 import clientSide.attributes.player.Direction;
 import clientSide.controllerHandlers.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
+import clientSide.graphics.Bullet;
 import clientSide.graphics.Crosshair;
 import clientSide.graphics.FriendlyPlayer;
 import clientSide.graphics.Player;
+import clientSide.graphics.Wall;
 import clientSide.graphics.WorldGround;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 /*

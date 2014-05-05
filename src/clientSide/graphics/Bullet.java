@@ -14,6 +14,7 @@ public class Bullet {
         g.setColor(Color.BLACK);
         int x = (int) bulletX;
         int y = (int) bulletY;
-        g.drawOval(x, y, 2, 2);
+        g.fillOval(x, y, 2, 2);
+        
     }
 }
