@@ -1,6 +1,6 @@
 package clientSide.graphics;
 
-import clientSide.attributes.Settings;
+import clientSide.Settings;
 
 import java.awt.*;
 

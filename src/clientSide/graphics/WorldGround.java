@@ -1,6 +1,6 @@
 package clientSide.graphics;
 
-import clientSide.attributes.Settings;
+import clientSide.Settings;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,24 +16,33 @@ import java.io.IOException;
  */
 
 public class WorldGround {
-    private static boolean errorOcurred = false;
+    private static BufferedImage groundImage;
+    private static int width;
+    private static int height;
+    private static boolean errorOccurred = false;
 
-    public static void paint(Graphics g) {
+    public static void init() {
         try {
-            BufferedImage img = ImageIO.read(new File(Settings.GROUND_TILE_FILE));
-            int width = img.getWidth();
-            int height = img.getHeight();
-            for (int x = 0; x < Settings.GAME_WINDOW_WIDTH; x += width) {
-                for (int y = 0; y < Settings.GAME_WINDOW_HEIGHT; y += height) {
-                    g.drawImage(img, x, y, width, height, null);
-                }
-            }
+            groundImage = ImageIO.read(new File(Settings.GROUND_IMAGE_FILE_PATH));
+            width = groundImage.getWidth();
+            height = groundImage.getHeight();
         } catch (IOException e) {
-            if (!errorOcurred) {
+            if (!errorOccurred) {
                 System.err.println("Unable to load image!");
                 System.err.println("Loading plain green background instead.");
-                errorOcurred = true;
+                errorOccurred = true;
             }
+        }
+    }
+
+    public static void paint(Graphics g) {
+        if(!errorOccurred) {
+            for (int x = 0; x < Settings.GAME_WINDOW_WIDTH; x += width) {
+                for (int y = 0; y < Settings.GAME_WINDOW_HEIGHT; y += height) {
+                    g.drawImage(groundImage, x, y, width, height, null);
+                }
+            }
+        } else {
             g.setColor(Settings.DEFAULT_GROUND_COLOR);
             g.fillRect(0, 0, Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
         }

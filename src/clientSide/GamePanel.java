@@ -1,23 +1,13 @@
 package clientSide;
 
-import java.awt.Cursor;
-import java.awt.Graphics;
-
-import javax.swing.JPanel;
-
-import clientSide.attributes.Settings;
 import clientSide.attributes.player.Direction;
 import clientSide.controllerHandlers.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
-import clientSide.graphics.Bullet;
 import clientSide.graphics.Crosshair;
 import clientSide.graphics.FriendlyPlayer;
-import clientSide.graphics.Player;
-import clientSide.graphics.Wall;
 import clientSide.graphics.WorldGround;
 
 import javax.swing.*;
-
 import java.awt.*;
 
 /*
@@ -36,6 +26,8 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
         addListeners();
+        FriendlyPlayer.init();
+        WorldGround.init();
     }
 
     private void addListeners() {
@@ -85,22 +77,8 @@ public class GamePanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        paintGround(g);
-        paintPlayer(g);
-        paintCrosshair(g);
-    }
-
-    private void paintGround(Graphics g) {
         WorldGround.paint(g);
-    }
-
-    private void paintCrosshair(Graphics g) {
+        FriendlyPlayer.paintMoving(g, playerX, playerY, (float) (Math.PI / 2));
         Crosshair.paint(g, mouseX, mouseY);
-    }
-
-    private void paintPlayer(Graphics g) {
-    	FriendlyPlayer.paintMoving(g, playerX, playerY);
-		
-
     }
 }
