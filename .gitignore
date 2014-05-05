@@ -6,7 +6,8 @@
 *.ear
 /bin
 
-.classpath	
 .idea/*
 
 *.xml
+
+.classpath
