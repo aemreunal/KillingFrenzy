@@ -181,7 +181,7 @@ public class Server implements Runnable {
 		client.socket().setTcpNoDelay(true);
 		SelectionKey newkey = client.register(keySelector, SelectionKey.OP_READ);
 		readBuffers.put(newkey, ByteBuffer.allocate(DEFAULT_MESSAGE_SIZE));
-		clientMap.put(newkey, new Client(newkey));
+		clientMap.put(newkey, new Client(newkey, this));
 		System.out.println("New connection: " + newkey);
 	}
 
