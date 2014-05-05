@@ -11,3 +11,5 @@
 *.xml
 
 .classpath
+
+.idea/workspace.xml
