@@ -1,16 +1,23 @@
 package serverSide.gamemechanics;
 
-import clientSide.attributes.world.Grid;
-
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Created by Eren Sezener
  */
 public class World {
-    private List<Grid> grids;
+    private HashMap<Integer, Entity> idToEntityMap;
 
-    public Grid getGrid(int id){
-        return null;
+    public World(){
+        idToEntityMap = new HashMap<Integer, Entity>();
     }
+
+    public void addEntity(Entity entity){
+        idToEntityMap.put(entity.getId(), entity);
+    }
+
+    public Entity voidGetEntity(int id){
+        return idToEntityMap.get(id);
+    }
+
 }

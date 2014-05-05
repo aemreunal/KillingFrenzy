@@ -12,8 +12,4 @@ public class Gun {
     public void fire(){
 
     }
-
-    public void reload(){
-
-    }
 }

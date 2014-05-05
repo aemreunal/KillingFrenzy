@@ -11,7 +11,7 @@ public class Bullet extends Entity{
     private float damage;
 
     public Bullet(){
-        super();
+        super(HEIGHT, WIDTH);
     }
 
 }

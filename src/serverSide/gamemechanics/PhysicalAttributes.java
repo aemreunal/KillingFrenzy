@@ -4,7 +4,6 @@ import clientSide.attributes.world.Grid;
 
 
 public class PhysicalAttributes {
-    public Grid grid;
     public float left;
     public float right;
     public float top;
