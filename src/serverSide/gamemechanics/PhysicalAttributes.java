@@ -10,7 +10,7 @@ public class PhysicalAttributes {
     public float bottom;
     public float angle;
 
-    public PhysicalAttributes(float xCoor, float yCoor, float width, float height){
+    public PhysicalAttributes(float xCoor, float yCoor, float height, float width){
         this.left = xCoor;
         this.top = yCoor;
         this.right = xCoor + width;

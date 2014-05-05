@@ -14,4 +14,12 @@ public class Bullet extends Entity{
         super(HEIGHT, WIDTH);
     }
 
+    public float getXVelocity(){
+        return velocity.getX();
+    }
+
+    public float getYVelocity(){
+        return velocity.getY();
+    }
+
 }
