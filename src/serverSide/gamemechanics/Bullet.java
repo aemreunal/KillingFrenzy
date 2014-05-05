@@ -12,6 +12,11 @@ public class Bullet extends Entity{
 
     public Bullet(){
         super(HEIGHT, WIDTH);
+        this.velocity = new Vector2D();
+    }
+
+    public Bullet(float angle, float speed){
+        this.velocity = new Vector2D(angle, speed);
     }
 
     public float getXVelocity(){

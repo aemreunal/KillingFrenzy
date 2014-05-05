@@ -8,9 +8,13 @@ public class Vector2D {
         this(0, 0);
     }
 
-    public Vector2D(float x, float y) {
-        v[0] = x;
-        v[1] = y;
+    /*
+    Creates a cartesian vector from polar coordinates
+     */
+    public Vector2D(float angle, float velocity) {
+        v[0] = (float) (velocity * Math.cos(angle));
+        v[1] = (float) (velocity * Math.sin(angle));
+
     }
 
     public static Vector2D add(Vector2D a, Vector2D b) {

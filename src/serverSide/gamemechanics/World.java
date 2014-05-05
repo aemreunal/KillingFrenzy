@@ -1,22 +1,25 @@
 package serverSide.gamemechanics;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * Created by Eren Sezener
  */
 public class World {
-    private HashMap<Integer, Entity> idToEntityMap;
+    private static TreeMap<Integer, Entity> idToEntityMap;
+    private static int nextAvailableId; //Id of new entitites
 
     public World(){
-        idToEntityMap = new HashMap<Integer, Entity>();
+        idToEntityMap = new TreeMap<Integer, Entity>();
+        nextAvailableId = 0;
     }
 
-    public void addEntity(Entity entity){
+    public static void addEntity(Entity entity){
+        entity.setId(nextAvailableId++);
         idToEntityMap.put(entity.getId(), entity);
     }
 
-    public Entity voidGetEntity(int id){
+    public static Entity voidGetEntity(int id){
         return idToEntityMap.get(id);
     }
 
