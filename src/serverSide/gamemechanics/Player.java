@@ -3,7 +3,7 @@ package serverSide.gamemechanics;
 /**
  * Created by Eren Sezener
  */
-public class Player implements Collidable{
+public class Player extends Entity implements Collidable{
     private Gun gun;
     private float health;
 
