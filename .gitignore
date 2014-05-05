@@ -7,9 +7,13 @@
 /bin
 
 .idea/*
+.idea/
+.idea
+
+.settings/*
+.settings/
+.settings
 
 *.xml
 
-.classpath
-
-.idea/workspace.xml
+.classpathl
