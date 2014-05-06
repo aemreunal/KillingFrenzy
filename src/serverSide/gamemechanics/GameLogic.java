@@ -2,6 +2,7 @@ package serverSide.gamemechanics;
 
 import clientSide.Client;
 import packets.Packet;
+import packets.UpdateEntityPacket;
 import serverSide.server.Server;
 
 import java.nio.channels.SelectionKey;
@@ -18,6 +19,15 @@ public class GameLogic {
 
     }
     
+    public void update() {
+    	for (Entity e : World.getInstance().idToEntityMap.values()) {
+    		
+    		UpdateEntityPacket packet = new UpdateEntityPacket();
+    		packet.entityID = e.getId();
+    		packet.attrib = e.physicalAttributes;
+    		server.broadcast(packet);
+    	}
+    }
 
     public boolean existsACollisionBetween(Entity e1, Entity e2){
         boolean collisionOnX = !this.thereIsCollisionOnX(e1, e2);

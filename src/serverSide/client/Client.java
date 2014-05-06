@@ -13,9 +13,12 @@ public class Client {
 	private SelectionKey socket;
 	public Queue<Packet> packetQueue;
 	
+	public boolean keys[];
+	
 	public Client(SelectionKey key, Server server) {
 		socket = key;
 		packetQueue = new ConcurrentLinkedQueue<Packet>();
+		keys = new boolean[256];
 	}
 	
 	public void sendPacket(Packet pk) {

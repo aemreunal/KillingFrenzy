@@ -6,7 +6,7 @@ import java.util.TreeMap;
  * Created by Eren Sezener
  */
 public class World {
-    private TreeMap<Integer, Entity> idToEntityMap;
+    public TreeMap<Integer, Entity> idToEntityMap;
     private int nextAvailableId; //Id of new entitites
     private static World world;
     
