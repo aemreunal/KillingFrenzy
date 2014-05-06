@@ -20,8 +20,9 @@ public class Server implements Runnable {
 
     public static void main(String[] args) {
         Server server = new Server();
-        new Thread(server).start();
         Game game = new Game(server);
+        server.setGame(game);
+        new Thread(server).start();
         game.run();
     }
 
@@ -37,14 +38,24 @@ public class Server implements Runnable {
     public static final short PORT = 17000;
     private final int PACKET_HEADER_BYTES = 2;
     private static short DEFAULT_MESSAGE_SIZE = 20024;
+    
 
     private final AtomicReference<State> state = new AtomicReference<State>(State.STOPPED);
     protected ServerSocketChannel serverSocket;
     protected Selector keySelector;
     public ConcurrentHashMap<SelectionKey, Client> clientMap;
     private ConcurrentHashMap<SelectionKey, ByteBuffer> readBuffers;
+    private Game game;
 
-    @Override
+    public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	@Override
     public void run() {
         try {
             setupSockets();
@@ -180,7 +191,9 @@ public class Server implements Runnable {
         client.socket().setTcpNoDelay(true);
         SelectionKey newkey = client.register(keySelector, SelectionKey.OP_READ);
         readBuffers.put(newkey, ByteBuffer.allocate(DEFAULT_MESSAGE_SIZE));
-        clientMap.put(newkey, new Client(newkey, this));
+        Client cli = new Client(newkey, this);
+        clientMap.put(newkey, cli);
+        game.clients.add(cli);
         System.out.println("New connection: " + newkey);
     }
 

@@ -6,6 +6,9 @@ import clientSide.graphics.GraphicsProcessor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import packets.KeyPressPacket;
+import packets.KeyReleasePacket;
+
 /*
  * This code belongs to:
  * Ahmet Emre Unal
@@ -35,15 +38,19 @@ public class KeyboardHandler implements KeyListener {
                     break;
                 }
                 graphicsProcessor.setMovingNorth(true);
+                client.sendPacket(new KeyPressPacket(e.getKeyCode()));
                 break;
             case KeyEvent.VK_D:
                 graphicsProcessor.setMovingEast(true);
+                client.sendPacket(new KeyPressPacket(e.getKeyCode()));
                 break;
             case KeyEvent.VK_S:
                 graphicsProcessor.setMovingSouth(true);
+                client.sendPacket(new KeyPressPacket(e.getKeyCode()));
                 break;
             case KeyEvent.VK_A:
                 graphicsProcessor.setMovingWest(true);
+                client.sendPacket(new KeyPressPacket(e.getKeyCode()));
                 break;
         }
     }
@@ -58,15 +65,19 @@ public class KeyboardHandler implements KeyListener {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
                 graphicsProcessor.setMovingNorth(false);
+                client.sendPacket(new KeyReleasePacket(e.getKeyCode()));
                 break;
             case KeyEvent.VK_D:
                 graphicsProcessor.setMovingEast(false);
+                client.sendPacket(new KeyReleasePacket(e.getKeyCode()));
                 break;
             case KeyEvent.VK_S:
                 graphicsProcessor.setMovingSouth(false);
+                client.sendPacket(new KeyReleasePacket(e.getKeyCode()));
                 break;
             case KeyEvent.VK_A:
                 graphicsProcessor.setMovingWest(false);
+                client.sendPacket(new KeyReleasePacket(e.getKeyCode()));
                 break;
         }
     }

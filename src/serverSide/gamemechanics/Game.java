@@ -2,6 +2,7 @@ package serverSide.gamemechanics;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import packets.CreateEntityPacket;
 import packets.KeyPressPacket;
@@ -12,12 +13,12 @@ import serverSide.server.Server;
 
 public class Game {
 	private Server server;
-	private ArrayList<Client> clients;
+	public CopyOnWriteArrayList<Client> clients;
 	private GameLogic gameLogic;
 	
 	public Game(Server server) {
 		this.server = server;
-		clients = new ArrayList<Client>();
+		clients = new CopyOnWriteArrayList<Client>();
 	}
 	
 	public void updateClients() {
@@ -28,11 +29,13 @@ public class Game {
 				if (packet.type == 0) {
 					KeyPressPacket pressPacket = (KeyPressPacket) packet;
 					client.keys[pressPacket.key] = true;
+					System.out.println("Key pressed : "+pressPacket.key);
 				}
 				
 				if (packet.type == 1) {
 					KeyReleasePacket releasePacket = (KeyReleasePacket) packet;
 					client.keys[releasePacket.key] = false;
+					System.out.println("Key released : "+releasePacket.key);
 				}
 					
 				if (packet.type == 4) {

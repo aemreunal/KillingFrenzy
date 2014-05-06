@@ -8,4 +8,9 @@ public class KeyReleasePacket extends Packet {
 		type=1;
 	}
 
+	public KeyReleasePacket(int keyCode) {
+		this();
+		key = keyCode;
+	}
+
 }
