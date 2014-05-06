@@ -18,6 +18,9 @@ bin/
 .settings/
 .settings
 
+/.settings
+/.settings/
+
 *.xml
 
 .classpathl
