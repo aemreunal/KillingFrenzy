@@ -24,3 +24,4 @@ bin/
 *.xml
 
 .classpathl
+/.classpath
