@@ -5,10 +5,14 @@
 *.war
 *.ear
 /bin
+bin/
 
 .idea/*
 .idea/
 .idea
+
+/.idea
+/.idea/
 
 .settings/*
 .settings/
