@@ -15,9 +15,11 @@ import javax.swing.*;
 public class GameClientUIManager {
     private JFrame window;
     private GamePanel panel;
+    private Client client;
     private GraphicsProcessor graphicsProcessor;
 
     public GameClientUIManager(Client client) {
+        this.client = client;
         this.window = new JFrame("GO GO");
         this.panel = new GamePanel();
         window.getContentPane().add(panel);
@@ -32,7 +34,7 @@ public class GameClientUIManager {
     }
 
     private void addListeners() {
-        window.addKeyListener(new KeyboardHandler(graphicsProcessor));
+        window.addKeyListener(new KeyboardHandler(client, graphicsProcessor));
     }
 
     private void setWindowAttributes() {

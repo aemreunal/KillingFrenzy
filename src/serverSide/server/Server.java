@@ -1,30 +1,29 @@
 package serverSide.server;
 
+import packets.Packet;
+import serverSide.client.Client;
+import serverSide.gamemechanics.Game;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
-import java.nio.channels.ClosedChannelException;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
-import packets.Packet;
-import packets.KeyPressPacket;
-import serverSide.client.Client;
-
 public class Server implements Runnable {
 
-	
+    public static void main(String[] args) {
+        Server server = new Server();
+        new Thread(server).start();
+        Game game = new Game(server);
+        game.run();
+    }
 
 	protected Server() {
 		readBuffers = new ConcurrentHashMap<SelectionKey, ByteBuffer>();
@@ -52,7 +51,7 @@ public class Server implements Runnable {
 			state.set(State.RUNNING);
 			while (state.get() == State.RUNNING) {
 				runServer();
-				
+
 			}
 			closeSockets();
 		} catch (Exception e) {
@@ -84,7 +83,7 @@ public class Server implements Runnable {
 
 	private List<ByteBuffer> readMessageFromSocket(SelectionKey key) throws IOException {
 		ByteBuffer readBuffer = readBuffers.get(key);
-		if (((ReadableByteChannel) key.channel()).read(readBuffer) == -1) 
+		if (((ReadableByteChannel) key.channel()).read(readBuffer) == -1)
 			throw new IOException("Read on closed key");
 
 		readBuffer.flip();
@@ -169,7 +168,7 @@ public class Server implements Runnable {
 				Thread.sleep(5);
 		}
 	}
-	
+
 	public void broadcast(Packet pk) {
 		for (Entry<SelectionKey, Client> o : clientMap.entrySet()) {
 			sendPacket(o.getKey(), pk);

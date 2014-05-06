@@ -1,7 +1,12 @@
 package clientSide;
 
+import packets.KeyPressPacket;
 import packets.Packet;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -15,6 +20,14 @@ import java.util.concurrent.atomic.AtomicReference;
 
 
 public class Client implements Runnable {
+    private static Client thisClient;
+    private JFrame menuWindow;
+    private JPanel p1;
+
+    public static void main(String[] args) {
+        thisClient = new Client();
+        new Thread(thisClient).start();
+    }
 
     private final int PACKET_HEADER_BYTES = 2;
     public static final short PORT = 17000;
@@ -28,6 +41,34 @@ public class Client implements Runnable {
 
     public Client() {
         packetQueue = new ConcurrentLinkedQueue<>();
+        createAndShowGUI();
+    }
+
+    private void createAndShowGUI() {
+        menuWindow = new JFrame();
+        menuWindow.setTitle("Killing Frenzy");
+        menuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // setLayout(new FlowLayout());
+        p1 = new JPanel();
+        p1.setPreferredSize(new Dimension(500, 500));
+        p1.setBackground(Color.GRAY);
+        p1.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 5, true));
+
+        JButton okButton = new JButton("JOIN THE MADNESS");
+        p1.add(okButton);
+        menuWindow.add(p1);
+
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendPacket(new KeyPressPacket());
+                new GameClientUIManager(thisClient);
+            }
+        });
+
+        menuWindow.setSize(500, 500);
+        menuWindow.setVisible(true);
+        menuWindow.pack();
     }
 
     @Override
