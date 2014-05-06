@@ -26,8 +26,6 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
         addListeners();
-        FriendlyPlayer.init();
-        WorldGround.init();
     }
 
     private void addListeners() {
@@ -59,26 +57,29 @@ public class GamePanel extends JPanel {
                 playerX -= Settings.PLAYER_SPEED;
                 break;
         }
-        repaint();
     }
 
     public void updateCrosshair(float x, float y) {
         mouseX = x;
         mouseY = y;
-        repaint();
     }
 
     public void updatePlayer(float x, float y) {
         playerX = x;
         playerY = y;
-        repaint();
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         WorldGround.paint(g);
-        FriendlyPlayer.paintMoving(g, playerX, playerY, (float) (Math.PI / 2));
+        FriendlyPlayer.paintMoving(g, playerX, playerY, getPlayerAngle());
         Crosshair.paint(g, mouseX, mouseY);
+    }
+
+    public float getPlayerAngle() {
+        float imageCenterX = playerX + (Settings.movingImageWidth / 2);
+        float imageCenterY = playerY + (Settings.movingImageHeight / 2);
+        return (float) Math.atan2(mouseY - imageCenterY, mouseX - imageCenterX);
     }
 }
