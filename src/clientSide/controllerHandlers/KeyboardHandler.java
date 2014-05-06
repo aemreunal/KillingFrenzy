@@ -1,7 +1,6 @@
 package clientSide.controllerHandlers;
 
-import clientSide.GamePanel;
-import clientSide.attributes.player.Direction;
+import clientSide.graphics.GraphicsProcessor;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,14 +13,14 @@ import java.awt.event.KeyListener;
  */
 
 public class KeyboardHandler implements KeyListener {
-    private GamePanel panel;
+    private GraphicsProcessor graphicsProcessor;
     private boolean usingMac = false;
 
-    public KeyboardHandler(GamePanel gamePanel) {
+    public KeyboardHandler(GraphicsProcessor graphicsProcessor) {
         // If system is Mac, output will be "Mac OS X"
         // If system is Windows, output will be "Windows ..."
         usingMac = (System.getProperty("os.name").charAt(0) == 'M');
-        panel = gamePanel;
+        this.graphicsProcessor = graphicsProcessor;
     }
 
     @Override
@@ -32,16 +31,16 @@ public class KeyboardHandler implements KeyListener {
                     // Close the game
                     break;
                 }
-                panel.move(Direction.NORTH);
+                graphicsProcessor.setMovingNorth(true);
                 break;
             case KeyEvent.VK_D:
-                panel.move(Direction.EAST);
+                graphicsProcessor.setMovingEast(true);
                 break;
             case KeyEvent.VK_S:
-                panel.move(Direction.SOUTH);
+                graphicsProcessor.setMovingSouth(true);
                 break;
             case KeyEvent.VK_A:
-                panel.move(Direction.WEST);
+                graphicsProcessor.setMovingWest(true);
                 break;
         }
     }
@@ -53,6 +52,19 @@ public class KeyboardHandler implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // Do nothing
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:
+                graphicsProcessor.setMovingNorth(false);
+                break;
+            case KeyEvent.VK_D:
+                graphicsProcessor.setMovingEast(false);
+                break;
+            case KeyEvent.VK_S:
+                graphicsProcessor.setMovingSouth(false);
+                break;
+            case KeyEvent.VK_A:
+                graphicsProcessor.setMovingWest(false);
+                break;
+        }
     }
 }

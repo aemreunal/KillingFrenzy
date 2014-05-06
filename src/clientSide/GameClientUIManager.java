@@ -31,7 +31,7 @@ public class GameClientUIManager {
     }
 
     private void addListeners() {
-        window.addKeyListener(new KeyboardHandler(panel));
+        window.addKeyListener(new KeyboardHandler(graphicsProcessor));
     }
 
     private void setWindowAttributes() {
