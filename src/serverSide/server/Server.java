@@ -6,7 +6,6 @@ import serverSide.gamemechanics.Game;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.ArrayList;
@@ -26,8 +25,8 @@ public class Server implements Runnable {
     }
 
     protected Server() {
-        readBuffers = new ConcurrentHashMap<SelectionKey, ByteBuffer>();
-        clientMap = new ConcurrentHashMap<SelectionKey, Client>();
+        readBuffers = new ConcurrentHashMap<>();
+        clientMap = new ConcurrentHashMap<>();
     }
 
     private enum State {
@@ -38,7 +37,7 @@ public class Server implements Runnable {
     private final int PACKET_HEADER_BYTES = 2;
     private static short DEFAULT_MESSAGE_SIZE = 20024;
 
-    private final AtomicReference<State> state = new AtomicReference<State>(State.STOPPED);
+    private final AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
     protected ServerSocketChannel serverSocket;
     protected Selector keySelector;
     public ConcurrentHashMap<SelectionKey, Client> clientMap;
@@ -87,7 +86,7 @@ public class Server implements Runnable {
             throw new IOException("Read on closed key");
 
         readBuffer.flip();
-        List<ByteBuffer> result = new ArrayList<ByteBuffer>();
+        List<ByteBuffer> result = new ArrayList<>();
         ByteBuffer msg = readFullMessage(key, readBuffer);
         while (msg != null) {
             result.add(msg);
@@ -155,7 +154,7 @@ public class Server implements Runnable {
     }
 
     private void forceSendPacket(SelectionKey channelKey, ByteBuffer writeBuffer) throws IOException, InterruptedException {
-        int bytesWritten = 0;
+        int bytesWritten;
         SocketChannel channel = (SocketChannel) channelKey.channel();
         while (writeBuffer.remaining() > 0) {
             bytesWritten = channel.write(writeBuffer);
@@ -174,14 +173,14 @@ public class Server implements Runnable {
         }
     }
 
-    private void acceptConnection() throws IOException, SocketException, ClosedChannelException {
+    private void acceptConnection() throws IOException {
         SocketChannel client = serverSocket.accept();
         client.configureBlocking(false);
         client.socket().setTcpNoDelay(true);
-        SelectionKey newkey = client.register(keySelector, SelectionKey.OP_READ);
-        readBuffers.put(newkey, ByteBuffer.allocate(DEFAULT_MESSAGE_SIZE));
-        clientMap.put(newkey, new Client(newkey, this));
-        System.out.println("New connection: " + newkey);
+        SelectionKey newKey = client.register(keySelector, SelectionKey.OP_READ);
+        readBuffers.put(newKey, ByteBuffer.allocate(DEFAULT_MESSAGE_SIZE));
+        clientMap.put(newKey, new Client(newKey, this));
+        System.out.println("New connection: " + newKey);
     }
 
     protected void resetKey(SelectionKey key) {
@@ -190,7 +189,7 @@ public class Server implements Runnable {
         readBuffers.remove(key);
     }
 
-    private void setupSockets() throws IOException, ClosedChannelException {
+    private void setupSockets() throws IOException {
         keySelector = Selector.open();
         serverSocket = ServerSocketChannel.open();
         serverSocket.socket().bind(new InetSocketAddress(PORT));
