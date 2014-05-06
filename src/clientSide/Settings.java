@@ -19,11 +19,9 @@ public class Settings {
     public static final float PLAYER_SPEED = 150.0f;
     public static final float PLAYER_LOC_UPDATE_AMOUNT = PLAYER_SPEED / FPS;
 
-
     public static final int BULLET_SPEED = 5;
 
     public static final int CROSSHAIR_SIZE = 12;
-
     public static final int PLAYER_SIZE = 10;
 
     public static final String IMG_PATH = "images/";
