@@ -3,6 +3,7 @@ package clientSide.graphics;
 import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
+import clientSide.attributes.player.Direction;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +15,11 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class GraphicsProcessor extends Thread implements Runnable {
+    private boolean movingNorth = false;
+    private boolean movingEast = false;
+    private boolean movingSouth = false;
+    private boolean movingWest = false;
+
     private Client client;
     private GamePanel panel;
 
@@ -27,6 +33,22 @@ public class GraphicsProcessor extends Thread implements Runnable {
     @Override
     public void run() {
         while (true /*client.getState() == GameState.RUNNING*/) {
+            if (movingNorth) {
+                panel.move(Direction.NORTH);
+            }
+
+            if (movingWest) {
+                panel.move(Direction.WEST);
+            }
+
+            if (movingSouth) {
+                panel.move(Direction.SOUTH);
+            }
+
+            if (movingEast) {
+                panel.move(Direction.EAST);
+            }
+
             panel.repaint();
 
             try {
@@ -38,4 +60,19 @@ public class GraphicsProcessor extends Thread implements Runnable {
         }
     }
 
+    public synchronized void setMovingNorth(boolean movingNorth) {
+        this.movingNorth = movingNorth;
+    }
+
+    public synchronized void setMovingEast(boolean movingEast) {
+        this.movingEast = movingEast;
+    }
+
+    public synchronized void setMovingSouth(boolean movingSouth) {
+        this.movingSouth = movingSouth;
+    }
+
+    public synchronized void setMovingWest(boolean movingWest) {
+        this.movingWest = movingWest;
+    }
 }
