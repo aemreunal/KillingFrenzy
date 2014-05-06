@@ -61,7 +61,7 @@ public class FriendlyPlayer {
 */
 
     public static void paintMoving(Graphics g, float playerX, float playerY, float angle) {
-        g.drawImage(rotate(movingImages[currentMovingImage], -angle), (int) playerX, (int) playerY, null);
+        g.drawImage(rotate(movingImages[currentMovingImage], angle), (int) playerX, (int) playerY, null);
     }
 
     public static BufferedImage rotate(BufferedImage img, double angle) {
@@ -73,7 +73,7 @@ public class FriendlyPlayer {
         BufferedImage rotatedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D g = rotatedImage.createGraphics();
-        g.translate((newWidth - Settings.movingImageWidth) / 2, (newHeight - Settings.movingImageHeight) / 2);
+//        g.translate((newWidth - Settings.movingImageWidth) / 2, (newHeight - Settings.movingImageHeight) / 2);
         g.rotate(angle, Settings.movingImageWidth / 2, Settings.movingImageHeight / 2);
         g.drawRenderedImage(img, null);
         g.dispose();
