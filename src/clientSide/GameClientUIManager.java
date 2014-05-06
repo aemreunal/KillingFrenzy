@@ -20,10 +20,8 @@ public class GameClientUIManager {
 
     public GameClientUIManager(Client client) {
         this.client = client;
-        this.window = new JFrame("GO GO");
-        this.panel = new GamePanel();
+        createComponents();
         window.getContentPane().add(panel);
-        this.graphicsProcessor = new GraphicsProcessor(client, panel);
         graphicsProcessor.start();
         setWindowAttributes();
         addListeners();
@@ -31,6 +29,12 @@ public class GameClientUIManager {
         window.setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT + window.getBounds().y);
         window.setVisible(true);
         window.setLocationRelativeTo(null);
+    }
+
+    private void createComponents() {
+        this.window = new JFrame("GO GO");
+        this.panel = new GamePanel();
+        this.graphicsProcessor = new GraphicsProcessor(client, panel);
     }
 
     private void addListeners() {
