@@ -21,22 +21,15 @@ public class GameClientUIManager {
     public GameClientUIManager(Client client) {
         this.client = client;
         createComponents();
-
-        window.getContentPane().add(panel);
-        graphicsProcessor.start();
-
-        setWindowAttributes();
         addListeners();
-
-        window.setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT + window.getBounds().y);
-        window.setVisible(true);
-        window.setLocationRelativeTo(null);
+        setWindowAttributes();
     }
 
     private void createComponents() {
         this.window = new JFrame("GO GO");
         this.panel = new GamePanel();
         this.graphicsProcessor = new GraphicsProcessor(client, panel);
+        this.graphicsProcessor.start();
     }
 
     private void addListeners() {
@@ -44,6 +37,10 @@ public class GameClientUIManager {
     }
 
     private void setWindowAttributes() {
+        window.getContentPane().add(panel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT + window.getBounds().y);
+        window.setVisible(true);
+        window.setLocationRelativeTo(null);
     }
 }
