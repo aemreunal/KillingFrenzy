@@ -21,8 +21,10 @@ public class GameClientUIManager {
     public GameClientUIManager(Client client) {
         this.client = client;
         createComponents();
+
         window.getContentPane().add(panel);
         graphicsProcessor.start();
+
         setWindowAttributes();
         addListeners();
 
