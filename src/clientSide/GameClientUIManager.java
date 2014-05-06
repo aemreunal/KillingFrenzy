@@ -12,22 +12,23 @@ import javax.swing.*;
  * emre.unal@ozu.edu.tr
  */
 
-@SuppressWarnings("serial")
 public class GameClientUIManager {
     private JFrame window;
     private GamePanel panel;
     private GraphicsProcessor graphicsProcessor;
 
     public GameClientUIManager(Client client) {
-        this.window = new JFrame();
+        this.window = new JFrame("GO GO");
         this.panel = new GamePanel();
-        window.add(panel);
+        window.getContentPane().add(panel);
         this.graphicsProcessor = new GraphicsProcessor(client, panel);
         graphicsProcessor.start();
         setWindowAttributes();
         addListeners();
-        window.setSize(panel.getSize());
+
+        window.setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT + window.getBounds().y);
         window.setVisible(true);
+        window.setLocationRelativeTo(null);
     }
 
     private void addListeners() {

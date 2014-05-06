@@ -16,7 +16,10 @@ public class Settings {
     public static final int FPS = 100;
     public static final long GRAPHICS_PROC_SLEEP_MILLIS = (long) (1000.0 / FPS);
 
-    public static final int PLAYER_SPEED = 5;
+    public static final float PLAYER_SPEED = 150.0f;
+    public static final float PLAYER_LOC_UPDATE_AMOUNT = PLAYER_SPEED / FPS;
+
+
     public static final int BULLET_SPEED = 5;
 
     public static final int CROSSHAIR_SIZE = 12;

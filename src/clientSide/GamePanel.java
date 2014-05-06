@@ -43,18 +43,28 @@ public class GamePanel extends JPanel {
     }
 
     public void move(Direction dir) {
+        float imageCenterX = playerX + (Settings.movingImageWidth / 2);
+        float imageCenterY = playerY + (Settings.movingImageHeight / 2);
         switch (dir) {
             case NORTH:
-                playerY -= Settings.PLAYER_SPEED;
+                if(imageCenterY > 0) {
+                    playerY -= Settings.PLAYER_LOC_UPDATE_AMOUNT;
+                }
                 break;
             case EAST:
-                playerX += Settings.PLAYER_SPEED;
+                if(imageCenterX < Settings.GAME_WINDOW_WIDTH) {
+                    playerX += Settings.PLAYER_LOC_UPDATE_AMOUNT;
+                }
                 break;
             case SOUTH:
-                playerY += Settings.PLAYER_SPEED;
+                if(imageCenterY < Settings.GAME_WINDOW_HEIGHT) {
+                    playerY += Settings.PLAYER_LOC_UPDATE_AMOUNT;
+                }
                 break;
             case WEST:
-                playerX -= Settings.PLAYER_SPEED;
+                if(imageCenterX > 0) {
+                    playerX -= Settings.PLAYER_LOC_UPDATE_AMOUNT;
+                }
                 break;
         }
     }
