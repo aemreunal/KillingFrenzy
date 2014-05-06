@@ -7,11 +7,12 @@ import java.io.*;
  * 0x01 - KeyReleasePacket
  * 0x02 - CreateEntityPacket
  * 0x03 - UpdateEntityPacket
- * 
+ * 0x04 - JoinGamePacket
  */
 
 public abstract class Packet implements Serializable {
 
+	
     public byte type = 0;
 
     public static Packet fromByteArray(byte[] arr) {

@@ -52,6 +52,7 @@ public class Server implements Runnable {
 			state.set(State.RUNNING);
 			while (state.get() == State.RUNNING) {
 				runServer();
+				
 			}
 			closeSockets();
 		} catch (Exception e) {

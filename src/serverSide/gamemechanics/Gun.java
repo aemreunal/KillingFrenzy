@@ -7,6 +7,6 @@ public class Gun {
     private float bulletSpeed;
 
     public void fire(float angle){
-        World.addEntity(new Bullet(angle, bulletSpeed));
+        World.getInstance().addEntity(new Bullet(angle, bulletSpeed));
     }
 }

@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class GameLogic {
     private Server server;
-    private World world;
     private List<Client> clients;
 
     public void receivePacket(Packet packet, SelectionKey key){
 
     }
+    
 
     public boolean existsACollisionBetween(Entity e1, Entity e2){
         boolean collisionOnX = !this.thereIsCollisionOnX(e1, e2);

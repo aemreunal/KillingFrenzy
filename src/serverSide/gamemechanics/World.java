@@ -6,20 +6,30 @@ import java.util.TreeMap;
  * Created by Eren Sezener
  */
 public class World {
-    private static TreeMap<Integer, Entity> idToEntityMap;
-    private static int nextAvailableId; //Id of new entitites
-
-    public World(){
+    private TreeMap<Integer, Entity> idToEntityMap;
+    private int nextAvailableId; //Id of new entitites
+    private static World world;
+    
+    public static World getInstance() {
+    	if (world == null) {
+    		world = new World();
+    	}
+    	
+    	return world;
+    }
+    
+    private World(){
         idToEntityMap = new TreeMap<Integer, Entity>();
         nextAvailableId = 0;
     }
 
-    public static void addEntity(Entity entity){
+    public void addEntity(Entity entity){
         entity.setId(nextAvailableId++);
         idToEntityMap.put(entity.getId(), entity);
     }
+    
 
-    public static Entity voidGetEntity(int id){
+    public Entity voidGetEntity(int id){
         return idToEntityMap.get(id);
     }
 

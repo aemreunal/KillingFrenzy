@@ -43,7 +43,9 @@ public class Client implements Runnable {
 			state.set(State.RUNNING);
 			while (state.get() == State.RUNNING) {
 				for (ByteBuffer message : readIncomingMessage(socketChannel)) {
-					packetQueue.add(Packet.fromByteArray(message.array()));
+					Packet packet = Packet.fromByteArray(message.array());
+					packetQueue.add(packet);
+					System.out.println("New packet: " + packet.getClass());
 					//dispatchMessage(message)
 				}
 			}
