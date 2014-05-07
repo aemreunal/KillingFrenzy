@@ -23,10 +23,10 @@ public class GameLogic {
         Entity[] entities = (Entity[]) World.getInstance().idToEntityMap.values().toArray();
     	for (Entity e : entities) {
 
-    		UpdateEntityPacket packet = new UpdateEntityPacket();
+    		/*UpdateEntityPacket packet = new UpdateEntityPacket();
     		packet.entityID = e.getId();
     		packet.attrib = e.physicalAttributes;
-    		server.broadcast(packet);
+    		server.broadcast(packet);*/
     	}
     }
 

@@ -9,7 +9,10 @@ package packets;
 
 public class CreateEntityPacket extends Packet {
     public int entityID;
-    public int entityType; // bullet, character, wall etc.
+    public EntityType entityType; // bullet, character, wall etc.
+    public float x;
+    public float y;
+    public float angle;
 
 	/*
      * are physical attributes needed here ?

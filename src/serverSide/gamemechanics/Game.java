@@ -34,18 +34,32 @@ public class Game {
                 }
 
                 if (packet.getType() == PacketType.PACKET_JOINGAME) {
+                    for (Entity e : World.getInstance().idToEntityMap.values()) {
+                        CreateEntityPacket toSend = new CreateEntityPacket();
+                        toSend.x = e.physicalAttributes.left;
+                        toSend.y = e.physicalAttributes.top;
+                        toSend.angle = 10.0f;
+                        toSend.entityID = e.getId();
+                        toSend.entityType = EntityType.ENTITY_PLAYER;
+                        client.sendPacket(toSend);
+                    }
+                    
                     Player player = new Player(client);
+                    player.physicalAttributes = new PhysicalAttributes((float) Math.random() * 100.0f, (float) Math.random() * 100.0f, 10.0f, 10.0f);
                     World.getInstance().addEntity(player);
                     CreateEntityPacket toSend = new CreateEntityPacket();
+                    toSend.x = player.physicalAttributes.left;
+                    toSend.y = player.physicalAttributes.top;
+                    toSend.angle = 10.0f;
                     toSend.entityID = player.getId();
-                    toSend.entityType = 0;
+                    toSend.entityType = EntityType.ENTITY_PLAYER;
                     server.broadcast(toSend);
                 }
             }
 
-            if (client.keys[68]) {
+            /*if (client.keys[68]) {
                 server.broadcast(new UpdateEntityPacket());
-            }
+            }*/
         }
     }
 

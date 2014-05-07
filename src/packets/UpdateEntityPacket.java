@@ -5,6 +5,10 @@ import serverSide.gamemechanics.PhysicalAttributes;
 
 public class UpdateEntityPacket extends Packet {
     public int entityID;
+    
+    public float x;
+    public float y;
+    public float angle;
 
 	/*
      * position
@@ -13,10 +17,13 @@ public class UpdateEntityPacket extends Packet {
 	 *
 	 */
 
-    public PhysicalAttributes attrib;
+    //public PhysicalAttributes attrib;
 
-    public UpdateEntityPacket() {
+    public UpdateEntityPacket(float x, float y, float angle) {
         super(PacketType.PACKET_UPDATEENTITY);
+        this.x = x;
+        this.y = y;
+        this.angle = angle;
     }
 
 }
