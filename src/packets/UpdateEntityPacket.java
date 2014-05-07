@@ -4,19 +4,19 @@ import serverSide.gamemechanics.PhysicalAttributes;
 
 
 public class UpdateEntityPacket extends Packet {
-	public int entityID;
-	
+    public int entityID;
+
 	/*
-	 * position 
+     * position
 	 * rotation
 	 * etc.
-	 * 
+	 *
 	 */
-	
-	public PhysicalAttributes attrib;
 
-	public UpdateEntityPacket() {
-		type=3;
-	}
+    public PhysicalAttributes attrib;
+
+    public UpdateEntityPacket() {
+        super((byte) 3);
+    }
 
 }

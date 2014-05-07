@@ -47,22 +47,22 @@ public class GamePanel extends JPanel {
         float imageCenterY = playerY + (Settings.movingImageHeight / 2);
         switch (dir) {
             case NORTH:
-                if(imageCenterY > 0) {
+                if (imageCenterY > 0) {
                     playerY -= Settings.PLAYER_LOC_UPDATE_AMOUNT;
                 }
                 break;
             case EAST:
-                if(imageCenterX < Settings.GAME_WINDOW_WIDTH) {
+                if (imageCenterX < Settings.GAME_WINDOW_WIDTH) {
                     playerX += Settings.PLAYER_LOC_UPDATE_AMOUNT;
                 }
                 break;
             case SOUTH:
-                if(imageCenterY < Settings.GAME_WINDOW_HEIGHT) {
+                if (imageCenterY < Settings.GAME_WINDOW_HEIGHT) {
                     playerY += Settings.PLAYER_LOC_UPDATE_AMOUNT;
                 }
                 break;
             case WEST:
-                if(imageCenterX > 0) {
+                if (imageCenterX > 0) {
                     playerX -= Settings.PLAYER_LOC_UPDATE_AMOUNT;
                 }
                 break;

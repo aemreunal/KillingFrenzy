@@ -37,7 +37,7 @@ public class Server implements Runnable {
     public static final short PORT = 17000;
     private final int PACKET_HEADER_BYTES = 2;
     private static short DEFAULT_MESSAGE_SIZE = 20024;
-    
+
 
     private final AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
     protected ServerSocketChannel serverSocket;
@@ -47,14 +47,14 @@ public class Server implements Runnable {
     private Game game;
 
     public Game getGame() {
-		return game;
-	}
+        return game;
+    }
 
-	public void setGame(Game game) {
-		this.game = game;
-	}
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
-	@Override
+    @Override
     public void run() {
         try {
             setupSockets();

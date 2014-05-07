@@ -6,7 +6,7 @@ package serverSide.gamemechanics;
 public class Gun {
     private float bulletSpeed;
 
-    public void fire(float angle){
+    public void fire(float angle) {
         World.getInstance().addEntity(new Bullet(angle, bulletSpeed));
     }
 }

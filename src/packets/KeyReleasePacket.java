@@ -2,15 +2,15 @@ package packets;
 
 
 public class KeyReleasePacket extends Packet {
-	public int key;
+    public int key;
 
-	public KeyReleasePacket() {
-		type=1;
-	}
+    public KeyReleasePacket() {
+        super((byte) 1);
+    }
 
-	public KeyReleasePacket(int keyCode) {
-		this();
-		key = keyCode;
-	}
+    public KeyReleasePacket(int keyCode) {
+        this();
+        key = keyCode;
+    }
 
 }

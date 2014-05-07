@@ -1,7 +1,6 @@
 package clientSide.graphics;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 
 /*
@@ -15,6 +14,6 @@ public class Bullet {
         int x = (int) bulletX;
         int y = (int) bulletY;
         g.fillOval(x, y, 2, 2);
-        
+
     }
 }
