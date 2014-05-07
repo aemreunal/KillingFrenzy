@@ -46,8 +46,8 @@ public class GraphicsProcessor extends Thread implements Runnable {
                 if (packet.getType() == PacketType.PACKET_CREATEENTITY) {
                     CreateEntityPacket createPacket = (CreateEntityPacket) packet;
                     Player player = new Player();
-//                    player.getPhysicalAttributes().setxCoor(packet.x);
-//                    player.getPhysicalAttributes().setxCoor(packet.y);
+                    player.getPhysicalAttributes().setxCoor(createPacket.x);
+                    player.getPhysicalAttributes().setxCoor(createPacket.y);
                     World.getInstance().addEntity(player, createPacket.entityID);
                 }
                 if (packet.getType() == PacketType.PACKET_UPDATEENTITY) {
