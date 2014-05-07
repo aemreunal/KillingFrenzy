@@ -55,38 +55,43 @@ public class Game {
                     toSend.angle = 10.0f;
                     toSend.entityID = player.getId();
                     toSend.entityType = EntityType.ENTITY_PLAYER;
-                    server.broadcast(toSend);
+                    toSend.isMine = true;
+                    client.sendPacket(toSend);
+                    toSend.isMine = false;
+                    server.broadcast(toSend, client);
                 }
                 
-                if (client.keys[KeyEvent.VK_A]) {
-                    if (client.player != null) {
-                        client.player.physicalAttributes.left -= 0.5f;
-                    } 
-                }
                 
-                if (client.keys[KeyEvent.VK_D]) {
-                    if (client.player != null) {
-                        client.player.physicalAttributes.left += 0.5f;
-                    } 
-                }
-                
-                if (client.keys[KeyEvent.VK_W]) {
-                    if (client.player != null) {
-                        client.player.physicalAttributes.top -= 0.5f;
-                    } 
-                }
-                
-                if (client.keys[KeyEvent.VK_S]) {
-                    if (client.player != null) {
-                        client.player.physicalAttributes.top += 0.5f;
-                    } 
-                }
-                
+            }
+            
+            if (client.keys[KeyEvent.VK_A]) {
                 if (client.player != null) {
-                    UpdateEntityPacket updateEntity = new UpdateEntityPacket(client.player.physicalAttributes.left, client.player.physicalAttributes.right, client.player.physicalAttributes.angle);
-                    updateEntity.entityID = client.player.getId();
-                    server.broadcast(updateEntity);
-                }
+                    client.player.physicalAttributes.left -= 0.5f;
+                } 
+            }
+            
+            if (client.keys[KeyEvent.VK_D]) {
+                if (client.player != null) {
+                    client.player.physicalAttributes.left += 0.5f;
+                } 
+            }
+            
+            if (client.keys[KeyEvent.VK_W]) {
+                if (client.player != null) {
+                    client.player.physicalAttributes.top -= 0.5f;
+                } 
+            }
+            
+            if (client.keys[KeyEvent.VK_S]) {
+                if (client.player != null) {
+                    client.player.physicalAttributes.top += 0.5f;
+                } 
+            }
+            
+            if (client.player != null) {
+                UpdateEntityPacket updateEntity = new UpdateEntityPacket(client.player.physicalAttributes.left, client.player.physicalAttributes.top, client.player.physicalAttributes.angle);
+                updateEntity.entityID = client.player.getId();
+                server.broadcast(updateEntity);
             }
 
         }
@@ -95,6 +100,8 @@ public class Game {
     public void run() {
         while (true) {
             updateClients();
+            
+            
 
             // UPDATE LOGIC
             // BROADCAST RESULTS

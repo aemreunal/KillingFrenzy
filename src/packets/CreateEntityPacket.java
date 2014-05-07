@@ -13,6 +13,7 @@ public class CreateEntityPacket extends Packet {
     public float x;
     public float y;
     public float angle;
+    public boolean isMine;
 
 	/*
      * are physical attributes needed here ?
@@ -21,6 +22,7 @@ public class CreateEntityPacket extends Packet {
 
     public CreateEntityPacket() {
         super(PacketType.PACKET_CREATEENTITY);
+        isMine = false;
     }
 
 }

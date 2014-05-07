@@ -183,6 +183,13 @@ public class Server implements Runnable {
             sendPacket(o.getKey(), pk);
         }
     }
+    
+    public void broadcast(Packet pk, Client except) {
+        for (Entry<SelectionKey, Client> o : clientMap.entrySet()) {
+            if (o.getValue() != except)
+                sendPacket(o.getKey(), pk);
+        }
+    }
 
     private void acceptConnection() throws IOException {
         SocketChannel client = serverSocket.accept();
