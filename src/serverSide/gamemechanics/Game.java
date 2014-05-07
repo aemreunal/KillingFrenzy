@@ -8,6 +8,7 @@ import packets.CreateEntityPacket;
 import packets.KeyPressPacket;
 import packets.KeyReleasePacket;
 import packets.Packet;
+import packets.UpdateEntityPacket;
 import serverSide.client.Client;
 import serverSide.server.Server;
 
@@ -45,6 +46,9 @@ public class Game {
 					server.broadcast(toSend);
 				}
 			}
+			
+			if (client.keys[68]) 
+				server.broadcast(new UpdateEntityPacket());
 		}
 	}
 	
@@ -54,7 +58,11 @@ public class Game {
 			
 			// UPDATE LOGIC
 			// BROADCAST RESULTS
-			
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

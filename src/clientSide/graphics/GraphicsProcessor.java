@@ -7,6 +7,8 @@ import clientSide.attributes.player.Direction;
 
 import java.util.concurrent.TimeUnit;
 
+import packets.Packet;
+
 /*
  * This code belongs to:
  * Ahmet Emre Unal
@@ -33,7 +35,14 @@ public class GraphicsProcessor extends Thread implements Runnable {
     @Override
     public void run() {
         while (true /*client.getState() == GameState.RUNNING*/) {
-            if (movingNorth) {
+        	while (!client.packetQueue.isEmpty()) {
+        		Packet packet = client.packetQueue.poll();
+        		
+        		if (packet.type == 3)
+        			panel.move(Direction.NORTH);
+        	}
+            
+        	/*if (movingNorth) {
                 panel.move(Direction.NORTH);
             }
 
@@ -47,7 +56,7 @@ public class GraphicsProcessor extends Thread implements Runnable {
 
             if (movingEast) {
                 panel.move(Direction.EAST);
-            }
+            }*/
 
             panel.repaint();
 

@@ -109,7 +109,7 @@ public class Client implements Runnable {
     }
 
 
-    //birlesik mesajlari parcala
+    
     private ByteBuffer readMessage(ByteBuffer readBuffer) {
         int bytesToRead;
         if (readBuffer.remaining() > PACKET_HEADER_BYTES) {
