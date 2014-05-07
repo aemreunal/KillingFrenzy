@@ -4,10 +4,9 @@ import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
 import clientSide.attributes.player.Direction;
+import packets.Packet;
 
 import java.util.concurrent.TimeUnit;
-
-import packets.Packet;
 
 /*
  * This code belongs to:
@@ -35,13 +34,14 @@ public class GraphicsProcessor extends Thread implements Runnable {
     @Override
     public void run() {
         while (true /*client.getState() == GameState.RUNNING*/) {
-        	while (!client.packetQueue.isEmpty()) {
-        		Packet packet = client.packetQueue.poll();
-        		
-        		if (packet.type == 3)
-        			panel.move(Direction.NORTH);
-        	}
-            
+            while (!client.packetQueue.isEmpty()) {
+                Packet packet = client.packetQueue.poll();
+
+                if (packet.getType() == 3) {
+                    panel.move(Direction.NORTH);
+                }
+            }
+
         	/*if (movingNorth) {
                 panel.move(Direction.NORTH);
             }

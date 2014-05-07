@@ -1,4 +1,6 @@
-package serverSide.gamemechanics;
+package clientSide.attributes.world;
+
+import clientSide.attributes.Entity;
 
 import java.util.TreeMap;
 
@@ -6,25 +8,22 @@ import java.util.TreeMap;
  * Created by Eren Sezener
  */
 public class World {
-    public TreeMap<Integer, Entity> idToEntityMap;
-    private int nextAvailableId; //Id of new entitites
+    private TreeMap<Integer, Entity> idToEntityMap;
     private static World world;
 
     public static World getInstance() {
         if (world == null) {
             world = new World();
         }
-
         return world;
     }
 
     private World() {
-        idToEntityMap = new TreeMap<Integer, Entity>();
-        nextAvailableId = 0;
+        idToEntityMap = new TreeMap<>();
     }
 
-    public void addEntity(Entity entity) {
-        entity.setId(nextAvailableId++);
+    public void addEntity(Entity entity, int entityId) {
+        entity.setId(entityId);
         idToEntityMap.put(entity.getId(), entity);
     }
 

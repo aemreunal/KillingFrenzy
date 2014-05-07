@@ -33,7 +33,7 @@ public class FriendlyPlayer {
     public static void init() {
         try {
             standingImage = ImageIO.read(new File(Settings.STANDING_IMAGE_FILE_PATH));
-            for(int i = 0; i < Settings.NUM_CHAR_ANIMATION_IMAGES; i++) {
+            for (int i = 0; i < Settings.NUM_CHAR_ANIMATION_IMAGES; i++) {
                 movingImages[i] = ImageIO.read(new File(Settings.MOVING_IMAGE_FILE_PATH + i + Settings.MOVING_IMAGE_FILE_EXTENSION));
             }
             Settings.movingImageWidth = standingImage.getWidth();

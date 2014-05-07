@@ -8,16 +8,16 @@ package packets;
 
 
 public class CreateEntityPacket extends Packet {
-	public int entityID;
-	public int entityType; // bullet, character, wall etc.
-	
+    public int entityID;
+    public int entityType; // bullet, character, wall etc.
+
 	/*
-	 * are physical attributes needed here ?
-	 * 
+     * are physical attributes needed here ?
+	 *
 	 */
 
-	public CreateEntityPacket() {
-		type=2;
-	}
+    public CreateEntityPacket() {
+        super((byte) 2);
+    }
 
 }

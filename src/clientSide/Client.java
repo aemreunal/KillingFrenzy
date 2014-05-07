@@ -92,7 +92,6 @@ public class Client implements Runnable {
     }
 
 
-
     private List<ByteBuffer> readIncomingMessage(SocketChannel sock) throws IOException {
         if (sock.read(receiveBuffer) == -1)
             throw new IOException("Receive error");
@@ -109,7 +108,6 @@ public class Client implements Runnable {
     }
 
 
-    
     private ByteBuffer readMessage(ByteBuffer readBuffer) {
         int bytesToRead;
         if (readBuffer.remaining() > PACKET_HEADER_BYTES) {

@@ -13,7 +13,7 @@ public class Player extends Entity implements Collidable{
     private Client client;
 
     public Player(Client client) {
-    	this.client = client;
+        this.client = client;
         this.isAlive = true;
     }
 

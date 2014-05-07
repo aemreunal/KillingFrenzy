@@ -11,37 +11,47 @@ import java.io.*;
  */
 
 public abstract class Packet implements Serializable {
+    private byte type = 0;
 
-	
-    public byte type = 0;
+    protected Packet(byte type) {
+        this.type = type;
+    }
 
     public static Packet fromByteArray(byte[] arr) {
-
-        ByteArrayInputStream bis = new ByteArrayInputStream(arr);
-        ObjectInput in = null;
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(arr);
         try {
-            in = new ObjectInputStream(bis);
-            Object o = in.readObject();
-            return (Packet) o;
+            ObjectInput input = new ObjectInputStream(inputStream);
+            Object readObject = input.readObject();
+            inputStream.close();
+            if (input != null)
+                input.close();
+            return (Packet) readObject;
         } catch (IOException | ClassNotFoundException e) {
             if (e instanceof StreamCorruptedException) {
-                System.out.println("Caught corrupted packet.");
+                System.err.println("Caught corrupted packet.");
                 return null;
             }
             if (e instanceof EOFException) {
-                System.out.println("eofexception : \n" + arr);
+                System.err.println("EOFException : \n" + arr);
                 return null;
             }
             e.printStackTrace();
-        } finally {
-            try {
-                bis.close();
-                if (in != null)
-                    in.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        }
+        return null;
+    }
 
+    public byte[] toByteArray() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        try {
+            ObjectOutput output = new ObjectOutputStream(outputStream);
+            output.writeObject(this);
+            byte[] bytes = outputStream.toByteArray();
+            output.close();
+            outputStream.close();
+            return bytes;
+        } catch (IOException e) {
+            System.err.println("IOException occurred when trying to open/close ByteArrayOutputStream/ObjectOutput");
+            e.printStackTrace();
         }
         return null;
     }
@@ -49,26 +59,4 @@ public abstract class Packet implements Serializable {
     public byte getType() {
         return type;
     }
-
-    public byte[] toByteArray() {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutput out = null;
-        try {
-            out = new ObjectOutputStream(bos);
-            out.writeObject(this);
-            byte[] bytes = bos.toByteArray();
-            return bytes;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                out.close();
-                bos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
-
 }

@@ -1,12 +1,11 @@
-package serverSide.gamemechanics;
+package clientSide.attributes;
 
 /**
  * Created by Eren Sezener
  */
 public abstract class Entity {
     private int id;
-    //    private World world;
-    public PhysicalAttributes physicalAttributes;
+    private PhysicalAttributes physicalAttributes;
 
     public Entity() {
         this(0, 0);

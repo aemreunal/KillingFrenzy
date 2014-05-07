@@ -36,7 +36,7 @@ public class WorldGround {
     }
 
     public static void paint(Graphics g) {
-        if(!errorOccurred) {
+        if (!errorOccurred) {
             for (int x = 0; x < Settings.GAME_WINDOW_WIDTH; x += width) {
                 for (int y = 0; y < Settings.GAME_WINDOW_HEIGHT; y += height) {
                     g.drawImage(groundImage, x, y, width, height, null);
