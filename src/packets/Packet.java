@@ -19,14 +19,13 @@ public abstract class Packet implements Serializable {
 
     public static Packet fromByteArray(byte[] arr) {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(arr);
-
         try {
-            ObjectInput in = new ObjectInputStream(inputStream);
-            Object o = in.readObject();
+            ObjectInput input = new ObjectInputStream(inputStream);
+            Object readObject = input.readObject();
             inputStream.close();
-            if (in != null)
-                in.close();
-            return (Packet) o;
+            if (input != null)
+                input.close();
+            return (Packet) readObject;
         } catch (IOException | ClassNotFoundException e) {
             if (e instanceof StreamCorruptedException) {
                 System.err.println("Caught corrupted packet.");
