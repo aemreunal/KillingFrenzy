@@ -17,11 +17,11 @@ public class Player extends Entity implements Collidable{
         this.isAlive = true;
     }
 
-    public float getHealth() {
+    public float getHealth() { //TODO might be redundant
         return health;
     }
 
-    public void setGun(Gun gun) {
+    public void setGun(Gun gun) { //TODO might be redundant
         this.gun = gun;
     }
 

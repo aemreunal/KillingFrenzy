@@ -28,7 +28,7 @@ public class Bullet extends Entity{
         return velocity.getY();
     }
 
-    public static void damagePerson(Player player){
+    public void damagePlayer(Player player){
         player.decreaseHealth(Bullet.damage);
     }
 }
