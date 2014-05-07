@@ -118,4 +118,8 @@ public class GamePanel extends JPanel {
         float imageCenterY = playerY + (Settings.movingImageHeight / 2);
         return (float) Math.atan2(mouseY - imageCenterY, mouseX - imageCenterX);
     }
+
+    public void setPlayerMoving(boolean playerMoving) {
+        this.playerMoving = playerMoving;
+    }
 }

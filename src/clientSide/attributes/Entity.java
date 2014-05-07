@@ -1,5 +1,7 @@
 package clientSide.attributes;
 
+import packets.UpdateEntityPacket;
+
 import java.awt.*;
 
 /**
@@ -15,10 +17,6 @@ public abstract class Entity {
 
     }
 
-    public PhysicalAttributes getPhysicalAttributes() {
-        return physicalAttributes;
-    }
-
     public int getId() {
         return id;
     }
@@ -28,4 +26,9 @@ public abstract class Entity {
     }
 
     public abstract void paint(Graphics g);
+
+    public void update(UpdateEntityPacket updatePacket) {
+        physicalAttributes.setMoving(true);
+        physicalAttributes.setPosition(updatePacket.x, updatePacket.y, updatePacket.angle);
+    }
 }

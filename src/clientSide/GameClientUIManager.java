@@ -16,6 +16,7 @@ public class GameClientUIManager {
     private JFrame window;
     private GamePanel panel;
     private Client client;
+    private GameMechanicsProcessor gameProcessor;
     private GraphicsProcessor graphicsProcessor;
 
     public GameClientUIManager(Client client) {
@@ -30,6 +31,8 @@ public class GameClientUIManager {
         this.panel = new GamePanel();
         this.graphicsProcessor = new GraphicsProcessor(client, panel);
         this.graphicsProcessor.start();
+        this.gameProcessor = new GameMechanicsProcessor(client, panel);
+        this.gameProcessor.start();
     }
 
     private void addListeners() {

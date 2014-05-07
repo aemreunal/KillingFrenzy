@@ -12,24 +12,9 @@ import clientSide.attributes.Entity;
 import java.awt.*;
 
 public class Player extends Entity {
-    private float health;
-    private boolean isAlive;
 
-    public Player() {
-        this.isAlive = true;
-    }
-
-    public void decreaseHealth(float damage) {
-        health -= damage;
-        if (health < 0){
-            die();
-        }
-    }
-
-
-
-    private void die() {
-        isAlive = false;
+    public Player(float xCoor, float yCoor, float angle) {
+        physicalAttributes.setPosition(xCoor, yCoor, angle);
     }
 
     @Override
