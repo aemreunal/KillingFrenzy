@@ -45,7 +45,10 @@ public class GraphicsProcessor extends Thread implements Runnable {
 
                 if (packet.getType() == PacketType.PACKET_CREATEENTITY) {
                     CreateEntityPacket createPacket = (CreateEntityPacket) packet;
-                    World.getInstance().addEntity(new Player(), createPacket.entityID);
+                    Player player = new Player();
+//                    player.getPhysicalAttributes().setxCoor(packet.x);
+//                    player.getPhysicalAttributes().setxCoor(packet.y);
+                    World.getInstance().addEntity(player, createPacket.entityID);
                 }
                 if (packet.getType() == PacketType.PACKET_UPDATEENTITY) {
                     UpdateEntityPacket updatePacket = (UpdateEntityPacket) packet;
@@ -57,6 +60,18 @@ public class GraphicsProcessor extends Thread implements Runnable {
                 }
             }
 
+//            if(movingNorth) {
+//
+//            }
+//            if(movingWest) {
+//
+//            }
+//            if(movingSouth) {
+//
+//            }
+//            if(movingEast) {
+//
+//            }
 
             panel.repaint();
 

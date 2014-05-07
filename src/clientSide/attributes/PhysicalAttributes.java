@@ -1,49 +1,34 @@
 package clientSide.attributes;
 
 public class PhysicalAttributes {
-    private float leftBound;
-    private float rightBound;
-    private float topBound;
-    private float bottomBound;
+    private float xCoor;
+    private float yCoor;
     private float angle;
 
-    public PhysicalAttributes(float xCoor, float yCoor, float height, float width) {
-        this.leftBound = xCoor;
-        this.topBound = yCoor;
-        this.rightBound = xCoor + width;
-        this.bottomBound = yCoor + height;
+    public PhysicalAttributes() {
+        this.xCoor = 0;
+        this.yCoor = 0;
     }
 
-    public float getLeftBound() {
-        return leftBound;
+    public PhysicalAttributes(float xCoor, float yCoor) {
+        this.xCoor = xCoor;
+        this.yCoor = yCoor;
     }
 
-    public void setLeftBound(float leftBound) {
-        this.leftBound = leftBound;
+    public float getxCoor() {
+        return xCoor;
     }
 
-    public float getRightBound() {
-        return rightBound;
+    public void setxCoor(float xCoor) {
+        this.xCoor = xCoor;
     }
 
-    public void setRightBound(float rightBound) {
-        this.rightBound = rightBound;
+    public float getyCoor() {
+        return yCoor;
     }
 
-    public float getTopBound() {
-        return topBound;
-    }
-
-    public void setTopBound(float topBound) {
-        this.topBound = topBound;
-    }
-
-    public float getBottomBound() {
-        return bottomBound;
-    }
-
-    public void setBottomBound(float bottomBound) {
-        this.bottomBound = bottomBound;
+    public void setyCoor(float yCoor) {
+        this.yCoor = yCoor;
     }
 
     public float getAngle() {

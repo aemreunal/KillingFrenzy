@@ -9,8 +9,32 @@ package clientSide.attributes.player;
 
 import clientSide.attributes.Entity;
 
-public class Player extends Entity {
-    public Player() {
+import java.awt.*;
 
+public class Player extends Entity {
+    private float health;
+    private boolean isAlive;
+
+    public Player() {
+        this.isAlive = true;
+    }
+
+    public void decreaseHealth(float damage) {
+        health -= damage;
+        if (health < 0){
+            die();
+        }
+    }
+
+
+
+    private void die() {
+        isAlive = false;
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.fillRect((int) physicalAttributes.getxCoor(), (int) physicalAttributes.getyCoor(), 10, 10);
     }
 }

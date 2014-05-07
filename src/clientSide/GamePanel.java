@@ -1,6 +1,8 @@
 package clientSide;
 
+import clientSide.attributes.Entity;
 import clientSide.attributes.player.Direction;
+import clientSide.attributes.world.World;
 import clientSide.controllerHandlers.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
 import clientSide.graphics.Crosshair;
@@ -23,6 +25,8 @@ public class GamePanel extends JPanel {
     private float mouseX = 100;
     private float mouseY = 100;
 
+    private boolean playerMoving = false;
+
     public GamePanel() {
         setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
         addListeners();
@@ -43,6 +47,7 @@ public class GamePanel extends JPanel {
     }
 
     public void move(Direction dir) {
+        playerMoving = true;
         float imageCenterX = playerX + (Settings.movingImageWidth / 2);
         float imageCenterY = playerY + (Settings.movingImageHeight / 2);
         switch (dir) {
@@ -82,9 +87,30 @@ public class GamePanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        WorldGround.paint(g);
-        FriendlyPlayer.paintMoving(g, playerX, playerY, getPlayerAngle());
+        paintWorld(g);
+        paintThisPlayer(g);
+        paintCrosshair(g);
+    }
+
+    private void paintCrosshair(Graphics g) {
         Crosshair.paint(g, mouseX, mouseY);
+    }
+
+    private void paintThisPlayer(Graphics g) {
+        if(playerMoving) {
+            FriendlyPlayer.paintMoving(g, playerX, playerY, getPlayerAngle());
+            playerMoving = false;
+        } else {
+            FriendlyPlayer.paintStanding(g, playerX, playerY, getPlayerAngle());
+        }
+    }
+
+    private void paintWorld(Graphics g) {
+        WorldGround.paint(g);
+        World world = World.getInstance();
+        for (Entity entity : world.getEntityMap().values()) {
+            entity.paint(g);
+        }
     }
 
     public float getPlayerAngle() {

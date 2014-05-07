@@ -1,28 +1,22 @@
 package clientSide.attributes;
 
+import java.awt.*;
+
 /**
  * Created by Eren Sezener
  */
 public abstract class Entity {
-    private int id;
-    private PhysicalAttributes physicalAttributes;
+    protected int id;
+    protected PhysicalAttributes physicalAttributes;
 
     public Entity() {
-        this(0, 0);
-    }
-
-    public Entity(float height, float width) {
-        this(0, 0, height, width);
-    }
-
-    public Entity(float x, float y, float height, float width) {
-        this(0, x, y, height, width);
-    }
-
-    public Entity(int id, float x, float y, float height, float width) {
-        this.physicalAttributes = new PhysicalAttributes(x, y, height, width);
+        this.physicalAttributes = new PhysicalAttributes();
         this.id = 0;
 
+    }
+
+    public PhysicalAttributes getPhysicalAttributes() {
+        return physicalAttributes;
     }
 
     public int getId() {
@@ -32,4 +26,6 @@ public abstract class Entity {
     public void setId(int id) {
         this.id = id;
     }
+
+    public abstract void paint(Graphics g);
 }

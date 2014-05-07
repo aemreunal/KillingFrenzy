@@ -18,6 +18,7 @@ public class Settings {
 
     public static final float PLAYER_SPEED = 150.0f;
     public static final float PLAYER_LOC_UPDATE_AMOUNT = PLAYER_SPEED / FPS;
+    public static final int PLAYER_ANIMATION_SPEED = 10000 / FPS;
 
     public static final int BULLET_SPEED = 5;
 
@@ -29,7 +30,6 @@ public class Settings {
     public static final String GROUND_IMAGE_FILE_PATH = IMG_PATH + "grass.jpg";
 
     public static final Color DEFAULT_GROUND_COLOR = new Color(110, 133, 61);
-    public static final int PLAYER_ANIMATION_SPEED = 200;
 
     public static final int NUM_CHAR_ANIMATION_IMAGES = 4;
 

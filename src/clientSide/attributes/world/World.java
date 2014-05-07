@@ -27,6 +27,9 @@ public class World {
         idToEntityMap.put(entity.getId(), entity);
     }
 
+    public TreeMap<Integer, Entity> getEntityMap() {
+        return idToEntityMap;
+    }
 
     public Entity getEntity(int id) {
         return idToEntityMap.get(id);
