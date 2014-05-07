@@ -1,8 +1,10 @@
-package clientSide.graphics;
+package clientSide.processors;
 
 import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
+import clientSide.graphics.FriendlyPlayer;
+import clientSide.graphics.WorldGround;
 
 import java.util.concurrent.TimeUnit;
 

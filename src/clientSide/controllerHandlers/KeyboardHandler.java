@@ -1,7 +1,7 @@
 package clientSide.controllerHandlers;
 
 import clientSide.Client;
-import clientSide.graphics.GraphicsProcessor;
+import clientSide.processors.GraphicsProcessor;
 import packets.KeyPressPacket;
 import packets.KeyReleasePacket;
 

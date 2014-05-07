@@ -1,7 +1,8 @@
 package clientSide;
 
 import clientSide.controllerHandlers.KeyboardHandler;
-import clientSide.graphics.GraphicsProcessor;
+import clientSide.processors.GameMechanicsProcessor;
+import clientSide.processors.GraphicsProcessor;
 
 import javax.swing.*;
 
