@@ -6,9 +6,10 @@ package serverSide.gamemechanics;
 public class Bullet extends Entity {
     private static final int WIDTH = 2;
     private static final int HEIGHT = 2;
+    private static float damage = 1;
 
     private Vector2D velocity;
-    private float damage;
+
 
     public Bullet() {
         super(HEIGHT, WIDTH);
@@ -27,4 +28,7 @@ public class Bullet extends Entity {
         return velocity.getY();
     }
 
+    public static void damagePerson(Player player){
+        player.decreaseHealth(Bullet.damage);
+    }
 }
