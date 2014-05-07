@@ -5,6 +5,7 @@ import clientSide.GamePanel;
 import clientSide.Settings;
 import clientSide.attributes.Entity;
 import clientSide.attributes.player.Direction;
+import clientSide.attributes.player.Player;
 import clientSide.attributes.world.World;
 import packets.CreateEntityPacket;
 import packets.Packet;
@@ -41,7 +42,7 @@ public class GraphicsProcessor extends Thread implements Runnable {
         while (true /*client.getState() == GameState.RUNNING*/) {
             while (!client.packetQueue.isEmpty()) {
                 Packet packet = client.packetQueue.poll();
-                
+
                 if (packet.getType() == PacketType.PACKET_CREATEENTITY) {
                     CreateEntityPacket createPacket = (CreateEntityPacket) packet;
                     World.getInstance().addEntity(new Player(), createPacket.entityID);

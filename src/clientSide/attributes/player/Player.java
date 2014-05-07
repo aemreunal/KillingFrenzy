@@ -7,7 +7,9 @@ package clientSide.attributes.player;
  * emre.unal@ozu.edu.tr
  */
 
-public class Player {
+import clientSide.attributes.Entity;
+
+public class Player extends Entity {
     public Player() {
 
     }
