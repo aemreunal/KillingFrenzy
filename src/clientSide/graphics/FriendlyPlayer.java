@@ -44,21 +44,10 @@ public class FriendlyPlayer {
             e.printStackTrace();
         }
     }
-/*
 
-    public static void paintStanding(Graphics g, float playerX, float playerY) {
-        int x = (int) playerX;
-        int y = (int) playerY;
-        try {
-            img = ImageIO.read(new File(Settings.STANDING_IMAGE_FILE_PATH));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int width = img.getWidth();
-        int height = img.getHeight();
-        g.drawImage(img, x, y, width, height, null);
+    public static void paintStanding(Graphics g, float playerX, float playerY, float angle) {
+        g.drawImage(rotate(standingImage, angle), (int) playerX, (int) playerY, null);
     }
-*/
 
     public static void paintMoving(Graphics g, float playerX, float playerY, float angle) {
         g.drawImage(rotate(movingImages[currentMovingImage], angle), (int) playerX, (int) playerY, null);
@@ -73,7 +62,6 @@ public class FriendlyPlayer {
         BufferedImage rotatedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D g = rotatedImage.createGraphics();
-//        g.translate((newWidth - Settings.movingImageWidth) / 2, (newHeight - Settings.movingImageHeight) / 2);
         g.rotate(angle, Settings.movingImageWidth / 2, Settings.movingImageHeight / 2);
         g.drawRenderedImage(img, null);
         g.dispose();
