@@ -1,9 +1,11 @@
 package clientSide;
 
+import packets.JoinGamePacket;
 import packets.KeyPressPacket;
 import packets.Packet;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,7 +63,7 @@ public class Client implements Runnable {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sendPacket(new KeyPressPacket());
+                sendPacket(new JoinGamePacket());
                 new GameClientUIManager(thisClient);
             }
         });

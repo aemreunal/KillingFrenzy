@@ -4,6 +4,7 @@ import packets.*;
 import serverSide.client.Client;
 import serverSide.server.Server;
 
+import java.awt.event.KeyEvent;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game {
@@ -45,6 +46,7 @@ public class Game {
                     }
                     
                     Player player = new Player(client);
+                    client.setPlayer(player);
                     player.physicalAttributes = new PhysicalAttributes((float) Math.random() * 100.0f, (float) Math.random() * 100.0f, 10.0f, 10.0f);
                     World.getInstance().addEntity(player);
                     CreateEntityPacket toSend = new CreateEntityPacket();
@@ -55,11 +57,38 @@ public class Game {
                     toSend.entityType = EntityType.ENTITY_PLAYER;
                     server.broadcast(toSend);
                 }
+                
+                if (client.keys[KeyEvent.VK_A]) {
+                    if (client.player != null) {
+                        client.player.physicalAttributes.left -= 0.5f;
+                    } 
+                }
+                
+                if (client.keys[KeyEvent.VK_D]) {
+                    if (client.player != null) {
+                        client.player.physicalAttributes.left += 0.5f;
+                    } 
+                }
+                
+                if (client.keys[KeyEvent.VK_W]) {
+                    if (client.player != null) {
+                        client.player.physicalAttributes.top -= 0.5f;
+                    } 
+                }
+                
+                if (client.keys[KeyEvent.VK_S]) {
+                    if (client.player != null) {
+                        client.player.physicalAttributes.top += 0.5f;
+                    } 
+                }
+                
+                if (client.player != null) {
+                    UpdateEntityPacket updateEntity = new UpdateEntityPacket(client.player.physicalAttributes.left, client.player.physicalAttributes.right, client.player.physicalAttributes.angle);
+                    updateEntity.entityID = client.player.getId();
+                    server.broadcast(updateEntity);
+                }
             }
 
-            /*if (client.keys[68]) {
-                server.broadcast(new UpdateEntityPacket());
-            }*/
         }
     }
 
