@@ -5,7 +5,7 @@ import serverSide.client.Client;
 /**
  * Created by Eren Sezener
  */
-public class Player extends Entity implements Collidable {
+public class Player extends Entity implements Collidable{
     private Gun gun;
     private float health;
     private float angle; //in radians
@@ -13,23 +13,19 @@ public class Player extends Entity implements Collidable {
     private Client client;
 
     public Player(Client client) {
-<<<<<<< HEAD
         this.client = client;
-=======
-    	this.client = client;
         this.isAlive = true;
->>>>>>> FETCH_HEAD
     }
 
-    public float getHealth() {
+    public float getHealth() { //TODO might be redundant
         return health;
     }
 
-    public void setGun(Gun gun) {
+    public void setGun(Gun gun) { //TODO might be redundant
         this.gun = gun;
     }
 
-    public void fireGun() {
+    public void fireGun(){
         gun.fire(angle);
     }
 
