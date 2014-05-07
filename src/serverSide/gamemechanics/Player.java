@@ -9,10 +9,12 @@ public class Player extends Entity implements Collidable{
     private Gun gun;
     private float health;
     private float angle; //in radians
+    private boolean isAlive;
     private Client client;
-    
+
     public Player(Client client) {
     	this.client = client;
+        this.isAlive = true;
     }
 
     public float getHealth() {
@@ -25,5 +27,16 @@ public class Player extends Entity implements Collidable{
 
     public void fireGun(){
         gun.fire(angle);
+    }
+
+    public void decreaseHealth(float damage) {
+        health -= damage;
+        if (health < 0){
+            die();
+        }
+    }
+
+    private void die() {
+        isAlive = false;
     }
 }
