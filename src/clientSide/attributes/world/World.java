@@ -28,7 +28,7 @@ public class World {
     }
 
 
-    public Entity voidGetEntity(int id) {
+    public Entity getEntity(int id) {
         return idToEntityMap.get(id);
     }
 

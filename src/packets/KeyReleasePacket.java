@@ -5,7 +5,7 @@ public class KeyReleasePacket extends Packet {
     public int key;
 
     public KeyReleasePacket() {
-        super((byte) 1);
+        super(PacketType.PACKET_KEYRELEASE);
     }
 
     public KeyReleasePacket(int keyCode) {

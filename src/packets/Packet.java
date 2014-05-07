@@ -11,9 +11,9 @@ import java.io.*;
  */
 
 public abstract class Packet implements Serializable {
-    private byte type = 0;
+    private PacketType type;
 
-    protected Packet(byte type) {
+    protected Packet(PacketType type) {
         this.type = type;
     }
 
@@ -56,7 +56,7 @@ public abstract class Packet implements Serializable {
         return null;
     }
 
-    public byte getType() {
+    public PacketType getType() {
         return type;
     }
 }

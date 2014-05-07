@@ -17,7 +17,7 @@ public class CreateEntityPacket extends Packet {
 	 */
 
     public CreateEntityPacket() {
-        super((byte) 2);
+        super(PacketType.PACKET_CREATEENTITY);
     }
 
 }

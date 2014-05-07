@@ -3,8 +3,13 @@ package clientSide.graphics;
 import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
+import clientSide.attributes.Entity;
 import clientSide.attributes.player.Direction;
+import clientSide.attributes.world.World;
+import packets.CreateEntityPacket;
 import packets.Packet;
+import packets.PacketType;
+import packets.UpdateEntityPacket;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,27 +41,21 @@ public class GraphicsProcessor extends Thread implements Runnable {
         while (true /*client.getState() == GameState.RUNNING*/) {
             while (!client.packetQueue.isEmpty()) {
                 Packet packet = client.packetQueue.poll();
-
-                if (packet.getType() == 3) {
+                
+                if (packet.getType() == PacketType.PACKET_CREATEENTITY) {
+                    CreateEntityPacket createPacket = (CreateEntityPacket) packet;
+                    World.getInstance().addEntity(new Player(), createPacket.entityID);
+                }
+                if (packet.getType() == PacketType.PACKET_UPDATEENTITY) {
+                    UpdateEntityPacket updatePacket = (UpdateEntityPacket) packet;
+                    Entity e = World.getInstance().getEntity(updatePacket.entityID);
+                    /*
+                     * e.setPhysicalAttributes(updatePacket.physicalAttributes);
+                     */
                     panel.move(Direction.NORTH);
                 }
             }
 
-        	/*if (movingNorth) {
-                panel.move(Direction.NORTH);
-            }
-
-            if (movingWest) {
-                panel.move(Direction.WEST);
-            }
-
-            if (movingSouth) {
-                panel.move(Direction.SOUTH);
-            }
-
-            if (movingEast) {
-                panel.move(Direction.EAST);
-            }*/
 
             panel.repaint();
 

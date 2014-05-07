@@ -16,7 +16,7 @@ public class UpdateEntityPacket extends Packet {
     public PhysicalAttributes attrib;
 
     public UpdateEntityPacket() {
-        super((byte) 3);
+        super(PacketType.PACKET_UPDATEENTITY);
     }
 
 }

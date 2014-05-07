@@ -21,21 +21,23 @@ public class Game {
             if (!client.packetQueue.isEmpty()) {
                 Packet packet = client.packetQueue.poll();
 
-                if (packet.getType() == 0) {
+                if (packet.getType() == PacketType.PACKET_KEYPRESS) {
                     KeyPressPacket pressPacket = (KeyPressPacket) packet;
                     client.keys[pressPacket.key] = true;
                     System.out.println("Key pressed : " + pressPacket.key);
                 }
 
-                if (packet.getType() == 1) {
+                if (packet.getType() == PacketType.PACKET_KEYRELEASE) {
                     KeyReleasePacket releasePacket = (KeyReleasePacket) packet;
                     client.keys[releasePacket.key] = false;
                     System.out.println("Key released : " + releasePacket.key);
                 }
 
-                if (packet.getType() == 4) {
-                    World.getInstance().addEntity(new Player(client));
+                if (packet.getType() == PacketType.PACKET_JOINGAME) {
+                    Player player = new Player(client);
+                    World.getInstance().addEntity(player);
                     CreateEntityPacket toSend = new CreateEntityPacket();
+                    toSend.entityID = player.getId();
                     toSend.entityType = 0;
                     server.broadcast(toSend);
                 }
