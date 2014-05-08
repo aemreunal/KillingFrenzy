@@ -1,5 +1,8 @@
 package clientSide;
 
+import clientSide.controllerHandlers.KeyboardHandler;
+import clientSide.processors.GameMechanicsProcessor;
+import clientSide.processors.GraphicsProcessor;
 import packets.JoinGamePacket;
 import packets.Packet;
 
@@ -10,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
@@ -18,20 +23,17 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
-
 public class Client extends Thread implements Runnable {
-    private static Client thisClient;
+    private static Client client;
+
     private JFrame menuWindow;
-    private JPanel p1;
+    private JPanel menuPanel;
 
-    public static void main(String[] args) {
-        thisClient = new Client();
-        thisClient.start();
-    }
+    private JFrame gameWindow;
+    private GamePanel gamePanel;
 
-    private final int PACKET_HEADER_BYTES = 2;
-    public static final short PORT = 17000;
-
+    private GameMechanicsProcessor gameProcessor;
+    private GraphicsProcessor graphicsProcessor;
 
     private final AtomicReference<GameState> state = new AtomicReference<>(GameState.STOPPED);
     public SocketChannel socketChannel;
@@ -39,86 +41,165 @@ public class Client extends Thread implements Runnable {
     public ByteBuffer receiveBuffer;
     public Queue<Packet> packetQueue;
 
-    public Client() {
-        packetQueue = new ConcurrentLinkedQueue<>();
-        createAndShowGUI();
+    private boolean allowOffline = true;
+
+    public static void main(String[] args) {
+        client = new Client();
+        client.start();
     }
 
-    private void createAndShowGUI() {
-        menuWindow = new JFrame();
-        menuWindow.setTitle("Killing Frenzy");
-        menuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // setLayout(new FlowLayout());
-        p1 = new JPanel();
-        p1.setPreferredSize(new Dimension(500, 500));
-        p1.setBackground(Color.GRAY);
-        p1.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 5, true));
+    public Client() {
+        packetQueue = new ConcurrentLinkedQueue<>();
+        createGameMenu();
+        showGameMenu();
+    }
 
+    private void createGameMenu() {
+        // Create components
+        menuWindow = new JFrame();
+        menuPanel = new JPanel();
+        createJoinButton();
+        // Set attributes
+        setMenuPanelAttributes();
+        setMenuWindowAttributes();
+    }
+
+    private void showGameMenu() {
+        menuWindow.setVisible(true);
+    }
+
+    private void createJoinButton() {
         JButton okButton = new JButton("JOIN THE MADNESS");
-        p1.add(okButton);
-        menuWindow.add(p1);
 
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sendPacket(new JoinGamePacket());
-                new GameClientUIManager(thisClient);
+                createGame();
             }
         });
 
+        menuPanel.add(okButton);
+    }
+
+    private void setMenuPanelAttributes() {
+        menuPanel.setPreferredSize(new Dimension(500, 500));
+        menuPanel.setBackground(Color.GRAY);
+        menuPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 5, true));
+    }
+
+    private void setMenuWindowAttributes() {
+        menuWindow.setTitle("Killing Frenzy");
+        menuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menuWindow.add(menuPanel);
         menuWindow.setSize(500, 500);
-        menuWindow.setVisible(true);
         menuWindow.pack();
+    }
+
+    private void createGame() {
+        createGameComponents();
+        addGameListeners();
+        setGameAttributes();
+    }
+
+    private void createGameComponents() {
+        this.gameWindow = new JFrame("GO GO");
+        this.gamePanel = new GamePanel();
+        this.graphicsProcessor = new GraphicsProcessor(client, gamePanel);
+        this.graphicsProcessor.start();
+        this.gameProcessor = new GameMechanicsProcessor(client, gamePanel);
+        this.gameProcessor.start();
+    }
+
+    private void addGameListeners() {
+        gameWindow.addKeyListener(new KeyboardHandler(client, graphicsProcessor));
+    }
+
+    private void setGameAttributes() {
+        gameWindow.getContentPane().add(gamePanel);
+        gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameWindow.setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT + gameWindow.getBounds().y);
+        gameWindow.setVisible(true);
+        gameWindow.setLocationRelativeTo(null);
     }
 
     @Override
     public void run() {
         state.set(GameState.RUNNING);
-        try {
-            createSocket();
-            while (state.get() == GameState.RUNNING) {
-                for (ByteBuffer message : readIncomingMessage(socketChannel)) {
+        createSocket();
+        while (state.get() == GameState.RUNNING) {
+            for (ByteBuffer message : readIncomingMessage(socketChannel)) {
+                if (message != null) {
                     packetQueue.add(Packet.fromByteArray(message.array()));
                     //dispatchMessage(message)
                 }
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
 
-    public GameState getGameState() {
-        return state.get();
+    private void createSocket() {
+        try {
+            IP = InetAddress.getByName("localhost");
+            socketChannel = SocketChannel.open();
+            socketChannel.configureBlocking(true);
+            socketChannel.connect(new InetSocketAddress(IP, Settings.PORT));
+            socketChannel.socket().setTcpNoDelay(true);
+        } catch (SocketException e) {
+            System.err.println("An error occurred when trying to interact with the socket!");
+//            e.printStackTrace();
+            if (!allowOffline) {
+                System.exit(-1);
+            }
+        } catch (UnknownHostException e) {
+            System.err.println("An error occurred when trying to get the IP address of the host!");
+//            e.printStackTrace();
+            if (!allowOffline) {
+                System.exit(-1);
+            }
+        } catch (IOException e) {
+            System.err.println("An error occurred when trying to open the socket!");
+//            e.printStackTrace();
+            if (!allowOffline) {
+                System.exit(-1);
+            }
+        }
+        receiveBuffer = ByteBuffer.allocate(1000);
     }
 
 
-    private List<ByteBuffer> readIncomingMessage(SocketChannel sock) throws IOException {
-        if (sock.read(receiveBuffer) == -1)
-            throw new IOException("Receive error");
-        receiveBuffer.flip();
+    private List<ByteBuffer> readIncomingMessage(SocketChannel sock) {
+        try {
+            if (sock.read(receiveBuffer) == -1) {
+                throw new IOException("Receive error");
+            }
+            receiveBuffer.flip();
 
-        List<ByteBuffer> receivedPackets = new ArrayList<>();
-        ByteBuffer msg = readMessage(receiveBuffer);
-        while (msg != null) {
-            receivedPackets.add(msg);
-            msg = readMessage(receiveBuffer);
+            List<ByteBuffer> receivedPackets = new ArrayList<>();
+            ByteBuffer msg = readMessage(receiveBuffer);
+            while (msg != null) {
+                receivedPackets.add(msg);
+                msg = readMessage(receiveBuffer);
+            }
+            return receivedPackets;
+        } catch (IOException e) {
+            System.err.println("An error occurred while trying to read incoming message!");
+//            e.printStackTrace();
         }
-
-        return receivedPackets;
+        return null;
     }
 
 
     private ByteBuffer readMessage(ByteBuffer readBuffer) {
         int bytesToRead;
-        if (readBuffer.remaining() > PACKET_HEADER_BYTES) {
-            byte[] lengthBytes = new byte[PACKET_HEADER_BYTES];
+        if (readBuffer.remaining() > Settings.PACKET_HEADER_BYTES) {
+            byte[] lengthBytes = new byte[Settings.PACKET_HEADER_BYTES];
             readBuffer.get(lengthBytes);
             bytesToRead = (int) (((long) (lengthBytes[0] & 0xff) << 8) + (long) (lengthBytes[1] & 0xff));
 
             if ((readBuffer.limit() - readBuffer.position()) < bytesToRead) {
                 if (readBuffer.limit() == readBuffer.capacity()) {
                     int oldCapacity = readBuffer.capacity();
-                    ByteBuffer tmp = ByteBuffer.allocate(bytesToRead + PACKET_HEADER_BYTES);
+                    ByteBuffer tmp = ByteBuffer.allocate(bytesToRead + Settings.PACKET_HEADER_BYTES);
                     readBuffer.position(0);
                     tmp.put(readBuffer);
                     readBuffer = tmp;
@@ -152,9 +233,9 @@ public class Client extends Thread implements Runnable {
         int len = buffer.length;
         byte[] lengthBytes = new byte[]{(byte) ((len >>> 8) & 0xff), (byte) (len & 0xff)};
         try {
-            byte[] outBuffer = new byte[len + PACKET_HEADER_BYTES];
-            System.arraycopy(lengthBytes, 0, outBuffer, 0, PACKET_HEADER_BYTES);
-            System.arraycopy(buffer, 0, outBuffer, PACKET_HEADER_BYTES, len);
+            byte[] outBuffer = new byte[len + Settings.PACKET_HEADER_BYTES];
+            System.arraycopy(lengthBytes, 0, outBuffer, 0, Settings.PACKET_HEADER_BYTES);
+            System.arraycopy(buffer, 0, outBuffer, Settings.PACKET_HEADER_BYTES, len);
             socketChannel.write(ByteBuffer.wrap(outBuffer));
             return true;
         } catch (Exception e) {
@@ -166,14 +247,4 @@ public class Client extends Thread implements Runnable {
     public boolean stopGame() {
         return state.compareAndSet(GameState.RUNNING, GameState.STOPPING);
     }
-
-    private void createSocket() throws IOException {
-        IP = InetAddress.getByName("localhost");
-        socketChannel = SocketChannel.open();
-        socketChannel.configureBlocking(true);
-        socketChannel.connect(new InetSocketAddress(IP, PORT));
-        socketChannel.socket().setTcpNoDelay(true);
-        receiveBuffer = ByteBuffer.allocate(1000);
-    }
-
 }

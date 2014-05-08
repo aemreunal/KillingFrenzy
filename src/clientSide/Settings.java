@@ -41,4 +41,7 @@ public class Settings {
 
     public static int movingImageWidth;
     public static int movingImageHeight;
+
+    public static final int PACKET_HEADER_BYTES = 2;
+    public static final int PORT = 17000;
 }
