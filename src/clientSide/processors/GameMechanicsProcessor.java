@@ -9,6 +9,12 @@ package clientSide.processors;
 import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
+import clientSide.attributes.Entity;
+import clientSide.attributes.player.Player;
+import clientSide.attributes.world.World;
+import packets.CreateEntityPacket;
+import packets.Packet;
+import packets.UpdateEntityPacket;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +30,26 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
     @Override
     public void run() {
         while (true) {
+            while (!client.packetQueue.isEmpty()) {
+                Packet packet = client.packetQueue.poll();
 
+                switch (packet.getType()) {
+                    case PACKET_CREATEENTITY:
+                        createEntity((CreateEntityPacket) packet);
+                        break;
+                    case PACKET_UPDATEENTITY:
+                        updateEntity((UpdateEntityPacket) packet);
+                        break;
+                    case PACKET_JOINGAME:
+                        break;
+                    case PACKET_KEYPRESS:
+                        break;
+                    case PACKET_KEYRELEASE:
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             try {
                 TimeUnit.MILLISECONDS.sleep(Settings.MECHANICS_PROC_SLEEP_MILLIS);
@@ -33,5 +58,15 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void createEntity(CreateEntityPacket packet) {
+        Player player = new Player(packet.x, packet.y, packet.angle);
+        World.getInstance().addEntity(player, packet.entityID);
+    }
+
+    private void updateEntity(UpdateEntityPacket packet) {
+        Entity e = World.getInstance().getEntity(packet.entityID);
+        e.update(packet);
     }
 }

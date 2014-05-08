@@ -1,11 +1,9 @@
 package clientSide;
 
 import packets.JoinGamePacket;
-import packets.KeyPressPacket;
 import packets.Packet;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,14 +19,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
 
-public class Client implements Runnable {
+public class Client extends Thread implements Runnable {
     private static Client thisClient;
     private JFrame menuWindow;
     private JPanel p1;
 
     public static void main(String[] args) {
         thisClient = new Client();
-        new Thread(thisClient).start();
+        thisClient.start();
     }
 
     private final int PACKET_HEADER_BYTES = 2;
@@ -89,7 +87,7 @@ public class Client implements Runnable {
         }
     }
 
-    public GameState getState() {
+    public GameState getGameState() {
         return state.get();
     }
 
@@ -160,12 +158,12 @@ public class Client implements Runnable {
             socketChannel.write(ByteBuffer.wrap(outBuffer));
             return true;
         } catch (Exception e) {
-            stop();
+            stopGame();
             return false;
         }
     }
 
-    public boolean stop() {
+    public boolean stopGame() {
         return state.compareAndSet(GameState.RUNNING, GameState.STOPPING);
     }
 
