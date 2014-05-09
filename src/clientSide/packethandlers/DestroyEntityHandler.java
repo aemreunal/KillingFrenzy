@@ -4,22 +4,22 @@ import clientSide.attributes.player.Player;
 import clientSide.attributes.world.World;
 import clientSide.processors.GameMechanicsProcessor;
 import packets.CreateEntityPacket;
+import packets.DestroyEntityPacket;
 import packets.Packet;
 import packets.UpdateEntityPacket;
 
-public class CreateEntityHandler extends PacketHandler{
+public class DestroyEntityHandler extends PacketHandler{
     
     private GameMechanicsProcessor gameMechanics;
     
-    public CreateEntityHandler(GameMechanicsProcessor gameMechanics) {
+    public DestroyEntityHandler(GameMechanicsProcessor gameMechanics) {
         this.gameMechanics = gameMechanics;
     }
 
     @Override
     public void handle(Packet pk) {
-        CreateEntityPacket packet = (CreateEntityPacket) pk;
+        DestroyEntityPacket packet = (DestroyEntityPacket) pk;
         
-        Player player = Player.createPlayer(packet.isMine);
-        World.getInstance().addEntity(player, packet.entityID);
+        World.getInstance().getEntity(packet.entityID).setAlive(false);
     }
 }
