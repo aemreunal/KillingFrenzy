@@ -1,6 +1,7 @@
 package clientSide.controllerHandlers;
 
 import clientSide.GamePanel;
+import clientSide.attributes.World;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -26,16 +27,6 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        // Do nothing
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        // Do nothing
-    }
-
-    @Override
     public void mouseEntered(MouseEvent e) {
         panel.hideCursor();
     }
@@ -55,6 +46,17 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     public void mouseMoved(MouseEvent e) {
         panel.hideCursor();
         panel.updateCrosshair(e.getX(), e.getY());
+        World.getThisPlayer().updateAngle(e.getX(), e.getY());
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // Do nothing
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // Do nothing
     }
 
 }
