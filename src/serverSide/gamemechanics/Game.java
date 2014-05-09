@@ -20,6 +20,7 @@ public class Game {
     
     public Game(Server server) {
         this.server = server;
+        gameLogic = new GameLogic();
         clients = new CopyOnWriteArrayList<Client>();
         packetHandlerMap = new EnumMap<PacketType, PacketHandler>(PacketType.class);
         
@@ -55,7 +56,7 @@ public class Game {
             updateClients();
             
             
-
+            gameLogic.update();
             // UPDATE LOGIC
             // BROADCAST RESULTS
             try {
