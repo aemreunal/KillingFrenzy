@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 /**
  * Created by Eren Sezener
  */
-public class Player extends Entity implements Collidable{
+public class Player extends Entity implements Collidable {
     private Gun gun;
     private float health;
     private float angle; //in radians
@@ -33,13 +33,13 @@ public class Player extends Entity implements Collidable{
         this.gun = gun;
     }
 
-    public void fireGun(){
+    public void fireGun() {
         gun.fire(angle);
     }
 
     public void decreaseHealth(float damage) {
         health -= damage;
-        if (health < 0){
+        if (health < 0) {
             die();
         }
     }
@@ -50,40 +50,40 @@ public class Player extends Entity implements Collidable{
 
     @Override
     public void update() {
-        if(upKeyPressed){
+        if (upKeyPressed) {
             this.physicalAttributes.updateVerticalPosition(-1 * Settings.PLAYER_SPEED);
         }
-        if(leftKeyPress){
+        if (leftKeyPress) {
             this.physicalAttributes.updateHorizontalPosition(-1 * Settings.PLAYER_SPEED);
         }
-        if(downKeyPressed){
+        if (downKeyPressed) {
             this.physicalAttributes.updateVerticalPosition(Settings.PLAYER_SPEED);
         }
-        if(rightKeyPressed){
+        if (rightKeyPressed) {
             this.physicalAttributes.updateHorizontalPosition(Settings.PLAYER_SPEED);
         }
     }
 
-    public void onKeyPressed(int keyCode){
-        if(keyCode == KeyEvent.VK_W){
+    public void onKeyPressed(int keyCode) {
+        if (keyCode == KeyEvent.VK_W) {
             upKeyPressed = true;
-        }else if(keyCode == KeyEvent.VK_A){
+        } else if (keyCode == KeyEvent.VK_A) {
             leftKeyPress = true;
-        }else if(keyCode == KeyEvent.VK_S){
+        } else if (keyCode == KeyEvent.VK_S) {
             downKeyPressed = true;
-        }else if(keyCode == KeyEvent.VK_D){
+        } else if (keyCode == KeyEvent.VK_D) {
             rightKeyPressed = true;
         }
     }
 
-    public void onKeyReleased(int keyCode){
-        if(keyCode == KeyEvent.VK_W){
+    public void onKeyReleased(int keyCode) {
+        if (keyCode == KeyEvent.VK_W) {
             upKeyPressed = false;
-        }else if(keyCode == KeyEvent.VK_A){
+        } else if (keyCode == KeyEvent.VK_A) {
             leftKeyPress = false;
-        }else if(keyCode == KeyEvent.VK_S){
+        } else if (keyCode == KeyEvent.VK_S) {
             downKeyPressed = false;
-        }else if(keyCode == KeyEvent.VK_D){
+        } else if (keyCode == KeyEvent.VK_D) {
             rightKeyPressed = false;
         }
     }

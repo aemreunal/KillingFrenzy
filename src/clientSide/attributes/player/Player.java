@@ -7,6 +7,7 @@ package clientSide.attributes.player;
  */
 
 import clientSide.Settings;
+import clientSide.attributes.Direction;
 import clientSide.attributes.Entity;
 import clientSide.processors.GraphicsProcessor;
 
@@ -53,6 +54,35 @@ public class Player extends Entity {
         } catch (IOException e) {
             System.err.println("Unable to read standing/moving animation images!");
             e.printStackTrace();
+        }
+    }
+
+    public void move(Direction dir) {
+        float playerX = physAttr.getxCoor();
+        float playerY = physAttr.getyCoor();
+        float imageCenterX = playerX + (Settings.movingImageWidth / 2);
+        float imageCenterY = playerY + (Settings.movingImageHeight / 2);
+        switch (dir) {
+            case NORTH:
+                if (imageCenterY > 0) {
+                    physAttr.setyCoor(playerY - Settings.PLAYER_LOC_UPDATE_AMOUNT);
+                }
+                break;
+            case EAST:
+                if (imageCenterX < Settings.GAME_WINDOW_WIDTH) {
+                    physAttr.setxCoor(playerX + Settings.PLAYER_LOC_UPDATE_AMOUNT);
+                }
+                break;
+            case SOUTH:
+                if (imageCenterY < Settings.GAME_WINDOW_HEIGHT) {
+                    physAttr.setyCoor(playerY + Settings.PLAYER_LOC_UPDATE_AMOUNT);
+                }
+                break;
+            case WEST:
+                if (imageCenterX > 0) {
+                    physAttr.setxCoor(playerX - Settings.PLAYER_LOC_UPDATE_AMOUNT);
+                }
+                break;
         }
     }
 

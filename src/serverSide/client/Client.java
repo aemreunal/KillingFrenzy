@@ -4,7 +4,6 @@ import packets.Packet;
 import serverSide.gamemechanics.Player;
 import serverSide.server.Server;
 
-import java.awt.event.KeyEvent;
 import java.nio.channels.SelectionKey;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -23,7 +22,7 @@ public class Client {
         packetQueue = new ConcurrentLinkedQueue<Packet>();
         keys = new boolean[256];
     }
-    
+
     public void setPlayer(Player player) {
         this.player = player;
     }

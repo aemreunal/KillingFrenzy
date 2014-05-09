@@ -183,7 +183,7 @@ public class Server implements Runnable {
             sendPacket(o.getKey(), pk);
         }
     }
-    
+
     public void broadcast(Packet pk, Client except) {
         for (Entry<SelectionKey, Client> o : clientMap.entrySet()) {
             if (o.getValue() != except)

@@ -5,12 +5,11 @@ import clientSide.attributes.world.World;
 import clientSide.processors.GameMechanicsProcessor;
 import packets.CreateEntityPacket;
 import packets.Packet;
-import packets.UpdateEntityPacket;
 
-public class CreateEntityHandler extends PacketHandler{
-    
+public class CreateEntityHandler extends PacketHandler {
+
     private GameMechanicsProcessor gameMechanics;
-    
+
     public CreateEntityHandler(GameMechanicsProcessor gameMechanics) {
         this.gameMechanics = gameMechanics;
     }
@@ -18,7 +17,6 @@ public class CreateEntityHandler extends PacketHandler{
     @Override
     public void handle(Packet pk) {
         CreateEntityPacket packet = (CreateEntityPacket) pk;
-        
         Player player = Player.createPlayer(packet.isMine);
         World.getInstance().addEntity(player, packet.entityID);
     }
