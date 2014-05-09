@@ -1,28 +1,24 @@
 package serverSide.gamemechanics;
 
+import clientSide.Settings;
+
 public class Vector2D {
+    private float speed;
 
     public float[] v = new float[2];
 
     public Vector2D() {
-        this(0, 0);
+        this(0);
     }
 
     /*
     Creates a cartesian vector from polar coordinates
      */
-    public Vector2D(float angle, float velocity) {
-        v[0] = (float) (velocity * Math.cos(angle));
-        v[1] = (float) (velocity * Math.sin(angle));
+    public Vector2D(float angle) {
+        speed = Settings.BULLET_SPEED;
+        v[0] = (float) (speed * Math.cos(angle));
+        v[1] = (float) (speed * Math.sin(angle));
 
-    }
-
-    public static Vector2D add(Vector2D a, Vector2D b) {
-        return new Vector2D(a.getX() + b.getX(), a.getY() + b.getY());
-    }
-
-    public static Vector2D subtract(Vector2D a, Vector2D b) {
-        return new Vector2D(a.getX() - b.getX(), a.getY() - b.getY());
     }
 
     public void update(float x, float y) {
@@ -31,7 +27,7 @@ public class Vector2D {
     }
 
     public float getMagnitude() {
-        return (float) Math.sqrt(getX() * getX() + getY() * getY());
+        return (float) Math.sqrt(getSpeedX() * getSpeedX() + getSpeedY() * getSpeedY());
     }
 
     public void negateVector() {
@@ -39,11 +35,11 @@ public class Vector2D {
         this.v[1] *= -1;
     }
 
-    public float getX() {
+    public float getSpeedX() {
         return v[0];
     }
 
-    public float getY() {
+    public float getSpeedY() {
         return v[1];
     }
 }
