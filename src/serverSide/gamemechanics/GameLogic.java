@@ -19,8 +19,7 @@ public class GameLogic {
     }
 
     public void update() {
-        Entity[] entities = (Entity[]) World.getInstance().idToEntityMap.values().toArray();
-        for (Entity e : entities) {
+        for (Entity e : World.getInstance().idToEntityMap.values()) {
 
     		/*UpdateEntityPacket packet = new UpdateEntityPacket();
             packet.entityID = e.getId();
