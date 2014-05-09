@@ -47,16 +47,16 @@ public class Player extends Entity implements Collidable {
     @Override
     public void update() {
         if (upKeyPressed) {
-            this.physicalAttributes.updateVerticalPosition(-1 * Settings.PLAYER_SPEED);
+            this.physicalAttributes.updateVerticalPosition(-1 * Settings.PLAYER_LOC_UPDATE_AMOUNT);
         }
         if (leftKeyPress) {
-            this.physicalAttributes.updateHorizontalPosition(-1 * Settings.PLAYER_SPEED);
+            this.physicalAttributes.updateHorizontalPosition(-1 * Settings.PLAYER_LOC_UPDATE_AMOUNT);
         }
         if (downKeyPressed) {
-            this.physicalAttributes.updateVerticalPosition(Settings.PLAYER_SPEED);
+            this.physicalAttributes.updateVerticalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
         }
         if (rightKeyPressed) {
-            this.physicalAttributes.updateHorizontalPosition(Settings.PLAYER_SPEED);
+            this.physicalAttributes.updateHorizontalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
         }
     }
 

@@ -6,8 +6,8 @@ import java.util.TreeMap;
  * Created by Eren Sezener
  */
 public class World {
-    public static TreeMap<Integer, Entity> idToEntityMap;
-    private static int nextAvailableId; //Id of new entitites
+    public TreeMap<Integer, Entity> idToEntityMap;
+    private int nextAvailableId; //Id of new entitites
     private static World world;
 
     public static World getInstance() {
@@ -23,16 +23,16 @@ public class World {
         nextAvailableId = 0;
     }
 
-    public static void addEntity(Entity entity) {
+    public void addEntity(Entity entity) {
         entity.setId(nextAvailableId++);
         idToEntityMap.put(entity.getId(), entity);
     }
 
-    public static void removeEntity(Entity entity){
+    public void removeEntity(Entity entity){
         idToEntityMap.remove(entity.getId());
     }
 
-    public static Entity getEntity(int id) {
+    public Entity getEntity(int id) {
         return idToEntityMap.get(id);
     }
 
