@@ -31,11 +31,11 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
         this.client = client;
         this.panel = panel;
         packetHandlerMap = new EnumMap<PacketType, PacketHandler>(PacketType.class);
-        
+
         registerPacketHandler(PacketType.PACKET_CREATEENTITY, new CreateEntityHandler(this));
         registerPacketHandler(PacketType.PACKET_UPDATEENTITY, new UpdateEntityHandler(this));
     }
-    
+
     public void registerPacketHandler(PacketType type, PacketHandler handler) {
         packetHandlerMap.put(type, handler);
     }
@@ -57,15 +57,9 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
         }
     }
 
-<<<<<<< HEAD
     private void createEntity(CreateEntityPacket packet) {
 //        Player player = new Player(packet.x, packet.y, packet.angle);
 //        World.getInstance().addEntity(player, packet.entityID);
-=======
-    public void createEntity(CreateEntityPacket packet) {
-        Player player = new Player(packet.x, packet.y, packet.angle);
-        World.getInstance().addEntity(player, packet.entityID);
->>>>>>> FETCH_HEAD
     }
 
     public void updateEntity(UpdateEntityPacket packet) {
