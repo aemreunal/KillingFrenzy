@@ -3,6 +3,7 @@ package clientSide;
 import clientSide.controllerHandlers.KeyboardHandler;
 import clientSide.processors.GameMechanicsProcessor;
 import clientSide.processors.GraphicsProcessor;
+import clientSide.processors.SyncProcessor;
 import packets.JoinGamePacket;
 import packets.Packet;
 
@@ -34,6 +35,7 @@ public class Client extends Thread implements Runnable {
 
     private GameMechanicsProcessor gameProcessor;
     private GraphicsProcessor graphicsProcessor;
+    private SyncProcessor syncProcessor;
 
     private final AtomicReference<GameState> state = new AtomicReference<>(GameState.STOPPED);
     public SocketChannel socketChannel;
@@ -109,6 +111,8 @@ public class Client extends Thread implements Runnable {
         this.graphicsProcessor.start();
         this.gameProcessor = new GameMechanicsProcessor(client, gamePanel);
         this.gameProcessor.start();
+        this.syncProcessor = new SyncProcessor(client);
+        this.syncProcessor.start();
     }
 
     private void addGameListeners() {

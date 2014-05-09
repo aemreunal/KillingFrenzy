@@ -7,7 +7,6 @@ package clientSide.attributes;
  */
 
 import clientSide.Settings;
-import clientSide.processors.GraphicsProcessor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -88,7 +87,7 @@ public class Player extends Entity {
 
     public void paint(Graphics g) {
         BufferedImage playerImage = physAttr.isMoving() ? movingImages[currentMovingImage] : standingImage;
-        g.drawImage(GraphicsProcessor.rotate(playerImage, physAttr.getAngle(), movingImageWidth, movingImageHeight), (int) physAttr.getxCoor(), (int) physAttr.getyCoor(), null);
+        g.drawImage(rotate(playerImage, physAttr.getAngle(), movingImageWidth, movingImageHeight), (int) physAttr.getxCoor(), (int) physAttr.getyCoor(), null);
     }
 
     public float getAngle() {
