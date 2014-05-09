@@ -41,9 +41,8 @@ public class Game {
                 packetHandlerMap.get(packet.getType()).handle(client, packet);
             }
 
-
             if (client.player != null) {
-                UpdateEntityPacket updateEntity = new UpdateEntityPacket(client.player.physicalAttributes.left, client.player.physicalAttributes.top, client.player.physicalAttributes.angle);
+                UpdateEntityPacket updateEntity = new UpdateEntityPacket(client.player.physicalAttributes.left, client.player.physicalAttributes.top, client.player.physicalAttributes.angle, false);
                 updateEntity.entityID = client.player.getId();
                 server.broadcast(updateEntity);
             }
@@ -55,8 +54,8 @@ public class Game {
         while (true) {
             updateClients();
 
-            
-            
+
+
             gameLogic.update();
             // UPDATE LOGIC
             // BROADCAST RESULTS

@@ -1,21 +1,19 @@
 package clientSide.packetHandlers;
 
-import clientSide.processors.GameMechanicsProcessor;
+import clientSide.attributes.Entity;
+import clientSide.attributes.world.World;
 import packets.Packet;
 import packets.UpdateEntityPacket;
 
 public class UpdateEntityHandler extends PacketHandler {
 
-    private GameMechanicsProcessor gameMechanics;
-
-    public UpdateEntityHandler(GameMechanicsProcessor gameMechanics) {
-        this.gameMechanics = gameMechanics;
-    }
-
     @Override
     public void handle(Packet pk) {
         UpdateEntityPacket packet = (UpdateEntityPacket) pk;
-        gameMechanics.updateEntity(packet);
+        Entity e = World.getInstance().getEntity(packet.entityID);
+        if (e != null) {
+            e.update(packet);
+        }
     }
 
 }

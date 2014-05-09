@@ -2,17 +2,10 @@ package clientSide.packetHandlers;
 
 import clientSide.attributes.player.Player;
 import clientSide.attributes.world.World;
-import clientSide.processors.GameMechanicsProcessor;
 import packets.CreateEntityPacket;
 import packets.Packet;
 
 public class CreateEntityHandler extends PacketHandler {
-
-    private GameMechanicsProcessor gameMechanics;
-
-    public CreateEntityHandler(GameMechanicsProcessor gameMechanics) {
-        this.gameMechanics = gameMechanics;
-    }
 
     @Override
     public void handle(Packet pk) {
