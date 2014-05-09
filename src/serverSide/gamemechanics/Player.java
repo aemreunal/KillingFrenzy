@@ -11,7 +11,6 @@ import packets.UpdateEntityPacket;
  * Created by Eren Sezener
  */
 public class Player extends Entity implements Collidable {
-    private Gun gun;
     private float health;
     private float angle; //in radians
     private Client client;
@@ -26,16 +25,8 @@ public class Player extends Entity implements Collidable {
         this.health = Settings.PLAYER_MAX_HEALTH;
     }
 
-    public float getHealth() { //TODO might be redundant
-        return health;
-    }
-
-    public void setGun(Gun gun) { //TODO might be redundant
-        this.gun = gun;
-    }
-
-    public void fireGun() {
-        gun.fire(angle);
+    public void fireGun(float angle) {
+        World.getInstance().addEntity(new Bullet(angle));
     }
 
     public void decreaseHealth(float damage) {
