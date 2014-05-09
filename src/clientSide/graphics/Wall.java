@@ -25,10 +25,21 @@ public class Wall {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        int x = (int) wallX-5;
-        int y = (int) wallY-5;
+        int x = (int) wallX;
+        int y = (int) wallY;
         int width = img.getWidth();
         int height = img.getHeight();
         g.drawImage(img, x, y, width, height, null);
+    }
+    public static void paintWalls(Graphics g, float startX, float startY, boolean isVertical, int size){
+        for(int i=0; i<size; i++){
+            if(isVertical){
+                Wall.paint(g, startX, startY);
+                startY = startY+10;
+            }else{
+                Wall.paint(g, startX, startY);
+               startX = startX+10;
+            }
+        }
     }
 }
