@@ -26,7 +26,7 @@ public abstract class Entity {
     }
 
     public void update(UpdateEntityPacket updatePacket) {
-        physAttr.setPosition(updatePacket.x, updatePacket.y, updatePacket.angle);
+        physAttr.update(updatePacket.x, updatePacket.y, updatePacket.angle, updatePacket.isMoving);
     }
 
     public abstract void paint(Graphics g);
