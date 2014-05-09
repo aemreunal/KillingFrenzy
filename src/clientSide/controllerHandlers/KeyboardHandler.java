@@ -36,19 +36,15 @@ public class KeyboardHandler implements KeyListener {
                     // Close the game
                     break;
                 }
-                graphicsProcessor.setMovingNorth(true);
                 broadcastKeyPressed(e);
                 break;
             case KeyEvent.VK_D:
-                graphicsProcessor.setMovingEast(true);
                 broadcastKeyPressed(e);
                 break;
             case KeyEvent.VK_S:
-                graphicsProcessor.setMovingSouth(true);
                 broadcastKeyPressed(e);
                 break;
             case KeyEvent.VK_A:
-                graphicsProcessor.setMovingWest(true);
                 broadcastKeyPressed(e);
                 break;
         }
@@ -58,19 +54,15 @@ public class KeyboardHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
-                graphicsProcessor.setMovingNorth(false);
                 broadcastKeyReleased(e);
                 break;
             case KeyEvent.VK_D:
-                graphicsProcessor.setMovingEast(false);
                 broadcastKeyReleased(e);
                 break;
             case KeyEvent.VK_S:
-                graphicsProcessor.setMovingSouth(false);
                 broadcastKeyReleased(e);
                 break;
             case KeyEvent.VK_A:
-                graphicsProcessor.setMovingWest(false);
                 broadcastKeyReleased(e);
                 break;
         }

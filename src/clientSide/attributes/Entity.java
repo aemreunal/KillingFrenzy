@@ -14,7 +14,6 @@ public abstract class Entity {
     public Entity() {
         this.physicalAttributes = new PhysicalAttributes();
         this.id = 0;
-
     }
 
     public int getId() {
@@ -25,10 +24,9 @@ public abstract class Entity {
         this.id = id;
     }
 
-    public abstract void paint(Graphics g);
-
     public void update(UpdateEntityPacket updatePacket) {
-        physicalAttributes.setMoving(true);
         physicalAttributes.setPosition(updatePacket.x, updatePacket.y, updatePacket.angle);
     }
+
+    public abstract void paint(Graphics g);
 }

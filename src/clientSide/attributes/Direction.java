@@ -1,4 +1,4 @@
-package clientSide.attributes.player;
+package clientSide.attributes;
 
 /*
  * This code belongs to:

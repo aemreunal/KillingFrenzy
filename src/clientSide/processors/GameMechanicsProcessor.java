@@ -10,7 +10,6 @@ import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
 import clientSide.attributes.Entity;
-import clientSide.attributes.player.Player;
 import clientSide.attributes.world.World;
 import packets.CreateEntityPacket;
 import packets.Packet;
@@ -61,8 +60,8 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
     }
 
     private void createEntity(CreateEntityPacket packet) {
-        Player player = new Player(packet.x, packet.y, packet.angle);
-        World.getInstance().addEntity(player, packet.entityID);
+//        Player player = new Player(packet.x, packet.y, packet.angle);
+//        World.getInstance().addEntity(player, packet.entityID);
     }
 
     private void updateEntity(UpdateEntityPacket packet) {

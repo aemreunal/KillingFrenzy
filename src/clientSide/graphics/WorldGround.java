@@ -21,7 +21,7 @@ public class WorldGround {
     private static int height;
     private static boolean errorOccurred = false;
 
-    public static void init() {
+    public WorldGround() {
         try {
             groundImage = ImageIO.read(new File(Settings.GROUND_IMAGE_FILE_PATH));
             width = groundImage.getWidth();
@@ -35,7 +35,7 @@ public class WorldGround {
         }
     }
 
-    public static void paint(Graphics g) {
+    public void paint(Graphics g) {
         if (!errorOccurred) {
             for (int x = 0; x < Settings.GAME_WINDOW_WIDTH; x += width) {
                 for (int y = 0; y < Settings.GAME_WINDOW_HEIGHT; y += height) {

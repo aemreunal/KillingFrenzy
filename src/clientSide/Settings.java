@@ -35,8 +35,8 @@ public class Settings {
 
     public static final int NUM_CHAR_ANIMATION_IMAGES = 4;
 
-    public static final String STANDING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/standing.png";
-    public static final String MOVING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/moving";
+    public static final String FRIENDLY_PLAYER_STANDING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/standing.png";
+    public static final String FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/moving";
     public static final String MOVING_IMAGE_FILE_EXTENSION = ".png";
 
     public static int movingImageWidth;

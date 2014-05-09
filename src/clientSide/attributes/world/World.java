@@ -1,7 +1,9 @@
 package clientSide.attributes.world;
 
 import clientSide.attributes.Entity;
+import clientSide.graphics.WorldGround;
 
+import java.util.Collection;
 import java.util.TreeMap;
 
 /**
@@ -10,6 +12,7 @@ import java.util.TreeMap;
 public class World {
     private TreeMap<Integer, Entity> idToEntityMap;
     private static World world;
+    private WorldGround ground;
 
     public static World getInstance() {
         if (world == null) {
@@ -20,6 +23,7 @@ public class World {
 
     private World() {
         idToEntityMap = new TreeMap<>();
+        ground = new WorldGround();
     }
 
     public void addEntity(Entity entity, int entityId) {
@@ -35,4 +39,11 @@ public class World {
         return idToEntityMap.get(id);
     }
 
+    public Collection<Entity> getEntities() {
+        return idToEntityMap.values();
+    }
+
+    public WorldGround getGround() {
+        return ground;
+    }
 }

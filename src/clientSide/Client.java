@@ -128,10 +128,13 @@ public class Client extends Thread implements Runnable {
         state.set(GameState.RUNNING);
         createSocket();
         while (state.get() == GameState.RUNNING) {
-            for (ByteBuffer message : readIncomingMessage(socketChannel)) {
-                if (message != null) {
-                    packetQueue.add(Packet.fromByteArray(message.array()));
-                    //dispatchMessage(message)
+            List<ByteBuffer> byteBufferList = readIncomingMessage(socketChannel);
+            if (byteBufferList != null) {
+                for (ByteBuffer message : byteBufferList) {
+                    if (message != null) {
+                        packetQueue.add(Packet.fromByteArray(message.array()));
+                        //dispatchMessage(message)
+                    }
                 }
             }
         }
@@ -182,12 +185,11 @@ public class Client extends Thread implements Runnable {
             }
             return receivedPackets;
         } catch (IOException e) {
-            System.err.println("An error occurred while trying to read incoming message!");
+//            System.err.println("An error occurred while trying to read incoming message!");
+            return null;
 //            e.printStackTrace();
         }
-        return null;
     }
-
 
     private ByteBuffer readMessage(ByteBuffer readBuffer) {
         int bytesToRead;
