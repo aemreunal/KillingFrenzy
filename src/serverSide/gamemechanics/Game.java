@@ -41,11 +41,11 @@ public class Game {
                 packetHandlerMap.get(packet.getType()).handle(client, packet);
             }
 
-            if (client.player != null) {
+            /*if (client.player != null) {
                 UpdateEntityPacket updateEntity = new UpdateEntityPacket(client.player.physicalAttributes.left, client.player.physicalAttributes.top, client.player.physicalAttributes.angle, false);
                 updateEntity.entityID = client.player.getId();
                 server.broadcast(updateEntity);
-            }
+            }*/
 
         }
     }

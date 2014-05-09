@@ -30,4 +30,8 @@ public class Client {
     public void sendPacket(Packet pk) {
         server.sendPacket(socket, pk);
     }
+    
+    public Server getServer() {
+        return server;
+    }
 }

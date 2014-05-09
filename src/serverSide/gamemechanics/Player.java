@@ -5,6 +5,8 @@ import serverSide.client.Client;
 
 import java.awt.event.KeyEvent;
 
+import packets.UpdateEntityPacket;
+
 /**
  * Created by Eren Sezener
  */
@@ -58,6 +60,12 @@ public class Player extends Entity implements Collidable {
         if (rightKeyPressed) {
             this.physicalAttributes.updateHorizontalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
         }
+
+        if (upKeyPressed || leftKeyPress || downKeyPressed || rightKeyPressed) {
+            UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, true);
+            updateEntity.entityID = getId();
+            client.getServer().broadcast(updateEntity);
+        }
     }
 
     public void onKeyPressed(int keyCode) {
@@ -82,5 +90,9 @@ public class Player extends Entity implements Collidable {
         } else if (keyCode == KeyEvent.VK_D) {
             rightKeyPressed = false;
         }
+
+        UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, false);
+        updateEntity.entityID = getId();
+        client.getServer().broadcast(updateEntity);
     }
 }
