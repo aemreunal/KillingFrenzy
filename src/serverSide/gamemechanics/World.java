@@ -28,8 +28,11 @@ public class World {
         idToEntityMap.put(entity.getId(), entity);
     }
 
+    public void removeEntity(Entity entity){
+        idToEntityMap.remove(entity.getId());
+    }
 
-    public Entity voidGetEntity(int id) {
+    public Entity getEntity(int id) {
         return idToEntityMap.get(id);
     }
 

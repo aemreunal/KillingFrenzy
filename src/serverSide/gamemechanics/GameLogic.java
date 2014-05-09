@@ -1,8 +1,7 @@
 package serverSide.gamemechanics;
 
-import clientSide.Client;
+import serverSide.client.Client;
 import packets.Packet;
-import packets.UpdateEntityPacket;
 import serverSide.server.Server;
 
 import java.nio.channels.SelectionKey;
@@ -20,21 +19,23 @@ public class GameLogic {
     }
 
     public void update() {
-        Entity[] entities = (Entity[]) World.getInstance().idToEntityMap.values().toArray();
-    	for (Entity e : entities) {
+        for (Entity e : World.getInstance().idToEntityMap.values()) {
 
     		/*UpdateEntityPacket packet = new UpdateEntityPacket();
-    		packet.entityID = e.getId();
+            packet.entityID = e.getId();
     		packet.attrib = e.physAttr;
     		server.broadcast(packet);*/
+
+            e.update();
     	}
+
     }
 
-    public void checkForAllCollisions(Entity[] entities){
+    public void checkForAllCollisions(Entity[] entities) {
         for (int i = 0; i < entities.length; i++) {
-            for (int j = 0; j < entities.length; j++){
-                if(i != j){
-                    if(existsACollisionBetween(entities[i], entities[j])){
+            for (int j = 0; j < entities.length; j++) {
+                if (i != j) {
+                    if (existsACollisionBetween(entities[i], entities[j])) {
                         handleCollision(entities[i], entities[j]);
                     }
                 }
@@ -43,19 +44,27 @@ public class GameLogic {
         }
     }
 
+    private void cleanDeadObjects(Entity[] entities){
+        for(Entity e : entities){
+            if(!e.isAlive()){
+                World.getInstance().removeEntity(e);
+            }
+        }
+    }
+
     //There are only 3 types of collisions
     private void handleCollision(Entity entity1, Entity entity2) {
-        if(isBulletPlayerCollision(entity1, entity2)){
+        if (isBulletPlayerCollision(entity1, entity2)) {
             handleBulletPlayerCollision(entity1, entity2);
-        } else if(isBulletWallCollision(entity1, entity2)){
+        } else if (isBulletWallCollision(entity1, entity2)) {
             handleBulletWallCollision(entity1, entity2);
-        } else if(isPlayerWallCollision(entity1, entity2)){
+        } else if (isPlayerWallCollision(entity1, entity2)) {
             handlePlayerWallCollision(entity1, entity2);
         }
     }
 
     private void handleBulletPlayerCollision(Entity entity1, Entity entity2) { //TODO handle deaths
-        if(entity1 instanceof Bullet){
+        if (entity1 instanceof Bullet) {
             ((Bullet) entity1).damagePlayer((Player) entity2);
         } else {
             ((Bullet) entity2).damagePlayer((Player) entity1);
@@ -63,7 +72,7 @@ public class GameLogic {
     }
 
     private void handleBulletWallCollision(Entity entity1, Entity entity2) {
-        if(entity1 instanceof Bullet){
+        if (entity1 instanceof Bullet) {
             destroyBullet(entity1);
         } else {
             ((Bullet) entity2).damagePlayer((Player) entity1);
@@ -90,7 +99,7 @@ public class GameLogic {
         return (entity1 instanceof Player && entity2 instanceof Bullet) || (entity2 instanceof Player && entity1 instanceof Bullet);
     }
 
-    public boolean existsACollisionBetween(Entity e1, Entity e2){
+    public boolean existsACollisionBetween(Entity e1, Entity e2) {
 
         boolean collisionOnX = !this.thereIsCollisionOnX(e1, e2);
         boolean collisionOnY = !this.thereIsCollisionOnY(e1, e2);

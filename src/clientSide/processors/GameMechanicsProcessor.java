@@ -66,6 +66,7 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
 
     public void updateEntity(UpdateEntityPacket packet) {
         Entity e = World.getInstance().getEntity(packet.entityID);
-        e.update(packet);
+        if (e != null)
+            e.update(packet);
     }
 }

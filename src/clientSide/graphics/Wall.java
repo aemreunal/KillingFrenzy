@@ -1,9 +1,6 @@
 package clientSide.graphics;
 
 import javax.imageio.ImageIO;
-
-import clientSide.Settings;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
