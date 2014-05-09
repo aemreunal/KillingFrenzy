@@ -16,16 +16,16 @@ public class Bullet extends Entity {
         this.velocity = new Vector2D();
     }
 
-    public Bullet(float angle, float speed) {
-        this.velocity = new Vector2D(angle, speed);
+    public Bullet(float angle) {
+        this.velocity = new Vector2D(angle);
     }
 
-    public float getXVelocity() {
-        return velocity.getX();
+    public float getSpeedX() {
+        return velocity.getSpeedX();
     }
 
-    public float getYVelocity() {
-        return velocity.getY();
+    public float getSpeedY() {
+        return velocity.getSpeedY();
     }
 
     public void damagePlayer(Player player) {
@@ -35,6 +35,7 @@ public class Bullet extends Entity {
 
     @Override
     public void update() {
-
+        super.physicalAttributes.updateVerticalPosition(getSpeedY());
+        super.physicalAttributes.updateHorizontalPosition(getSpeedX());
     }
 }

@@ -73,15 +73,13 @@ public class GameLogic {
 
     private void handleBulletWallCollision(Entity entity1, Entity entity2) {
         if (entity1 instanceof Bullet) {
-            destroyBullet(entity1);
+            entity1.die();
         } else {
             ((Bullet) entity2).damagePlayer((Player) entity1);
         }
 
     }
 
-    private void destroyBullet(Entity entity1) {
-    }
 
     private void handlePlayerWallCollision(Entity entity1, Entity entity2) {
 
