@@ -15,9 +15,9 @@ public class Settings {
 
     public static final int FPS = 100;
     public static final long GRAPHICS_PROC_SLEEP_MILLIS = (long) (1000.0 / FPS);
-    public static final int PPS = 100;
+    public static final int PPS = 50;
     public static final long MECHANICS_PROC_SLEEP_MILLIS = (long) (1000.0 / PPS);
-    public static final int UPS = 2;
+    public static final int UPS = 3;
     public static final long SYNC_PROC_SLEEP_MILLIS = (long) (1000.0 / UPS);
 
     public static final float PLAYER_SPEED = 150.0f;

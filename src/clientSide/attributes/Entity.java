@@ -27,7 +27,11 @@ public abstract class Entity {
     }
 
     public void update(UpdateEntityPacket updatePacket) {
-        physAttr.update(updatePacket.x, updatePacket.y, updatePacket.angle, updatePacket.isMoving);
+        if (updatePacket.entityID != World.getThisPlayer().getId()) {
+            physAttr.update(updatePacket.x, updatePacket.y, updatePacket.angle, updatePacket.isMoving);
+        } else {
+            physAttr.update(updatePacket.x, updatePacket.y, updatePacket.isMoving);
+        }
     }
 
     public abstract void paint(Graphics g);
