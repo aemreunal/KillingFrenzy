@@ -14,8 +14,6 @@ import java.io.IOException;
 /*
  * This code belongs to:
  * Erdi Gultekin
- * Image rotate code is taken from:
- * https://code.google.com/p/game-engine-for-java/source/browse/src/com/gej/util/ImageTool.java
  */
 
 public class FriendlyPlayer {
