@@ -44,7 +44,6 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
     public void run() {
         while (true) {
             receiveUpdates();
-            sendUpdates();
             try {
                 TimeUnit.MILLISECONDS.sleep(Settings.MECHANICS_PROC_SLEEP_MILLIS);
             } catch (InterruptedException e) {
@@ -52,14 +51,6 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void sendUpdates() {
-        sendMouseUpdate();
-    }
-
-    private void sendMouseUpdate() {
-        client.sendPacket(new AngleUpdatePacket(World.getThisPlayer().getAngle()));
     }
 
     private void receiveUpdates() {

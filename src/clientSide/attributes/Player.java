@@ -94,4 +94,10 @@ public class Player extends Entity {
     public float getAngle() {
         return physAttr.getAngle();
     }
+
+    public void updateAngle(float mouseX, float mouseY) {
+        float imageCenterX = physAttr.getxCoor() + (movingImageWidth / 2);
+        float imageCenterY = physAttr.getyCoor() + (movingImageHeight / 2);
+        physAttr.setAngle((float) Math.atan2(mouseY - imageCenterY, mouseX - imageCenterX));
+    }
 }

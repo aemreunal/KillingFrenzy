@@ -3,7 +3,10 @@ package clientSide.processors;
 import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
+import clientSide.attributes.Player;
+import clientSide.attributes.World;
 import clientSide.graphics.WorldGround;
+import packets.AngleUpdatePacket;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -32,13 +35,20 @@ public class GraphicsProcessor extends Thread implements Runnable {
     public void run() {
         while (true) {
             panel.repaint();
-
+            sendPlayerAngleUpdate();
             try {
                 TimeUnit.MILLISECONDS.sleep(Settings.GRAPHICS_PROC_SLEEP_MILLIS);
             } catch (InterruptedException e) {
                 System.err.println("Graphics processor thread sleep is interrupted!");
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void sendPlayerAngleUpdate() {
+        Player thisPlayer = World.getThisPlayer();
+        if (thisPlayer != null) {
+            client.sendPacket(new AngleUpdatePacket(thisPlayer.getAngle()));
         }
     }
 
