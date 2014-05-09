@@ -23,6 +23,7 @@ public class Player extends Entity implements Collidable {
         this.rightKeyPressed = false;
         this.upKeyPressed = false;
         this.downKeyPressed = false;
+        this.health = Settings.PLAYER_MAX_HEALTH;
     }
 
     public float getHealth() { //TODO might be redundant
