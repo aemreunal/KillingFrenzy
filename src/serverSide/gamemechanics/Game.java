@@ -4,6 +4,7 @@ import packets.Packet;
 import packets.PacketType;
 import packets.UpdateEntityPacket;
 import serverSide.client.Client;
+import serverSide.packethandlers.AngleUpdateHandler;
 import serverSide.packethandlers.JoinGameHandler;
 import serverSide.packethandlers.KeyPressHandler;
 import serverSide.packethandlers.KeyReleaseHandler;
@@ -28,6 +29,7 @@ public class Game {
         registerPacketHandler(PacketType.PACKET_KEYPRESS, new KeyPressHandler());
         registerPacketHandler(PacketType.PACKET_KEYRELEASE, new KeyReleaseHandler());
         registerPacketHandler(PacketType.PACKET_JOINGAME, new JoinGameHandler(server));
+        registerPacketHandler(PacketType.PACKET_ANGLEUPDATE, new AngleUpdateHandler());
     }
 
     public void registerPacketHandler(PacketType type, PacketHandler handler) {
