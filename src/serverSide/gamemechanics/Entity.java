@@ -26,6 +26,8 @@ public abstract class Entity {
 
     }
 
+    public abstract void update();
+
     public int getId() {
         return id;
     }
