@@ -47,7 +47,7 @@ public class GameLogic {
     private void cleanDeadObjects(Entity[] entities){
         for(Entity e : entities){
             if(!e.isAlive()){
-
+                World.removeEntity(e);
             }
         }
     }
