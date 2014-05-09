@@ -6,7 +6,7 @@ public class AngleUpdatePacket extends Packet {
     public float angle;
 
     public AngleUpdatePacket(float angle) {
-        super(PacketType.PACKET_UPDATEENTITY);
+        super(PacketType.PACKET_ANGLEUPDATE);
         this.angle = angle;
     }
 }
