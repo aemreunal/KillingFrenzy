@@ -36,6 +36,7 @@ public class Settings {
     public static final String GROUND_IMAGE_FILE_PATH = IMG_PATH + "grass.jpg";
 
     public static final Color DEFAULT_GROUND_COLOR = new Color(110, 133, 61);
+    public static final Color DEFAULT_WALL_COLOR = Color.BLACK;
 
     public static final int NUM_CHAR_ANIMATION_IMAGES = 4;
 
@@ -43,7 +44,7 @@ public class Settings {
     public static final String FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/moving";
     public static final String ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/standing.png";
     public static final String ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/moving";
-
+    public static final String WALL_IMAGE_FILE_PATH = IMG_PATH + "Wall/wall.png";
     public static final String MOVING_IMAGE_FILE_EXTENSION = ".png";
 
     public static int movingImageWidth;

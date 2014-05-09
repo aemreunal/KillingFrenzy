@@ -46,27 +46,8 @@ public class WorldGround {
             g.setColor(Settings.DEFAULT_GROUND_COLOR);
             g.fillRect(0, 0, Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
         }
-        printMap(g);
+        Map.printMap(g);
     }
 
-	private void printMap(Graphics g) {
-		Wall.paintWalls(g, 55, 0, true, 7);
-		Wall.paintWalls(g, 110, 40, true, 7);
-		Wall.paintWalls(g, 120, 100, false, 5);
-		Wall.paintWalls(g, 170, 0, true, 6);
-		Wall.paintWalls(g, 240, 40, true, 6);
-		Wall.paintWalls(g, 240, 55, false, 7);
-		Wall.paintWalls(g, 300, 65, true, 4);
-		Wall.paintWalls(g, 360, 40, true, 5);
-		Wall.paintWalls(g, 360, 40, true, 5);
-		Wall.paintWalls(g, 370, 80, false, 5);
-		Wall.paintWalls(g, 420, 50, true, 6);
-		Wall.paintWalls(g, 520, 40, false, 7);
-		Wall.paintWalls(g, 580, 50, true, 6);
-		Wall.paintWalls(g, 480, 100, false, 4);
-		Wall.paintWalls(g, 510, 110, true, 7);
-		Wall.paintWalls(g, 510, 180, false, 4);
-		Wall.paintWalls(g, 600, 200, false, 4);
-		Wall.paintWalls(g, 600, 200, false, 4);
-	}
+	
 }
