@@ -25,7 +25,7 @@ public class GameLogic {
 
     		/*UpdateEntityPacket packet = new UpdateEntityPacket();
     		packet.entityID = e.getId();
-    		packet.attrib = e.physicalAttributes;
+    		packet.attrib = e.physAttr;
     		server.broadcast(packet);*/
     	}
     }

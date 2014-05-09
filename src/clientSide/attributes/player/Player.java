@@ -57,18 +57,7 @@ public class Player extends Entity {
     }
 
     public void paint(Graphics g) {
-        if (physicalAttributes.isMoving()) {
-            g.drawImage(GraphicsProcessor.rotate(movingImages[currentMovingImage],
-                            physicalAttributes.getAngle(),
-                            movingImageWidth, movingImageHeight),
-                    (int) physicalAttributes.getxCoor(), (int) physicalAttributes.getyCoor(), null
-            );
-        } else {
-            g.drawImage(GraphicsProcessor.rotate(standingImage,
-                            physicalAttributes.getAngle(),
-                            movingImageWidth, movingImageHeight),
-                    (int) physicalAttributes.getxCoor(), (int) physicalAttributes.getyCoor(), null
-            );
-        }
+        BufferedImage playerImage = physAttr.isMoving() ? movingImages[currentMovingImage] : standingImage;
+        g.drawImage(GraphicsProcessor.rotate(playerImage, physAttr.getAngle(), movingImageWidth, movingImageHeight), (int) physAttr.getxCoor(), (int) physAttr.getyCoor(), null);
     }
 }
