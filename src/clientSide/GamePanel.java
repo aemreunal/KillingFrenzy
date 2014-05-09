@@ -1,7 +1,7 @@
 package clientSide;
 
 import clientSide.attributes.Entity;
-import clientSide.attributes.world.World;
+import clientSide.attributes.World;
 import clientSide.controllerHandlers.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
 import clientSide.graphics.Crosshair;

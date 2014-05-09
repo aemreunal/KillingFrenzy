@@ -1,7 +1,7 @@
 package clientSide.packetHandlers;
 
-import clientSide.attributes.player.Player;
-import clientSide.attributes.world.World;
+import clientSide.attributes.Player;
+import clientSide.attributes.World;
 import packets.CreateEntityPacket;
 import packets.Packet;
 

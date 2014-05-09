@@ -1,4 +1,4 @@
-package clientSide.attributes.player;
+package clientSide.attributes;
 /*
  * This code belongs to:
  * Ahmet Emre Unal
@@ -7,8 +7,6 @@ package clientSide.attributes.player;
  */
 
 import clientSide.Settings;
-import clientSide.attributes.Direction;
-import clientSide.attributes.Entity;
 import clientSide.processors.GraphicsProcessor;
 
 import javax.imageio.ImageIO;

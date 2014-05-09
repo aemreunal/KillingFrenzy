@@ -1,6 +1,5 @@
-package clientSide.attributes.world;
+package clientSide.attributes;
 
-import clientSide.attributes.Entity;
 import clientSide.graphics.WorldGround;
 
 import java.util.Collection;
