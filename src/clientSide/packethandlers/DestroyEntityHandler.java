@@ -10,12 +10,6 @@ import packets.UpdateEntityPacket;
 
 public class DestroyEntityHandler extends PacketHandler{
     
-    private GameMechanicsProcessor gameMechanics;
-    
-    public DestroyEntityHandler(GameMechanicsProcessor gameMechanics) {
-        this.gameMechanics = gameMechanics;
-    }
-
     @Override
     public void handle(Packet pk) {
         DestroyEntityPacket packet = (DestroyEntityPacket) pk;

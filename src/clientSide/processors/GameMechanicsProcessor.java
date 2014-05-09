@@ -12,6 +12,7 @@ import clientSide.Settings;
 import clientSide.attributes.Entity;
 import clientSide.attributes.world.World;
 import clientSide.packethandlers.CreateEntityHandler;
+import clientSide.packethandlers.DestroyEntityHandler;
 import clientSide.packethandlers.PacketHandler;
 import clientSide.packethandlers.UpdateEntityHandler;
 import packets.CreateEntityPacket;
@@ -34,6 +35,7 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
 
         registerPacketHandler(PacketType.PACKET_CREATEENTITY, new CreateEntityHandler(this));
         registerPacketHandler(PacketType.PACKET_UPDATEENTITY, new UpdateEntityHandler(this));
+        registerPacketHandler(PacketType.PACKET_DESTROYENTITY, new DestroyEntityHandler());
     }
 
     public void registerPacketHandler(PacketType type, PacketHandler handler) {
