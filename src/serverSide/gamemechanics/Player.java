@@ -1,7 +1,6 @@
 package serverSide.gamemechanics;
 
 import clientSide.Settings;
-import javafx.scene.input.KeyCode;
 import serverSide.client.Client;
 
 import java.awt.event.KeyEvent;
