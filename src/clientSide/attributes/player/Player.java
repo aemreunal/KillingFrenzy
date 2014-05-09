@@ -7,6 +7,7 @@ package clientSide.attributes.player;
  */
 
 import clientSide.Settings;
+import clientSide.attributes.Direction;
 import clientSide.attributes.Entity;
 import clientSide.processors.GraphicsProcessor;
 
@@ -56,19 +57,37 @@ public class Player extends Entity {
         }
     }
 
-    public void paint(Graphics g) {
-        if (physicalAttributes.isMoving()) {
-            g.drawImage(GraphicsProcessor.rotate(movingImages[currentMovingImage],
-                            physicalAttributes.getAngle(),
-                            movingImageWidth, movingImageHeight),
-                    (int) physicalAttributes.getxCoor(), (int) physicalAttributes.getyCoor(), null
-            );
-        } else {
-            g.drawImage(GraphicsProcessor.rotate(standingImage,
-                            physicalAttributes.getAngle(),
-                            movingImageWidth, movingImageHeight),
-                    (int) physicalAttributes.getxCoor(), (int) physicalAttributes.getyCoor(), null
-            );
+    public void move(Direction dir) {
+        float playerX = physAttr.getxCoor();
+        float playerY = physAttr.getyCoor();
+        float imageCenterX = playerX + (Settings.movingImageWidth / 2);
+        float imageCenterY = playerY + (Settings.movingImageHeight / 2);
+        switch (dir) {
+            case NORTH:
+                if (imageCenterY > 0) {
+                    physAttr.setyCoor(playerY - Settings.PLAYER_LOC_UPDATE_AMOUNT);
+                }
+                break;
+            case EAST:
+                if (imageCenterX < Settings.GAME_WINDOW_WIDTH) {
+                    physAttr.setxCoor(playerX + Settings.PLAYER_LOC_UPDATE_AMOUNT);
+                }
+                break;
+            case SOUTH:
+                if (imageCenterY < Settings.GAME_WINDOW_HEIGHT) {
+                    physAttr.setyCoor(playerY + Settings.PLAYER_LOC_UPDATE_AMOUNT);
+                }
+                break;
+            case WEST:
+                if (imageCenterX > 0) {
+                    physAttr.setxCoor(playerX - Settings.PLAYER_LOC_UPDATE_AMOUNT);
+                }
+                break;
         }
+    }
+
+    public void paint(Graphics g) {
+        BufferedImage playerImage = physAttr.isMoving() ? movingImages[currentMovingImage] : standingImage;
+        g.drawImage(GraphicsProcessor.rotate(playerImage, physAttr.getAngle(), movingImageWidth, movingImageHeight), (int) physAttr.getxCoor(), (int) physAttr.getyCoor(), null);
     }
 }

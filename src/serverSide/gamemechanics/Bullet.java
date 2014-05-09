@@ -28,8 +28,9 @@ public class Bullet extends Entity {
         return velocity.getY();
     }
 
-    public void damagePlayer(Player player){
+    public void damagePlayer(Player player) {
         player.decreaseHealth(Bullet.damage);
+        this.die(); //Destroy the bullet
     }
 
     @Override

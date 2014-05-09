@@ -9,6 +9,6 @@ public class Wall extends Entity implements Collidable {
 
     @Override
     public void update() {
-        
+
     }
 }

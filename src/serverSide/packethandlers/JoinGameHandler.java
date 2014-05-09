@@ -12,20 +12,20 @@ import serverSide.server.Server;
 
 public class JoinGameHandler extends PacketHandler {
     private Server server;
-    
+
     public JoinGameHandler(Server server) {
         this.server = server;
     }
-     
+
     @Override
     public void handle(Client client, Packet pk) {
         sendMapInfo(client);
-        
+
         Player player = new Player(client);
         World.getInstance().addEntity(player);
         client.setPlayer(player);
-        player.physicalAttributes = new PhysicalAttributes((float) Math.random() * 100.0f, (float) Math.random() * 100.0f, 10.0f, 10.0f);  
-        sendNewPlayer(client, player);       
+        player.physicalAttributes = new PhysicalAttributes((float) Math.random() * 100.0f, (float) Math.random() * 100.0f, 10.0f, 10.0f);
+        sendNewPlayer(client, player);
     }
 
     private void sendNewPlayer(Client client, Player player) {
