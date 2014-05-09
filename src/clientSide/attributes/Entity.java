@@ -10,6 +10,7 @@ import java.awt.*;
 public abstract class Entity {
     protected int id;
     protected PhysicalAttributes physicalAttributes;
+    protected boolean isAlive;
 
     public Entity() {
         this.physicalAttributes = new PhysicalAttributes();
@@ -29,4 +30,12 @@ public abstract class Entity {
     }
 
     public abstract void paint(Graphics g);
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
 }

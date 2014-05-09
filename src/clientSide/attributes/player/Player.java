@@ -37,7 +37,7 @@ public class Player extends Entity {
         if (isFriendly) {
             return new Player(Settings.FRIENDLY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH);
         } else {
-            return null;
+            return new Player(Settings.ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH);
         }
     }
 

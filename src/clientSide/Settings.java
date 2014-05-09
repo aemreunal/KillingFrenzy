@@ -37,6 +37,9 @@ public class Settings {
 
     public static final String FRIENDLY_PLAYER_STANDING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/standing.png";
     public static final String FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/moving";
+    public static final String ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/standing.png";
+    public static final String ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/moving";
+
     public static final String MOVING_IMAGE_FILE_EXTENSION = ".png";
 
     public static int movingImageWidth;
