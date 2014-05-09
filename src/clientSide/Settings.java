@@ -10,8 +10,8 @@ import java.awt.*;
  */
 
 public class Settings {
-    public static final int GAME_WINDOW_WIDTH = 500;
-    public static final int GAME_WINDOW_HEIGHT = 300;
+    public static final int GAME_WINDOW_WIDTH = 660;
+    public static final int GAME_WINDOW_HEIGHT = 440;
 
     public static final int FPS = 100;
     public static final long GRAPHICS_PROC_SLEEP_MILLIS = (long) (1000.0 / FPS);
