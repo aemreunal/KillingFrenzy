@@ -9,12 +9,12 @@ import java.awt.*;
  */
 public abstract class Entity {
     protected int id;
-    protected PhysicalAttributes physicalAttributes;
+    protected PhysicalAttributes physAttr;
+    protected boolean isAlive;
 
     public Entity() {
-        this.physicalAttributes = new PhysicalAttributes();
+        this.physAttr = new PhysicalAttributes();
         this.id = 0;
-
     }
 
     public int getId() {
@@ -25,10 +25,17 @@ public abstract class Entity {
         this.id = id;
     }
 
+    public void update(UpdateEntityPacket updatePacket) {
+        physAttr.setPosition(updatePacket.x, updatePacket.y, updatePacket.angle);
+    }
+
     public abstract void paint(Graphics g);
 
-    public void update(UpdateEntityPacket updatePacket) {
-        physicalAttributes.setMoving(true);
-        physicalAttributes.setPosition(updatePacket.x, updatePacket.y, updatePacket.angle);
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean isAlive) {
+        this.isAlive = isAlive;
     }
 }

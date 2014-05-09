@@ -10,9 +10,9 @@ import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
 import clientSide.attributes.Entity;
-import clientSide.attributes.player.Player;
 import clientSide.attributes.world.World;
 import clientSide.packethandlers.CreateEntityHandler;
+import clientSide.packethandlers.DestroyEntityHandler;
 import clientSide.packethandlers.PacketHandler;
 import clientSide.packethandlers.UpdateEntityHandler;
 import packets.CreateEntityPacket;
@@ -32,11 +32,12 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
         this.client = client;
         this.panel = panel;
         packetHandlerMap = new EnumMap<PacketType, PacketHandler>(PacketType.class);
-        
+
         registerPacketHandler(PacketType.PACKET_CREATEENTITY, new CreateEntityHandler(this));
         registerPacketHandler(PacketType.PACKET_UPDATEENTITY, new UpdateEntityHandler(this));
+        registerPacketHandler(PacketType.PACKET_DESTROYENTITY, new DestroyEntityHandler());
     }
-    
+
     public void registerPacketHandler(PacketType type, PacketHandler handler) {
         packetHandlerMap.put(type, handler);
     }
@@ -58,9 +59,9 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
         }
     }
 
-    public void createEntity(CreateEntityPacket packet) {
-        Player player = new Player(packet.x, packet.y, packet.angle);
-        World.getInstance().addEntity(player, packet.entityID);
+    private void createEntity(CreateEntityPacket packet) {
+//        Player player = new Player(packet.x, packet.y, packet.angle);
+//        World.getInstance().addEntity(player, packet.entityID);
     }
 
     public void updateEntity(UpdateEntityPacket packet) {

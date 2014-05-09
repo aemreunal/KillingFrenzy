@@ -1,23 +1,16 @@
 package packets;
 
-import serverSide.gamemechanics.PhysicalAttributes;
-
-
 public class UpdateEntityPacket extends Packet {
     public int entityID;
-    
+
     public float x;
     public float y;
     public float angle;
 
-	/*
-     * position
-	 * rotation
-	 * etc.
-	 *
-	 */
-
-    //public PhysicalAttributes attrib;
+    public boolean movingNorth = false;
+    public boolean movingEast = false;
+    public boolean movingSouth = false;
+    public boolean movingWest = false;
 
     public UpdateEntityPacket(float x, float y, float angle) {
         super(PacketType.PACKET_UPDATEENTITY);
@@ -26,4 +19,7 @@ public class UpdateEntityPacket extends Packet {
         this.angle = angle;
     }
 
+    public boolean isMoving() {
+        return movingEast || movingNorth || movingSouth || movingWest;
+    }
 }

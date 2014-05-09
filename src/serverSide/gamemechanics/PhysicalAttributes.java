@@ -14,12 +14,12 @@ public class PhysicalAttributes {
         this.bottom = yCoor + height;
     }
 
-    public void updateVerticalPosition(float change){
+    public void updateVerticalPosition(float change) {
         top += change;
         bottom += change;
     }
 
-    public void updateHorizontalPosition(float change){
+    public void updateHorizontalPosition(float change) {
         left += change;
         right += change;
     }

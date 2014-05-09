@@ -10,13 +10,13 @@ import java.awt.*;
  */
 
 public class Settings {
-    public static final int GAME_WINDOW_WIDTH = 500;
-    public static final int GAME_WINDOW_HEIGHT = 300;
+    public static final int GAME_WINDOW_WIDTH = 660;
+    public static final int GAME_WINDOW_HEIGHT = 440;
 
     public static final int FPS = 100;
     public static final long GRAPHICS_PROC_SLEEP_MILLIS = (long) (1000.0 / FPS);
     public static final int UPS = 100;
-    public static final long MECHANICS_PROC_SLEEP_MILLIS =  (long) (1000.0 / UPS);
+    public static final long MECHANICS_PROC_SLEEP_MILLIS = (long) (1000.0 / UPS);
 
     public static final float PLAYER_SPEED = 150.0f;
     public static final float PLAYER_LOC_UPDATE_AMOUNT = PLAYER_SPEED / FPS;
@@ -35,8 +35,11 @@ public class Settings {
 
     public static final int NUM_CHAR_ANIMATION_IMAGES = 4;
 
-    public static final String STANDING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/standing.png";
-    public static final String MOVING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/moving";
+    public static final String FRIENDLY_PLAYER_STANDING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/standing.png";
+    public static final String FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/moving";
+    public static final String ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/standing.png";
+    public static final String ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/moving";
+
     public static final String MOVING_IMAGE_FILE_EXTENSION = ".png";
 
     public static int movingImageWidth;

@@ -1,9 +1,6 @@
 package clientSide.graphics;
 
 import javax.imageio.ImageIO;
-
-import clientSide.Settings;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,8 +22,8 @@ public class Wall {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        int x = (int) wallX-5;
-        int y = (int) wallY-5;
+        int x = (int) wallX - 5;
+        int y = (int) wallY - 5;
         int width = img.getWidth();
         int height = img.getHeight();
         g.drawImage(img, x, y, width, height, null);

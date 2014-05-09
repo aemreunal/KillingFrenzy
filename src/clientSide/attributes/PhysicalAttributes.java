@@ -4,10 +4,13 @@ public class PhysicalAttributes {
     private float xCoor;
     private float yCoor;
     private float angle;
-    private boolean isMoving;
+
+    private boolean movingNorth = false;
+    private boolean movingEast = false;
+    private boolean movingSouth = false;
+    private boolean movingWest = false;
 
     public void setPosition(float xCoor, float yCoor, float angle) {
-        isMoving = true;
         this.xCoor = xCoor;
         this.yCoor = yCoor;
         this.angle = angle;
@@ -18,7 +21,6 @@ public class PhysicalAttributes {
     }
 
     public void setxCoor(float xCoor) {
-        isMoving = (this.xCoor != xCoor);
         this.xCoor = xCoor;
     }
 
@@ -27,7 +29,6 @@ public class PhysicalAttributes {
     }
 
     public void setyCoor(float yCoor) {
-        isMoving = (this.yCoor != yCoor);
         this.yCoor = yCoor;
     }
 
@@ -40,10 +41,6 @@ public class PhysicalAttributes {
     }
 
     public boolean isMoving() {
-        return isMoving;
-    }
-
-    public void setMoving(boolean isMoving) {
-        this.isMoving = isMoving;
+        return movingEast || movingNorth || movingSouth || movingWest;
     }
 }
