@@ -9,10 +9,12 @@ package clientSide.processors;
 import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
+import clientSide.attributes.World;
 import clientSide.packetHandlers.CreateEntityHandler;
 import clientSide.packetHandlers.DestroyEntityHandler;
 import clientSide.packetHandlers.PacketHandler;
 import clientSide.packetHandlers.UpdateEntityHandler;
+import packets.AngleUpdatePacket;
 import packets.Packet;
 import packets.PacketType;
 
@@ -27,7 +29,7 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
     public GameMechanicsProcessor(Client client, GamePanel panel) {
         this.client = client;
         this.panel = panel;
-        packetHandlerMap = new EnumMap<PacketType, PacketHandler>(PacketType.class);
+        packetHandlerMap = new EnumMap<>(PacketType.class);
 
         registerPacketHandler(PacketType.PACKET_CREATEENTITY, new CreateEntityHandler());
         registerPacketHandler(PacketType.PACKET_UPDATEENTITY, new UpdateEntityHandler());
@@ -41,17 +43,29 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
     @Override
     public void run() {
         while (true) {
-            while (!client.packetQueue.isEmpty()) {
-                Packet packet = client.packetQueue.poll();
-                packetHandlerMap.get(packet.getType()).handle(packet);
-            }
-
+            receiveUpdates();
+            sendUpdates();
             try {
                 TimeUnit.MILLISECONDS.sleep(Settings.MECHANICS_PROC_SLEEP_MILLIS);
             } catch (InterruptedException e) {
                 System.err.println("Game mechanics processor thread sleep is interrupted!");
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void sendUpdates() {
+        sendMouseUpdate();
+    }
+
+    private void sendMouseUpdate() {
+        client.sendPacket(new AngleUpdatePacket(World.getThisPlayer().getAngle()));
+    }
+
+    private void receiveUpdates() {
+        while (!client.packetQueue.isEmpty()) {
+            Packet packet = client.packetQueue.poll();
+            packetHandlerMap.get(packet.getType()).handle(packet);
         }
     }
 }

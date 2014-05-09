@@ -12,6 +12,7 @@ public class World {
     private TreeMap<Integer, Entity> idToEntityMap;
     private static World world;
     private WorldGround ground;
+    private static Player thisPlayer;
 
     public static World getInstance() {
         if (world == null) {
@@ -44,5 +45,13 @@ public class World {
 
     public WorldGround getGround() {
         return ground;
+    }
+
+    public static Player getThisPlayer() {
+        return thisPlayer;
+    }
+
+    public static void setThisPlayer(Player thisPlayer) {
+        World.thisPlayer = thisPlayer;
     }
 }

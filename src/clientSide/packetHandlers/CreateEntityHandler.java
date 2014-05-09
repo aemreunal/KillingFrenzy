@@ -11,7 +11,7 @@ public class CreateEntityHandler extends PacketHandler {
     public void handle(Packet pk) {
         CreateEntityPacket packet = (CreateEntityPacket) pk;
         Player player = Player.createPlayer(packet.isMine);
-        System.out.println(packet.isMine);
+//        System.out.println(packet.isMine);
         synchronized (World.getInstance().getEntityMap()) {
             World.getInstance().addEntity(player, packet.entityID);
         }

@@ -32,9 +32,11 @@ public class Player extends Entity {
         }
     });
 
-    public static Player createPlayer(boolean isFriendly) {
-        if (isFriendly) {
-            return new Player(Settings.FRIENDLY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH);
+    public static Player createPlayer(boolean isMine) {
+        if (isMine) {
+            Player player = new Player(Settings.FRIENDLY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH);
+            World.setThisPlayer(player);
+            return player;
         } else {
             return new Player(Settings.ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH);
         }
@@ -87,5 +89,9 @@ public class Player extends Entity {
     public void paint(Graphics g) {
         BufferedImage playerImage = physAttr.isMoving() ? movingImages[currentMovingImage] : standingImage;
         g.drawImage(GraphicsProcessor.rotate(playerImage, physAttr.getAngle(), movingImageWidth, movingImageHeight), (int) physAttr.getxCoor(), (int) physAttr.getyCoor(), null);
+    }
+
+    public float getAngle() {
+        return physAttr.getAngle();
     }
 }
