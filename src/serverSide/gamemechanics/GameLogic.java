@@ -1,8 +1,7 @@
 package serverSide.gamemechanics;
 
-import clientSide.Client;
+import serverSide.client.Client;
 import packets.Packet;
-import packets.UpdateEntityPacket;
 import serverSide.server.Server;
 
 import java.nio.channels.SelectionKey;
@@ -27,6 +26,8 @@ public class GameLogic {
     		packet.entityID = e.getId();
     		packet.attrib = e.physicalAttributes;
     		server.broadcast(packet);*/
+
+            e.update();
     	}
     }
 
@@ -40,6 +41,14 @@ public class GameLogic {
                 }
             }
 
+        }
+    }
+
+    private void cleanDeadObjects(Entity[] entities){
+        for(Entity e : entities){
+            if(!e.isAlive()){
+
+            }
         }
     }
 

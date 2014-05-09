@@ -5,7 +5,8 @@ package serverSide.gamemechanics;
  */
 public abstract class Entity {
     private int id;
-    //    private World world;
+    private boolean isAlive;
+
     public PhysicalAttributes physicalAttributes;
 
     public Entity() {
@@ -23,7 +24,7 @@ public abstract class Entity {
     public Entity(int id, float x, float y, float height, float width) {
         this.physicalAttributes = new PhysicalAttributes(x, y, height, width);
         this.id = 0;
-
+        this.isAlive = true;
     }
 
     public abstract void update();
@@ -34,5 +35,13 @@ public abstract class Entity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void die(){
+        isAlive = false;
+    }
+
+    public boolean isAlive(){
+        return this.isAlive;
     }
 }

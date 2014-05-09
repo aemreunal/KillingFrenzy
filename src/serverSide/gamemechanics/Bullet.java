@@ -30,6 +30,7 @@ public class Bullet extends Entity {
 
     public void damagePlayer(Player player){
         player.decreaseHealth(Bullet.damage);
+        this.die(); //Destroy the bullet
     }
 
     @Override

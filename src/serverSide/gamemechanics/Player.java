@@ -12,13 +12,11 @@ public class Player extends Entity implements Collidable{
     private Gun gun;
     private float health;
     private float angle; //in radians
-    private boolean isAlive;
     private Client client;
     private boolean leftKeyPress, rightKeyPressed, upKeyPressed, downKeyPressed;
 
     public Player(Client client) {
         this.client = client;
-        this.isAlive = true;
         this.leftKeyPress = false;
         this.rightKeyPressed = false;
         this.upKeyPressed = false;
@@ -40,12 +38,8 @@ public class Player extends Entity implements Collidable{
     public void decreaseHealth(float damage) {
         health -= damage;
         if (health < 0){
-            die();
+            this.die();
         }
-    }
-
-    private void die() {
-        isAlive = false;
     }
 
     @Override
