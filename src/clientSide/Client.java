@@ -186,8 +186,8 @@ public class Client extends Thread implements Runnable {
             return receivedPackets;
         } catch (IOException e) {
 //            System.err.println("An error occurred while trying to read incoming message!");
-            return null;
 //            e.printStackTrace();
+            return null;
         }
     }
 
