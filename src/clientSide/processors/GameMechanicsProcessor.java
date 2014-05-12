@@ -9,12 +9,10 @@ package clientSide.processors;
 import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.Settings;
-import clientSide.attributes.World;
-import clientSide.packetHandlers.CreateEntityHandler;
-import clientSide.packetHandlers.DestroyEntityHandler;
-import clientSide.packetHandlers.PacketHandler;
-import clientSide.packetHandlers.UpdateEntityHandler;
-import packets.AngleUpdatePacket;
+import packets.packetHandlers.CreateEntityHandler;
+import packets.packetHandlers.DestroyEntityHandler;
+import packets.packetHandlers.PacketHandler;
+import packets.packetHandlers.UpdateEntityHandler;
 import packets.Packet;
 import packets.PacketType;
 

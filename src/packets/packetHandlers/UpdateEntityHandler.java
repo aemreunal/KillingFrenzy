@@ -1,4 +1,4 @@
-package clientSide.packetHandlers;
+package packets.packetHandlers;
 
 import clientSide.attributes.Entity;
 import clientSide.attributes.World;
