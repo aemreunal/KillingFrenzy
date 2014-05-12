@@ -3,7 +3,6 @@ package clientSide.controllerHandlers;
 import clientSide.Client;
 import clientSide.Settings;
 import clientSide.attributes.World;
-import clientSide.processors.GraphicsProcessor;
 import packets.KeyPressPacket;
 import packets.KeyReleasePacket;
 
@@ -19,14 +18,8 @@ import java.awt.event.KeyListener;
 
 public class KeyboardHandler implements KeyListener {
     private Client client;
-    private GraphicsProcessor graphicsProcessor;
-    private boolean usingMac = false;
 
-    public KeyboardHandler(Client client, GraphicsProcessor graphicsProcessor) {
-        // If system is Mac, output will be "Mac OS X"
-        // If system is Windows, output will be "Windows ..."
-        usingMac = (System.getProperty("os.name").charAt(0) == 'M');
-        this.graphicsProcessor = graphicsProcessor;
+    public KeyboardHandler(Client client) {
         this.client = client;
     }
 

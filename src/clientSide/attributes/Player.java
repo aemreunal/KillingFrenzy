@@ -41,7 +41,27 @@ public class Player extends Entity {
         }
     }
 
+    public static Player createPlayer(boolean isMine, float xCoor, float yCoor, float angle) {
+        if (isMine) {
+            Player player = new Player(Settings.FRIENDLY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH, xCoor, yCoor, angle);
+            World.setThisPlayer(player);
+            return player;
+        } else {
+            return new Player(Settings.ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH);
+        }
+    }
+
     private Player(String standingImageFilePath, String movingImageFilePath) {
+        loadImages(standingImageFilePath, movingImageFilePath);
+    }
+
+    private Player(String standingImageFilePath, String movingImageFilePath, float xCoor, float yCoor, float angle) {
+        super(xCoor, yCoor, 0);
+        loadImages(standingImageFilePath, movingImageFilePath);
+
+    }
+
+    private void loadImages(String standingImageFilePath, String movingImageFilePath) {
         try {
             standingImage = ImageIO.read(new File(standingImageFilePath));
             for (int i = 0; i < Settings.NUM_PLAYER_ANIMATION_IMAGES; i++) {

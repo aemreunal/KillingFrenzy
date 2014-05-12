@@ -8,6 +8,10 @@ import java.awt.*;
  */
 
 public class Bullet extends Entity {
+    public Bullet(float xCoor, float yCoor, float angle) {
+        super(xCoor, yCoor, angle);
+    }
+
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.WHITE);

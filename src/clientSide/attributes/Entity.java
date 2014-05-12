@@ -19,6 +19,11 @@ public abstract class Entity {
         this.id = 0;
     }
 
+    public Entity(float xCoor, float yCoor, float angle) {
+        this.physAttr = new PhysicalAttributes(xCoor, yCoor, angle);
+        this.id = 0;
+    }
+
     public PhysicalAttributes getPhysAttr() {
         return physAttr;
     }

@@ -106,7 +106,7 @@ public class Client extends Thread implements Runnable {
 
     private void createGameComponents() {
         this.gameWindow = new JFrame("GO GO");
-        this.gamePanel = new GamePanel();
+        this.gamePanel = new GamePanel(client);
         this.graphicsProcessor = new GraphicsProcessor(client, gamePanel);
         this.graphicsProcessor.start();
         this.gameProcessor = new GameMechanicsProcessor(client, gamePanel);
@@ -116,7 +116,7 @@ public class Client extends Thread implements Runnable {
     }
 
     private void addGameListeners() {
-        gameWindow.addKeyListener(new KeyboardHandler(client, graphicsProcessor));
+        gameWindow.addKeyListener(new KeyboardHandler(client));
     }
 
     private void setGameAttributes() {

@@ -20,13 +20,13 @@ public class GamePanel extends JPanel {
     private float mouseX = 100;
     private float mouseY = 100;
 
-    public GamePanel() {
+    public GamePanel(Client client) {
         setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
-        addListeners();
+        addListeners(client);
     }
 
-    private void addListeners() {
-        MouseHandler mouseHandler = new MouseHandler(this);
+    private void addListeners(Client client) {
+        MouseHandler mouseHandler = new MouseHandler(client, this);
         addMouseListener(mouseHandler);
         addMouseMotionListener(mouseHandler);
     }

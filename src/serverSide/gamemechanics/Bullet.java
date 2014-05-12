@@ -1,18 +1,16 @@
 package serverSide.gamemechanics;
 
+import clientSide.Settings;
+
 /**
  * Created by Eren Sezener
  */
 public class Bullet extends Entity {
-    private static final int WIDTH = 2;
-    private static final int HEIGHT = 2;
-    private static float damage = 1;
-
     private Vector2D velocity;
-
+    private int ownerID; // TODO Bullets must have owners to assign scores!
 
     public Bullet() {
-        super(HEIGHT, WIDTH);
+        super(Settings.BULLET_HEIGHT, Settings.BULLET_WIDTH);
         this.velocity = new Vector2D();
     }
 
@@ -29,7 +27,7 @@ public class Bullet extends Entity {
     }
 
     public void damagePlayer(Player player) {
-        player.decreaseHealth(Bullet.damage);
+        player.decreaseHealth(Settings.BULLET_DAMAGE);
         this.die(); //Destroy the bullet
     }
 

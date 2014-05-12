@@ -19,7 +19,11 @@ public class Settings {
     public static final int GAME_WINDOW_HEIGHT = 440;
 
     public static final int CROSSHAIR_SIZE = 12;
+
     public static final int PLAYER_SIZE = 30;
+
+    public static final int BULLET_WIDTH = 2;
+    public static final int BULLET_HEIGHT = 2;
 
     /**
      * Speeds & frequencies
@@ -48,7 +52,7 @@ public class Settings {
      * Misc.
      */
 
-    public static final int BULLET_DAMAGE = 20;
+    public static final int BULLET_DAMAGE = 2;
 
     public static final int PACKET_HEADER_BYTES = 2;
     public static final int PORT = 17001;
@@ -57,6 +61,8 @@ public class Settings {
     public static final int KEY_SOUTH = KeyEvent.VK_S;
     public static final int KEY_WEST = KeyEvent.VK_A;
     public static final int KEY_EAST = KeyEvent.VK_D;
+
+    public static final int MOUSE_CLICK = -1;
 
     /**
      * Images (locations, etc.)
@@ -79,5 +85,4 @@ public class Settings {
     public static final String ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/moving";
     public static final String WALL_IMAGE_FILE_PATH = IMG_PATH + "Wall/wall.png";
     public static final String MOVING_IMAGE_FILE_EXTENSION = ".png";
-
 }

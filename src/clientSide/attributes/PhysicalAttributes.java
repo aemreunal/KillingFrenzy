@@ -6,10 +6,26 @@ public class PhysicalAttributes {
     private float angle;
     private boolean isMoving;
 
+    public PhysicalAttributes() {
+        this(0, 0, 0);
+    }
+
+    public PhysicalAttributes(float xCoor, float yCoor, float angle) {
+        this.xCoor = xCoor;
+        this.yCoor = yCoor;
+        this.angle = angle;
+    }
+
     public void update(float xCoor, float yCoor, boolean isMoving) {
         this.xCoor = xCoor;
         this.yCoor = yCoor;
         this.isMoving = isMoving;
+    }
+
+    public void update(float xCoor, float yCoor, float angle) {
+        this.xCoor = xCoor;
+        this.yCoor = yCoor;
+        this.angle = angle;
     }
 
     public void update(float xCoor, float yCoor, float angle, boolean isMoving) {
