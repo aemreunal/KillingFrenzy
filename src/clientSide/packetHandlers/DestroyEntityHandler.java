@@ -1,4 +1,4 @@
-package packets.packetHandlers;
+package clientSide.packetHandlers;
 
 import clientSide.attributes.World;
 import packets.DestroyEntityPacket;
