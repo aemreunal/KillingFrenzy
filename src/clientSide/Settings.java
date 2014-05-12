@@ -42,7 +42,7 @@ public class Settings {
     // Bullet
     public static final int BULLET_SPEED = 5;
 
-    public static final float EPSILON = 0.0001f;
+    public static final float TEST_ERROR_ALLOWANCE = 0.0001f;
 
     /**
      * Misc.

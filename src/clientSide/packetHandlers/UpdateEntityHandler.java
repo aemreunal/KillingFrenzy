@@ -10,9 +10,9 @@ public class UpdateEntityHandler extends PacketHandler {
     @Override
     public void handle(Packet pk) {
         UpdateEntityPacket packet = (UpdateEntityPacket) pk;
-        Entity e = World.getInstance().getEntity(packet.entityID);
-        if (e != null) {
-            e.update(packet);
+        Entity entityToUpdate = World.getInstance().getEntity(packet.entityID);
+        if (entityToUpdate != null) {
+            entityToUpdate.update(packet);
         }
     }
 

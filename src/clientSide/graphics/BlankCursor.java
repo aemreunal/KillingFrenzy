@@ -11,8 +11,12 @@ import java.awt.image.BufferedImage;
  */
 
 public class BlankCursor {
+    private static Cursor blankCursor;
+
     public static Cursor getBlankCursor() {
-        Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "blank cursor");
+        if(blankCursor == null) {
+            blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "blank cursor");
+        }
         return blankCursor;
     }
 }
