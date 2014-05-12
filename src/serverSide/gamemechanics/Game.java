@@ -12,6 +12,7 @@ import serverSide.packethandlers.PacketHandler;
 import serverSide.server.Server;
 
 import java.util.EnumMap;
+import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game {
@@ -37,29 +38,25 @@ public class Game {
     }
 
     public void updateClients() {
-        for (Client client : clients) {
+        Iterator<Client> i = clients.iterator();
+        while(i.hasNext()) {
+            Client client = i.next();
+            if (!client.getSocket().isValid()) {
+                i.remove();
+                
+            }
+            
             if (!client.packetQueue.isEmpty()) {
                 Packet packet = client.packetQueue.poll();
                 packetHandlerMap.get(packet.getType()).handle(client, packet);
             }
-
-            /*if (client.player != null) {
-                UpdateEntityPacket updateEntity = new UpdateEntityPacket(client.player.physicalAttributes.left, client.player.physicalAttributes.top, client.player.physicalAttributes.angle, false);
-                updateEntity.entityID = client.player.getId();
-                server.broadcast(updateEntity);
-            }*/
-
         }
     }
 
     public void run() {
         while (true) {
             updateClients();
-
-
-
             gameLogic.update();
-            // UPDATE LOGIC
             // BROADCAST RESULTS
             try {
                 Thread.sleep(20);

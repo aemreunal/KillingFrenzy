@@ -61,7 +61,6 @@ public class Server implements Runnable {
             state.set(State.RUNNING);
             while (state.get() == State.RUNNING) {
                 runServer();
-
             }
             closeSockets();
         } catch (Exception e) {
@@ -73,13 +72,20 @@ public class Server implements Runnable {
         keySelector.select(0);
         for (Iterator<SelectionKey> i = keySelector.selectedKeys().iterator(); i.hasNext(); ) {
             SelectionKey key = i.next();
-            i.remove();
 
-            if (key.isAcceptable()) {
-                acceptConnection();
-            }
-            if (key.isReadable()) {
-                receivePackets(key);
+            try {
+                i.remove();
+
+                if (key.isAcceptable()) {
+                    acceptConnection();
+                }
+                if (key.isReadable()) {
+                    receivePackets(key);
+                }
+
+            } catch (IOException ex) {
+                System.out.println("Client disconnected : " + key);
+                resetKey(key);
             }
         }
         keySelector.selectedKeys().clear();
@@ -206,6 +212,8 @@ public class Server implements Runnable {
 
     protected void resetKey(SelectionKey key) {
         key.cancel();
+        Client client = clientMap.get(key);
+        game.clients.remove(client);
         clientMap.remove(key);
         readBuffers.remove(key);
     }

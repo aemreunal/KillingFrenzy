@@ -22,6 +22,10 @@ public class Client {
         packetQueue = new ConcurrentLinkedQueue<Packet>();
         keys = new boolean[256];
     }
+    
+    public SelectionKey getSocket() {
+        return socket;
+    }
 
     public void setPlayer(Player player) {
         this.player = player;
