@@ -32,13 +32,7 @@ public class Player extends Entity {
     });
 
     public static Player createPlayer(boolean isMine) {
-        if (isMine) {
-            Player player = new Player(Settings.FRIENDLY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH);
-            World.setThisPlayer(player);
-            return player;
-        } else {
-            return new Player(Settings.ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH);
-        }
+        return createPlayer(isMine, 10, 10, 0);
     }
 
     public static Player createPlayer(boolean isMine, float xCoor, float yCoor, float angle) {
@@ -47,16 +41,12 @@ public class Player extends Entity {
             World.setThisPlayer(player);
             return player;
         } else {
-            return new Player(Settings.ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH);
+            return new Player(Settings.ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH, xCoor, yCoor, angle);
         }
     }
 
-    private Player(String standingImageFilePath, String movingImageFilePath) {
-        loadImages(standingImageFilePath, movingImageFilePath);
-    }
-
     private Player(String standingImageFilePath, String movingImageFilePath, float xCoor, float yCoor, float angle) {
-        super(xCoor, yCoor, 0);
+        super(xCoor, yCoor, angle);
         loadImages(standingImageFilePath, movingImageFilePath);
 
     }
@@ -75,37 +65,6 @@ public class Player extends Entity {
             e.printStackTrace();
         }
     }
-/*
-
-    public void move(Direction dir) {
-        float playerX = physAttr.getxCoor();
-        float playerY = physAttr.getyCoor();
-        float imageCenterX = playerX + (Settings.movingImageWidth / 2);
-        float imageCenterY = playerY + (Settings.movingImageHeight / 2);
-        switch (dir) {
-            case NORTH:
-                if (imageCenterY > 0) {
-                    physAttr.setyCoor(playerY - Settings.PLAYER_LOC_UPDATE_AMOUNT);
-                }
-                break;
-            case EAST:
-                if (imageCenterX < Settings.GAME_WINDOW_WIDTH) {
-                    physAttr.setxCoor(playerX + Settings.PLAYER_LOC_UPDATE_AMOUNT);
-                }
-                break;
-            case SOUTH:
-                if (imageCenterY < Settings.GAME_WINDOW_HEIGHT) {
-                    physAttr.setyCoor(playerY + Settings.PLAYER_LOC_UPDATE_AMOUNT);
-                }
-                break;
-            case WEST:
-                if (imageCenterX > 0) {
-                    physAttr.setxCoor(playerX - Settings.PLAYER_LOC_UPDATE_AMOUNT);
-                }
-                break;
-        }
-    }
-*/
 
     public void paint(Graphics g) {
         BufferedImage playerImage = physAttr.isMoving() ? movingImages[currentMovingImage] : standingImage;

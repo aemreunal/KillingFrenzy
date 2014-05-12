@@ -145,6 +145,7 @@ public class Client extends Thread implements Runnable {
     }
 
     private void createSocket() {
+        boolean errorOccurred = false;
         try {
             IP = InetAddress.getByName("localhost");
             socketChannel = SocketChannel.open();
@@ -153,20 +154,18 @@ public class Client extends Thread implements Runnable {
             socketChannel.socket().setTcpNoDelay(true);
         } catch (SocketException e) {
             System.err.println("An error occurred when trying to interact with the socket!");
+            errorOccurred = true;
 //            e.printStackTrace();
-            if (!allowOffline) {
-                System.exit(-1);
-            }
         } catch (UnknownHostException e) {
             System.err.println("An error occurred when trying to get the IP address of the host!");
+            errorOccurred = true;
 //            e.printStackTrace();
-            if (!allowOffline) {
-                System.exit(-1);
-            }
         } catch (IOException e) {
             System.err.println("An error occurred when trying to open the socket!");
+            errorOccurred = true;
 //            e.printStackTrace();
-            if (!allowOffline) {
+        } finally {
+            if (errorOccurred && !allowOffline) {
                 System.exit(-1);
             }
         }
@@ -182,11 +181,12 @@ public class Client extends Thread implements Runnable {
             receiveBuffer.flip();
 
             List<ByteBuffer> receivedPackets = new ArrayList<>();
-            ByteBuffer msg = readMessage(receiveBuffer);
-            while (msg != null) {
-                receivedPackets.add(msg);
-                msg = readMessage(receiveBuffer);
+            ByteBuffer message = readMessage(receiveBuffer);
+            while (message != null) {
+                receivedPackets.add(message);
+                message = readMessage(receiveBuffer);
             }
+
             return receivedPackets;
         } catch (IOException e) {
 //            System.err.println("An error occurred while trying to read incoming message!");
