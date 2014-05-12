@@ -19,6 +19,6 @@ public class CreateEntityHandler extends PacketHandler {
             player.getPhysAttr().setyCoor(packet.y);
             player.getPhysAttr().setAngle(packet.angle);
         }
-        
+
     }
 }
