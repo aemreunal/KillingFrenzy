@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class Player extends Entity {
     protected BufferedImage standingImage;
-    protected BufferedImage[] movingImages = new BufferedImage[Settings.NUM_CHAR_ANIMATION_IMAGES];
+    protected BufferedImage[] movingImages = new BufferedImage[Settings.NUM_PLAYER_ANIMATION_IMAGES];
     protected int movingImageWidth;
     protected int movingImageHeight;
 
@@ -27,7 +27,7 @@ public class Player extends Entity {
     protected Timer animationTimer = new Timer(Settings.PLAYER_ANIMATION_SPEED, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            currentMovingImage = (currentMovingImage + 1) % Settings.NUM_CHAR_ANIMATION_IMAGES;
+            currentMovingImage = (currentMovingImage + 1) % Settings.NUM_PLAYER_ANIMATION_IMAGES;
         }
     });
 
@@ -44,7 +44,7 @@ public class Player extends Entity {
     private Player(String standingImageFilePath, String movingImageFilePath) {
         try {
             standingImage = ImageIO.read(new File(standingImageFilePath));
-            for (int i = 0; i < Settings.NUM_CHAR_ANIMATION_IMAGES; i++) {
+            for (int i = 0; i < Settings.NUM_PLAYER_ANIMATION_IMAGES; i++) {
                 movingImages[i] = ImageIO.read(new File(movingImageFilePath + i + Settings.MOVING_IMAGE_FILE_EXTENSION));
             }
             movingImageWidth = standingImage.getWidth();
@@ -55,6 +55,7 @@ public class Player extends Entity {
             e.printStackTrace();
         }
     }
+/*
 
     public void move(Direction dir) {
         float playerX = physAttr.getxCoor();
@@ -84,6 +85,7 @@ public class Player extends Entity {
                 break;
         }
     }
+*/
 
     public void paint(Graphics g) {
         BufferedImage playerImage = physAttr.isMoving() ? movingImages[currentMovingImage] : standingImage;

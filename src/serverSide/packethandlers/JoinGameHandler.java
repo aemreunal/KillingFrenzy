@@ -1,5 +1,6 @@
 package serverSide.packethandlers;
 
+import clientSide.Settings;
 import packets.CreateEntityPacket;
 import packets.EntityType;
 import packets.Packet;
@@ -24,7 +25,7 @@ public class JoinGameHandler extends PacketHandler {
         Player player = new Player(client);
         World.getInstance().addEntity(player);
         client.setPlayer(player);
-        player.physicalAttributes = new PhysicalAttributes((float) Math.random() * 100.0f, (float) Math.random() * 100.0f, 10.0f, 10.0f);
+        player.physicalAttributes = new PhysicalAttributes((float) Math.random() * 100.0f, (float) Math.random() * 100.0f, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
         sendNewPlayer(client, player);
     }
 

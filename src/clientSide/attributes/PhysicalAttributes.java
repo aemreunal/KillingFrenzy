@@ -46,4 +46,8 @@ public class PhysicalAttributes {
     public boolean isMoving() {
         return isMoving;
     }
+
+    public void setMoving(boolean isMoving) {
+        this.isMoving = isMoving;
+    }
 }

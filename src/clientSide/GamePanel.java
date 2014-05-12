@@ -2,7 +2,7 @@ package clientSide;
 
 import clientSide.attributes.Entity;
 import clientSide.attributes.World;
-import clientSide.controllerHandlers.BlankCursor;
+import clientSide.graphics.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
 import clientSide.graphics.Crosshair;
 
@@ -17,8 +17,6 @@ import java.awt.*;
  */
 
 public class GamePanel extends JPanel {
-    private float playerX = 100;
-    private float playerY = 100;
     private float mouseX = 100;
     private float mouseY = 100;
 
@@ -44,11 +42,6 @@ public class GamePanel extends JPanel {
     public void updateCrosshair(float x, float y) {
         mouseX = x;
         mouseY = y;
-    }
-
-    public void updatePlayer(float x, float y) {
-        playerX = x;
-        playerY = y;
     }
 
     @Override

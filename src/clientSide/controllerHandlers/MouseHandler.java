@@ -23,7 +23,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        panel.updatePlayer(e.getX(), e.getY());
+        // TODO shoot bullet
     }
 
     @Override

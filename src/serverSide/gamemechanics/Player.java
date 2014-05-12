@@ -1,11 +1,8 @@
 package serverSide.gamemechanics;
 
 import clientSide.Settings;
-import serverSide.client.Client;
-
-import java.awt.event.KeyEvent;
-
 import packets.UpdateEntityPacket;
+import serverSide.client.Client;
 
 /**
  * Created by Eren Sezener
@@ -32,7 +29,7 @@ public class Player extends Entity implements Collidable {
     public void decreaseHealth(float damage) {
         health -= damage;
 
-        if (health < 0){
+        if (health < 0) {
             this.die();
 
         }
@@ -41,16 +38,24 @@ public class Player extends Entity implements Collidable {
     @Override
     public void update() {
         if (upKeyPressed) {
-            this.physicalAttributes.updateVerticalPosition(-1 * Settings.PLAYER_LOC_UPDATE_AMOUNT);
+            if (this.physicalAttributes.top > 0) {
+                this.physicalAttributes.updateVerticalPosition(-1 * Settings.PLAYER_LOC_UPDATE_AMOUNT);
+            }
         }
         if (leftKeyPress) {
-            this.physicalAttributes.updateHorizontalPosition(-1 * Settings.PLAYER_LOC_UPDATE_AMOUNT);
+            if (this.physicalAttributes.left > 0) {
+                this.physicalAttributes.updateHorizontalPosition(-1 * Settings.PLAYER_LOC_UPDATE_AMOUNT);
+            }
         }
         if (downKeyPressed) {
-            this.physicalAttributes.updateVerticalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
+            if (this.physicalAttributes.bottom < Settings.GAME_WINDOW_HEIGHT) {
+                this.physicalAttributes.updateVerticalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
+            }
         }
         if (rightKeyPressed) {
-            this.physicalAttributes.updateHorizontalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
+            if (this.physicalAttributes.right < Settings.GAME_WINDOW_WIDTH) {
+                this.physicalAttributes.updateHorizontalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
+            }
         }
 
         if (upKeyPressed || leftKeyPress || downKeyPressed || rightKeyPressed) {
@@ -61,25 +66,25 @@ public class Player extends Entity implements Collidable {
     }
 
     public void onKeyPressed(int keyCode) {
-        if (keyCode == KeyEvent.VK_W) {
+        if (keyCode == Settings.KEY_NORTH) {
             upKeyPressed = true;
-        } else if (keyCode == KeyEvent.VK_A) {
+        } else if (keyCode == Settings.KEY_WEST) {
             leftKeyPress = true;
-        } else if (keyCode == KeyEvent.VK_S) {
+        } else if (keyCode == Settings.KEY_SOUTH) {
             downKeyPressed = true;
-        } else if (keyCode == KeyEvent.VK_D) {
+        } else if (keyCode == Settings.KEY_EAST) {
             rightKeyPressed = true;
         }
     }
 
     public void onKeyReleased(int keyCode) {
-        if (keyCode == KeyEvent.VK_W) {
+        if (keyCode == Settings.KEY_NORTH) {
             upKeyPressed = false;
-        } else if (keyCode == KeyEvent.VK_A) {
+        } else if (keyCode == Settings.KEY_WEST) {
             leftKeyPress = false;
-        } else if (keyCode == KeyEvent.VK_S) {
+        } else if (keyCode == Settings.KEY_SOUTH) {
             downKeyPressed = false;
-        } else if (keyCode == KeyEvent.VK_D) {
+        } else if (keyCode == Settings.KEY_EAST) {
             rightKeyPressed = false;
         }
 

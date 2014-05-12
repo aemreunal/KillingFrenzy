@@ -12,8 +12,7 @@ public class AngleUpdateHandler extends PacketHandler {
             return;
         }
         AngleUpdatePacket packet = (AngleUpdatePacket) pk;
-
-        System.out.println("Packet geldi : " + packet.angle);
+//        System.out.println("Packet geldi : " + packet.angle);
         client.player.physicalAttributes.angle = packet.angle;
     }
 

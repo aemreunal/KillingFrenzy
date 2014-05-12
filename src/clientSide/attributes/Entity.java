@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 public abstract class Entity {
     protected int id;
     protected PhysicalAttributes physAttr;
-    
 
     protected boolean isAlive;
 
@@ -19,13 +18,9 @@ public abstract class Entity {
         this.physAttr = new PhysicalAttributes();
         this.id = 0;
     }
-    
+
     public PhysicalAttributes getPhysAttr() {
         return physAttr;
-    }
-
-    public void setPhysAttr(PhysicalAttributes physAttr) {
-        this.physAttr = physAttr;
     }
 
     public int getId() {
