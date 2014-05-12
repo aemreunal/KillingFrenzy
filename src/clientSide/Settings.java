@@ -51,7 +51,7 @@ public class Settings {
     public static final int BULLET_DAMAGE = 20;
 
     public static final int PACKET_HEADER_BYTES = 2;
-    public static final int PORT = 17000;
+    public static final int PORT = 17001;
 
     public static final int KEY_NORTH = KeyEvent.VK_W;
     public static final int KEY_SOUTH = KeyEvent.VK_S;

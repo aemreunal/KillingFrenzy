@@ -25,26 +25,32 @@ public class Server implements Runnable {
         game.run();
     }
 
-    protected Server() {
+    public Server() {
         readBuffers = new ConcurrentHashMap<>();
         clientMap = new ConcurrentHashMap<>();
     }
 
-    private enum State {
+    public enum State {
         STOPPED, STOPPING, RUNNING
     }
 
-    public static final short PORT = 17000;
+    public static final short PORT = 17001;
     private final int PACKET_HEADER_BYTES = 2;
     private static short DEFAULT_MESSAGE_SIZE = 20024;
 
 
     private final AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
+    
+
     protected ServerSocketChannel serverSocket;
     protected Selector keySelector;
     public ConcurrentHashMap<SelectionKey, Client> clientMap;
     private ConcurrentHashMap<SelectionKey, ByteBuffer> readBuffers;
     private Game game;
+    
+    public AtomicReference<State> getState() {
+        return state;
+    }
 
     public Game getGame() {
         return game;
