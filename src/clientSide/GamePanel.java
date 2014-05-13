@@ -1,6 +1,7 @@
 package clientSide;
 
 import clientSide.attributes.Entity;
+import clientSide.attributes.Player;
 import clientSide.attributes.World;
 import clientSide.controllerHandlers.MouseHandler;
 import clientSide.graphics.BlankCursor;
@@ -22,6 +23,8 @@ import java.awt.*;
 public class GamePanel extends JPanel {
     private float mouseX = 100;
     private float mouseY = 100;
+
+    private Player player;
 
     public GamePanel(Client client) {
         setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
@@ -69,10 +72,17 @@ public class GamePanel extends JPanel {
     }
 
     private void paintHealthBar(Graphics g) {
-        HealthBar.paint(g, World.getThisPlayer().getHealth());
+        HealthBar.paint(g, getPlayer().getHealth());
     }
 
     private void paintScoreBoard(Graphics g) {
-        ScoreBoard.paint(g, World.getThisPlayer().getScore());
+        ScoreBoard.paint(g, getPlayer().getScore());
+    }
+
+    private Player getPlayer() {
+        if (player == null) {
+            player = World.getThisPlayer();
+        }
+        return player;
     }
 }
