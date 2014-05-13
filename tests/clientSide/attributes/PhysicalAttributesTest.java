@@ -6,7 +6,7 @@ package clientSide.attributes;
  * emre.unal@ozu.edu.tr
  */
 
-import clientSide.Settings;
+import global.Settings;
 import clientSide.packetHandlers.UpdateEntityHandler;
 import org.junit.Test;
 import packets.UpdateEntityPacket;

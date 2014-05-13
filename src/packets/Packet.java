@@ -1,5 +1,7 @@
 package packets;
 
+import global.PacketType;
+
 import java.io.*;
 
 /* Packet ID (type)  - Packet Name

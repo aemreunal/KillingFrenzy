@@ -5,6 +5,7 @@ import clientSide.attributes.World;
 import clientSide.graphics.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
 import clientSide.graphics.Crosshair;
+import global.Settings;
 
 import javax.swing.*;
 import java.awt.*;

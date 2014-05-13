@@ -1,7 +1,7 @@
 package clientSide.controllerHandlers;
 
 import clientSide.Client;
-import clientSide.Settings;
+import global.Settings;
 import clientSide.attributes.World;
 import packets.KeyPressPacket;
 import packets.KeyReleasePacket;

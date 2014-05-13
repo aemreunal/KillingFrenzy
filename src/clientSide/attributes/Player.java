@@ -6,7 +6,7 @@ package clientSide.attributes;
  * emre.unal@ozu.edu.tr
  */
 
-import clientSide.Settings;
+import global.Settings;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

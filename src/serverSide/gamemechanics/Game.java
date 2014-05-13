@@ -1,7 +1,7 @@
 package serverSide.gamemechanics;
 
 import packets.Packet;
-import packets.PacketType;
+import global.PacketType;
 import serverSide.client.Client;
 import serverSide.packethandlers.*;
 import serverSide.server.Server;

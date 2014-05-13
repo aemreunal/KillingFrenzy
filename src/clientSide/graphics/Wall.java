@@ -1,6 +1,6 @@
 package clientSide.graphics;
 
-import clientSide.Settings;
+import global.Settings;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

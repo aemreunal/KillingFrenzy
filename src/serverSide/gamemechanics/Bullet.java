@@ -1,6 +1,6 @@
 package serverSide.gamemechanics;
 
-import clientSide.Settings;
+import global.Settings;
 
 /**
  * Created by Eren Sezener

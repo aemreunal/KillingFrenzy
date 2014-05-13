@@ -7,6 +7,9 @@ package packets;
 // a client can't create an entity with "random" id
 
 
+import global.EntityType;
+import global.PacketType;
+
 public class CreateEntityPacket extends Packet {
     public int entityID;
     public EntityType entityType; // bullet, character, wall etc.

@@ -7,7 +7,7 @@ package clientSide.processors;
  */
 
 import clientSide.Client;
-import clientSide.Settings;
+import global.Settings;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
 import packets.AngleUpdatePacket;

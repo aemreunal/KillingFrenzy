@@ -1,4 +1,4 @@
-package packets;
+package global;
 
 /* Packet ID (type)  - Packet Name
  * 0x00 - KeyPressPacket

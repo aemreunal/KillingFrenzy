@@ -6,6 +6,8 @@ package packets;
  * emre.unal@ozu.edu.tr
  */
 
+import global.PacketType;
+
 public class BulletShotPacket extends Packet {
     public int entityID;
     public float x;

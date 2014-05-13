@@ -1,6 +1,8 @@
 package packets;
 
 
+import global.PacketType;
+
 public class KeyReleasePacket extends Packet {
     public int key;
 

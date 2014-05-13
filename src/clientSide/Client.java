@@ -4,6 +4,8 @@ import clientSide.controllerHandlers.KeyboardHandler;
 import clientSide.processors.GameMechanicsProcessor;
 import clientSide.processors.GraphicsProcessor;
 import clientSide.processors.SyncProcessor;
+import global.GameState;
+import global.Settings;
 import packets.JoinGamePacket;
 import packets.Packet;
 

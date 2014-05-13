@@ -1,8 +1,8 @@
 package serverSide.packethandlers;
 
-import clientSide.Settings;
+import global.Settings;
 import packets.CreateEntityPacket;
-import packets.EntityType;
+import global.EntityType;
 import packets.Packet;
 import serverSide.client.Client;
 import serverSide.gamemechanics.Entity;

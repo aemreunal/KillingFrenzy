@@ -1,5 +1,7 @@
 package packets;
 
+import global.PacketType;
+
 public class UpdateEntityPacket extends Packet {
     public int entityID;
 

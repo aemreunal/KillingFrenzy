@@ -1,4 +1,4 @@
-package packets;
+package global;
 
 public enum EntityType {
     ENTITY_PLAYER,

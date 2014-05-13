@@ -1,6 +1,6 @@
 package serverSide.gamemechanics;
 
-import clientSide.Settings;
+import global.Settings;
 import packets.UpdateEntityPacket;
 import serverSide.client.Client;
 

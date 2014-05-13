@@ -1,5 +1,7 @@
 package packets;
 
+import global.PacketType;
+
 public class DestroyEntityPacket extends Packet {
     public int entityID;
 

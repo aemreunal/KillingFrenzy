@@ -1,6 +1,6 @@
 package serverSide.gamemechanics;
 
-import clientSide.Settings;
+import global.Settings;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

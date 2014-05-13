@@ -1,4 +1,4 @@
-package clientSide;
+package global;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
