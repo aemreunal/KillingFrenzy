@@ -14,6 +14,10 @@ public class GameLogic {
     private Server server;
     private List<Client> clients;
 
+    public GameLogic(Server server){
+        this.server = server;
+    }
+
     public void receivePacket(Packet packet, SelectionKey key) {
 
     }
@@ -27,6 +31,7 @@ public class GameLogic {
     		server.broadcast(packet);*/
 
             e.update();
+            server.broadcast(e.getUpdatePacket());
     	}
 
     }

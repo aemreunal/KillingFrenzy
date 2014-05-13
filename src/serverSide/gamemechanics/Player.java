@@ -24,8 +24,10 @@ public class Player extends Entity implements Collidable {
         type = EntityType.ENTITY_PLAYER;
     }
 
-    public void fireGun() {
-        World.getInstance().addEntity(new Bullet(angle));
+    public Bullet fireGun() {
+        Bullet bullet = new Bullet(angle, physicalAttributes.left, physicalAttributes.top);
+        World.getInstance().addEntity(bullet);
+        return bullet;
     }
 
     public void decreaseHealth(float damage) {

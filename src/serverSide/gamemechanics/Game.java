@@ -16,7 +16,7 @@ public class Game {
     private EnumMap<PacketType, PacketHandler> packetHandlerMap;
 
     public Game(Server server) {
-        gameLogic = new GameLogic();
+        gameLogic = new GameLogic(server);
         clients = new CopyOnWriteArrayList<>();
         initPacketHandlers(server);
     }
