@@ -18,8 +18,8 @@ public class BulletShotHandler extends PacketHandler {
             return;
         }
         BulletShotPacket packet = (BulletShotPacket) pk;
-        
-        Bullet bullet = new Bullet();
+
+        Bullet bullet = client.player.fireGun();
         bullet.physicalAttributes.left = client.player.physicalAttributes.left;
         bullet.physicalAttributes.top = client.player.physicalAttributes.top;
         bullet.physicalAttributes.angle = packet.angle;
