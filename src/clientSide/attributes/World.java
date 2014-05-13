@@ -3,13 +3,15 @@ package clientSide.attributes;
 import clientSide.graphics.WorldGround;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Eren Sezener
  */
 public class World {
-    private TreeMap<Integer, Entity> idToEntityMap;
+    private Map<Integer, Entity> idToEntityMap;
     private static World world;
     private WorldGround ground;
     private static Player thisPlayer;
@@ -22,7 +24,7 @@ public class World {
     }
 
     private World() {
-        idToEntityMap = new TreeMap<>();
+        idToEntityMap = new ConcurrentHashMap<>();
         ground = new WorldGround();
     }
 
@@ -31,7 +33,7 @@ public class World {
         idToEntityMap.put(entity.getId(), entity);
     }
 
-    public TreeMap<Integer, Entity> getEntityMap() {
+    public Map<Integer, Entity> getEntityMap() {
         return idToEntityMap;
     }
 
