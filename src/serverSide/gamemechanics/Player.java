@@ -1,5 +1,6 @@
 package serverSide.gamemechanics;
 
+import global.EntityType;
 import global.Settings;
 import packets.UpdateEntityPacket;
 import serverSide.client.Client;
@@ -20,6 +21,7 @@ public class Player extends Entity implements Collidable {
         this.upKeyPressed = false;
         this.downKeyPressed = false;
         this.health = Settings.PLAYER_MAX_HEALTH;
+        type = EntityType.ENTITY_PLAYER;
     }
 
     public void fireGun() {

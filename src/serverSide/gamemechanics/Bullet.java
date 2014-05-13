@@ -1,5 +1,6 @@
 package serverSide.gamemechanics;
 
+import global.EntityType;
 import global.Settings;
 
 /**
@@ -12,6 +13,7 @@ public class Bullet extends Entity {
     public Bullet() {
         super(Settings.BULLET_HEIGHT, Settings.BULLET_WIDTH);
         this.velocity = new Vector2D();
+        type = EntityType.ENTITY_BULLET;
     }
 
     public Bullet(float angle) {

@@ -1,12 +1,17 @@
 package serverSide.gamemechanics;
 
+import global.EntityType;
+import packets.CreateEntityPacket;
+import packets.UpdateEntityPacket;
+
 /**
  * Created by Eren Sezener
  */
 public abstract class Entity {
     private int id;
     private boolean isAlive;
-
+    protected EntityType type;
+    
     public PhysicalAttributes physicalAttributes;
 
     public Entity() {
@@ -43,5 +48,22 @@ public abstract class Entity {
 
     public boolean isAlive(){
         return this.isAlive;
+    }
+    
+    public CreateEntityPacket getCreationPacket() {
+        CreateEntityPacket toSend = new CreateEntityPacket();
+        toSend.x = physicalAttributes.left;
+        toSend.y = physicalAttributes.top;
+        toSend.angle = physicalAttributes.angle;
+        toSend.entityID = getId();
+        toSend.entityType = type;
+        return toSend;
+    }
+    
+    public UpdateEntityPacket getUpdatePacket() {
+        UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, false);
+        updateEntity.entityID = getId();
+        
+        return updateEntity;
     }
 }
