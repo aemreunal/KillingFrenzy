@@ -2,13 +2,8 @@ package serverSide.gamemechanics;
 
 import packets.Packet;
 import packets.PacketType;
-import packets.UpdateEntityPacket;
 import serverSide.client.Client;
-import serverSide.packethandlers.AngleUpdateHandler;
-import serverSide.packethandlers.JoinGameHandler;
-import serverSide.packethandlers.KeyPressHandler;
-import serverSide.packethandlers.KeyReleaseHandler;
-import serverSide.packethandlers.PacketHandler;
+import serverSide.packethandlers.*;
 import serverSide.server.Server;
 
 import java.util.EnumMap;
@@ -16,41 +11,24 @@ import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game {
-    private Server server;
     public CopyOnWriteArrayList<Client> clients;
     private GameLogic gameLogic;
     private EnumMap<PacketType, PacketHandler> packetHandlerMap;
 
     public Game(Server server) {
-        this.server = server;
         gameLogic = new GameLogic();
-        clients = new CopyOnWriteArrayList<Client>();
-        packetHandlerMap = new EnumMap<PacketType, PacketHandler>(PacketType.class);
-
-        registerPacketHandler(PacketType.PACKET_KEYPRESS, new KeyPressHandler());
-        registerPacketHandler(PacketType.PACKET_KEYRELEASE, new KeyReleaseHandler());
-        registerPacketHandler(PacketType.PACKET_JOINGAME, new JoinGameHandler(server));
-        registerPacketHandler(PacketType.PACKET_ANGLEUPDATE, new AngleUpdateHandler());
+        clients = new CopyOnWriteArrayList<>();
+        initPacketHandlers(server);
     }
 
-    public void registerPacketHandler(PacketType type, PacketHandler handler) {
-        packetHandlerMap.put(type, handler);
-    }
+    private void initPacketHandlers(Server server) {
+        packetHandlerMap = new EnumMap<>(PacketType.class);
 
-    public void updateClients() {
-        Iterator<Client> i = clients.iterator();
-        while(i.hasNext()) {
-            Client client = i.next();
-            if (!client.getSocket().isValid()) {
-                i.remove();
-                
-            }
-            
-            if (!client.packetQueue.isEmpty()) {
-                Packet packet = client.packetQueue.poll();
-                packetHandlerMap.get(packet.getType()).handle(client, packet);
-            }
-        }
+        packetHandlerMap.put(PacketType.PACKET_KEY_PRESS, new KeyPressHandler());
+        packetHandlerMap.put(PacketType.PACKET_KEY_RELEASE, new KeyReleaseHandler());
+        packetHandlerMap.put(PacketType.PACKET_JOIN_GAME, new JoinGameHandler(server));
+        packetHandlerMap.put(PacketType.PACKET_ANGLE_UPDATE, new AngleUpdateHandler());
+// TODO packetHandlerMap.put(PacketType.PACKET_BULLET_SHOT, new BulletShotHandler());
     }
 
     public void run() {
@@ -62,6 +40,21 @@ public class Game {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public void updateClients() {
+        Iterator<Client> clientIterator = clients.iterator();
+        while(clientIterator.hasNext()) {
+            Client client = clientIterator.next();
+            if (!client.getSocket().isValid()) {
+                clientIterator.remove();
+            }
+
+            if (!client.packetQueue.isEmpty()) {
+                Packet packet = client.packetQueue.poll();
+                packetHandlerMap.get(packet.getType()).handle(client, packet);
             }
         }
     }

@@ -3,7 +3,7 @@ package packets;
 
 public class JoinGamePacket extends Packet {
     public JoinGamePacket() {
-        super(PacketType.PACKET_JOINGAME);
+        super(PacketType.PACKET_JOIN_GAME);
     }
 
 }

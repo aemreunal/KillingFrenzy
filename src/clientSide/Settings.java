@@ -40,7 +40,7 @@ public class Settings {
     // Player
     public static final float PLAYER_SPEED = 200.0f;
     public static final float PLAYER_LOC_UPDATE_AMOUNT = PLAYER_SPEED / FPS;
-    public static final int PLAYER_ANIMATION_SPEED = 10000 / FPS;
+    public static final int PLAYER_ANIMATION_SPEED = (int) ((70 * PLAYER_SPEED) / FPS);
     public static final int PLAYER_MAX_HEALTH = 100;
 
     // Bullet

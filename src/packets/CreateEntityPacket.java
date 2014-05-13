@@ -16,7 +16,7 @@ public class CreateEntityPacket extends Packet {
     public boolean isMine;
 
     public CreateEntityPacket() {
-        super(PacketType.PACKET_CREATEENTITY);
+        super(PacketType.PACKET_CREATE_ENTITY);
         isMine = false;
     }
 

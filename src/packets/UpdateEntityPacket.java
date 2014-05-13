@@ -9,7 +9,7 @@ public class UpdateEntityPacket extends Packet {
     public boolean isMoving = false;
 
     public UpdateEntityPacket(float x, float y, float angle, boolean isMoving) {
-        super(PacketType.PACKET_UPDATEENTITY);
+        super(PacketType.PACKET_UPDATE_ENTITY);
         this.x = x;
         this.y = y;
         this.angle = angle;
