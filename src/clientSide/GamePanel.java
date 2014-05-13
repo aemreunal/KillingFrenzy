@@ -6,6 +6,7 @@ import clientSide.controllerHandlers.MouseHandler;
 import clientSide.graphics.BlankCursor;
 import clientSide.graphics.Crosshair;
 import clientSide.graphics.HealthBar;
+import clientSide.graphics.ScoreBoard;
 import global.Settings;
 
 import javax.swing.*;
@@ -52,14 +53,7 @@ public class GamePanel extends JPanel {
         paintWorld(g);
         paintCrosshair(g);
         paintHealthBar(g);
-    }
-
-    private void paintHealthBar(Graphics g) {
-        HealthBar.paint(g, World.getThisPlayer().getHealth());
-    }
-
-    private void paintCrosshair(Graphics g) {
-        Crosshair.paint(g, mouseX, mouseY);
+        paintScoreBoard(g);
     }
 
     private void paintWorld(Graphics g) {
@@ -68,5 +62,17 @@ public class GamePanel extends JPanel {
         for (Entity entity : world.getEntities()) {
             entity.paint(g);
         }
+    }
+
+    private void paintCrosshair(Graphics g) {
+        Crosshair.paint(g, mouseX, mouseY);
+    }
+
+    private void paintHealthBar(Graphics g) {
+        HealthBar.paint(g, World.getThisPlayer().getHealth());
+    }
+
+    private void paintScoreBoard(Graphics g) {
+        ScoreBoard.paint(g, World.getThisPlayer().getScore());
     }
 }

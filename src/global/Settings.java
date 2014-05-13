@@ -91,4 +91,8 @@ public class Settings {
     public static final String ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/moving";
     public static final String WALL_IMAGE_FILE_PATH = IMG_PATH + "Wall/wall.png";
     public static final String MOVING_IMAGE_FILE_EXTENSION = ".png";
+
+    public static final int SCORE_BOARD_WIDTH = 50;
+    public static final int SCORE_BOARD_POS_X = GAME_WINDOW_WIDTH - SCORE_BOARD_WIDTH;
+    public static final int SCORE_BOARD_POS_Y = 20;
 }

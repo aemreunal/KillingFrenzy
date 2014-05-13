@@ -19,6 +19,7 @@ import java.io.IOException;
 
 public class Player extends Entity {
     private float health;
+    private int score;
 
     protected BufferedImage standingImage;
     protected BufferedImage[] movingImages = new BufferedImage[Settings.NUM_PLAYER_ANIMATION_IMAGES];
@@ -50,6 +51,7 @@ public class Player extends Entity {
     private Player(String standingImageFilePath, String movingImageFilePath, float xCoor, float yCoor, float angle) {
         super(xCoor, yCoor, angle);
         health = Settings.PLAYER_MAX_HEALTH;
+        score = 0;
         loadImages(standingImageFilePath, movingImageFilePath);
 
     }
@@ -90,5 +92,13 @@ public class Player extends Entity {
 
     public void setHealth(float health) {
         this.health = health;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
