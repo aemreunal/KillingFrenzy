@@ -22,7 +22,7 @@ public class GameLogic {
         for (Entity e : World.getInstance().idToEntityMap.values()) {
 
     		/*UpdateEntityPacket packet = new UpdateEntityPacket();
-            packet.entityID = e.getId();
+            packet.ownerID = e.getId();
     		packet.attrib = e.physAttr;
     		server.broadcast(packet);*/
 

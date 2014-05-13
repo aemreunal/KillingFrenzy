@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by Eren Sezener
  */
+
 public abstract class Entity {
     protected int id;
     protected PhysicalAttributes physAttr;

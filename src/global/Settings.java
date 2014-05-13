@@ -41,7 +41,6 @@ public class Settings {
     public static final float PLAYER_SPEED = 200.0f;
     public static final float PLAYER_LOC_UPDATE_AMOUNT = PLAYER_SPEED / FPS;
     public static final int PLAYER_ANIMATION_SPEED = (int) ((70 * PLAYER_SPEED) / FPS);
-    public static final int PLAYER_MAX_HEALTH = 100;
 
     // Bullet
     public static final int BULLET_SPEED = 5;
@@ -53,6 +52,8 @@ public class Settings {
      */
 
     public static final int BULLET_DAMAGE = 2;
+
+    public static final int PLAYER_MAX_HEALTH = 100;
 
     public static final int PACKET_HEADER_BYTES = 2;
     public static final int PORT = 17001;

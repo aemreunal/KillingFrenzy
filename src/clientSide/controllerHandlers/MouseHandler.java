@@ -31,7 +31,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     public void mouseClicked(MouseEvent e) {
         Player thisPlayer = World.getThisPlayer();
         PhysicalAttributes physAttr = thisPlayer.getPhysAttr();
-        client.sendPacket(new BulletShotPacket(thisPlayer.getId(), physAttr.getxCoor(), physAttr.getyCoor(), physAttr.getAngle()));
+        client.sendPacket(new BulletShotPacket(physAttr.getAngle()));
     }
 
     @Override
