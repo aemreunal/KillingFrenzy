@@ -32,7 +32,7 @@ public class CreateEntityHandler extends PacketHandler {
 
     }
 
-    private void addEntity(int entityID, Entity entity) {
+    private synchronized void addEntity(int entityID, Entity entity) {
         synchronized (World.getInstance().getEntityMap()) {
             World.getInstance().addEntity(entity, entityID);
         }

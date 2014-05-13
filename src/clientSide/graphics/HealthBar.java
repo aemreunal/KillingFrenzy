@@ -10,7 +10,7 @@ import global.Settings;
 
 import java.awt.*;
 
-public class Health {
+public class HealthBar {
 
     public static void paint(Graphics g, float health) {
         g.setColor(Color.WHITE);

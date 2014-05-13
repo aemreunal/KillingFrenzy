@@ -5,7 +5,7 @@ import clientSide.attributes.World;
 import clientSide.controllerHandlers.MouseHandler;
 import clientSide.graphics.BlankCursor;
 import clientSide.graphics.Crosshair;
-import clientSide.graphics.Health;
+import clientSide.graphics.HealthBar;
 import global.Settings;
 
 import javax.swing.*;
@@ -55,7 +55,7 @@ public class GamePanel extends JPanel {
     }
 
     private void paintHealthBar(Graphics g) {
-        Health.paint(g, World.getThisPlayer().getHealth());
+        HealthBar.paint(g, World.getThisPlayer().getHealth());
     }
 
     private void paintCrosshair(Graphics g) {
