@@ -28,7 +28,7 @@ public class Game {
         packetHandlerMap.put(PacketType.PACKET_KEY_RELEASE, new KeyReleaseHandler());
         packetHandlerMap.put(PacketType.PACKET_JOIN_GAME, new JoinGameHandler(server));
         packetHandlerMap.put(PacketType.PACKET_ANGLE_UPDATE, new AngleUpdateHandler());
-// TODO packetHandlerMap.put(PacketType.PACKET_BULLET_SHOT, new BulletShotHandler());
+        packetHandlerMap.put(PacketType.PACKET_BULLET_SHOT, new BulletShotHandler());
     }
 
     public void run() {
