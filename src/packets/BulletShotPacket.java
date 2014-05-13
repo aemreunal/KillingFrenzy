@@ -9,16 +9,10 @@ package packets;
 import global.PacketType;
 
 public class BulletShotPacket extends Packet {
-    public int entityID;
-    public float x;
-    public float y;
     public float angle;
 
-    public BulletShotPacket(int entityID, float x, float y, float angle) {
+    public BulletShotPacket(float angle) {
         super(PacketType.PACKET_BULLET_SHOT);
-        this.entityID = entityID;
-        this.x = x;
-        this.y = y;
         this.angle = angle;
     }
 }

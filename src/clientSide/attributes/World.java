@@ -54,4 +54,8 @@ public class World {
     public static void setThisPlayer(Player thisPlayer) {
         World.thisPlayer = thisPlayer;
     }
+
+    public void removeEntity(int entityID) {
+        idToEntityMap.remove(entityID);
+    }
 }
