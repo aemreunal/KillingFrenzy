@@ -25,6 +25,12 @@ public class Settings {
     public static final int BULLET_WIDTH = 2;
     public static final int BULLET_HEIGHT = 2;
 
+    public static final int HEALTH_BAR_WIDTH = 40;
+    public static final int HEALTH_BAR_HEIGHT = 8;
+    public static final int HEALTH_BAR_POS_X = 10;
+    public static final int HEALTH_BAR_POS_Y = 10;
+    public static final int HEALTH_BAR_OFFSET = 1;
+
     /**
      * Speeds & frequencies
      */

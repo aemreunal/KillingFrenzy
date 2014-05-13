@@ -83,4 +83,12 @@ public class Player extends Entity {
         float imageCenterY = physAttr.getyCoor() + (movingImageHeight >> 1);
         physAttr.setAngle((float) Math.atan2(mouseY - imageCenterY, mouseX - imageCenterX));
     }
+
+    public float getHealth() {
+        return health;
+    }
+
+    public void setHealth(float health) {
+        this.health = health;
+    }
 }

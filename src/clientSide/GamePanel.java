@@ -2,9 +2,10 @@ package clientSide;
 
 import clientSide.attributes.Entity;
 import clientSide.attributes.World;
-import clientSide.graphics.BlankCursor;
 import clientSide.controllerHandlers.MouseHandler;
+import clientSide.graphics.BlankCursor;
 import clientSide.graphics.Crosshair;
+import clientSide.graphics.Health;
 import global.Settings;
 
 import javax.swing.*;
@@ -50,6 +51,11 @@ public class GamePanel extends JPanel {
         super.paint(g);
         paintWorld(g);
         paintCrosshair(g);
+        paintHealthBar(g);
+    }
+
+    private void paintHealthBar(Graphics g) {
+        Health.paint(g, World.getThisPlayer().getHealth());
     }
 
     private void paintCrosshair(Graphics g) {
