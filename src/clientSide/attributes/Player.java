@@ -23,8 +23,8 @@ public class Player extends Entity {
 
     protected BufferedImage standingImage;
     protected BufferedImage[] movingImages = new BufferedImage[Settings.NUM_PLAYER_ANIMATION_IMAGES];
-    protected int movingImageWidth;
-    protected int movingImageHeight;
+    protected int imageWidth;
+    protected int imageHeight;
 
     protected int currentMovingImage = 0;
     protected Timer animationTimer = new Timer(Settings.PLAYER_ANIMATION_SPEED, new ActionListener() {
@@ -62,8 +62,8 @@ public class Player extends Entity {
             for (int i = 0; i < Settings.NUM_PLAYER_ANIMATION_IMAGES; i++) {
                 movingImages[i] = ImageIO.read(new File(movingImageFilePath + i + Settings.MOVING_IMAGE_FILE_EXTENSION));
             }
-            movingImageWidth = standingImage.getWidth();
-            movingImageHeight = standingImage.getHeight();
+            imageWidth = standingImage.getWidth();
+            imageHeight = standingImage.getHeight();
             animationTimer.start();
         } catch (IOException e) {
             System.err.println("Unable to read standing/moving animation images!");
@@ -73,17 +73,34 @@ public class Player extends Entity {
 
     public void paint(Graphics g) {
         BufferedImage playerImage = physAttr.isMoving() ? movingImages[currentMovingImage] : standingImage;
-        g.drawImage(rotate(playerImage, physAttr.getAngle(), movingImageWidth, movingImageHeight), (int) physAttr.getxCoor(), (int) physAttr.getyCoor(), null);
+        g.drawImage(rotate(playerImage, physAttr.getAngle(), imageWidth, imageHeight), (int) physAttr.getxCoor(), (int) physAttr.getyCoor(), null);
     }
 
     public float getAngle() {
         return physAttr.getAngle();
     }
 
+    public float getX() {
+        return physAttr.getxCoor();
+    }
+
+    public float getY() {
+        return physAttr.getyCoor();
+    }
+
     public void updateAngle(float mouseX, float mouseY) {
-        float imageCenterX = physAttr.getxCoor() + (movingImageWidth >> 1);
-        float imageCenterY = physAttr.getyCoor() + (movingImageHeight >> 1);
+        float imageCenterX = physAttr.getxCoor() + (imageWidth >> 1);
+        float imageCenterY = physAttr.getyCoor() + (imageHeight >> 1);
         physAttr.setAngle((float) Math.atan2(mouseY - imageCenterY, mouseX - imageCenterX));
+    }
+
+    public float[] getTipOfGun() {
+        float imageCenterX = getX() + (imageWidth >> 1);
+        float imageCenterY = getY() + (imageHeight >> 1);
+        float angle = getAngle();
+        float heightOffset = (float) (imageWidth * Math.sin(angle));
+        float widthOffset = (float) (imageWidth * Math.cos(angle));
+        return new float[]{imageCenterX + widthOffset, imageCenterY + heightOffset, angle};
     }
 
     public float getHealth() {
@@ -100,5 +117,13 @@ public class Player extends Entity {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getImageWidth() {
+        return imageWidth;
+    }
+
+    public int getImageHeight() {
+        return imageHeight;
     }
 }

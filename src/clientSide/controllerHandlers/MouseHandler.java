@@ -2,7 +2,6 @@ package clientSide.controllerHandlers;
 
 import clientSide.Client;
 import clientSide.GamePanel;
-import clientSide.attributes.PhysicalAttributes;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
 import packets.BulletShotPacket;
@@ -22,6 +21,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     private Client client;
     private GamePanel gamePanel;
 
+    private Player player;
+
     public MouseHandler(Client client, GamePanel gamePanel) {
         this.client = client;
         this.gamePanel = gamePanel;
@@ -29,9 +30,11 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Player thisPlayer = World.getThisPlayer();
-        PhysicalAttributes physAttr = thisPlayer.getPhysAttr();
-        client.sendPacket(new BulletShotPacket(physAttr.getAngle()));
+        shootBullet();
+    }
+
+    private void shootBullet() {
+        client.sendPacket(new BulletShotPacket(getPlayer().getTipOfGun()));
     }
 
     @Override
@@ -65,6 +68,13 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         // Do nothing
+    }
+
+    private Player getPlayer() {
+        if (player == null) {
+            player = World.getThisPlayer();
+        }
+        return player;
     }
 
 }
