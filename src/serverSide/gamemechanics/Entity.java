@@ -11,7 +11,7 @@ public abstract class Entity {
     private int id;
     private boolean isAlive;
     protected EntityType type;
-    
+
     public PhysicalAttributes physicalAttributes;
 
     public Entity() {
@@ -49,7 +49,7 @@ public abstract class Entity {
     public boolean isAlive(){
         return this.isAlive;
     }
-    
+
     public CreateEntityPacket getCreationPacket() {
         CreateEntityPacket toSend = new CreateEntityPacket();
         toSend.x = physicalAttributes.left;
@@ -59,11 +59,15 @@ public abstract class Entity {
         toSend.entityType = type;
         return toSend;
     }
-    
+
     public UpdateEntityPacket getUpdatePacket() {
-        UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, false);
+        UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, isMoving());
         updateEntity.entityID = getId();
-        
+
         return updateEntity;
+    }
+
+    public boolean isMoving() {
+        return false;
     }
 }

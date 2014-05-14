@@ -1,8 +1,9 @@
 package clientSide.controllerHandlers;
 
 import clientSide.Client;
-import global.Settings;
+import clientSide.attributes.Player;
 import clientSide.attributes.World;
+import global.Settings;
 import packets.KeyPressPacket;
 import packets.KeyReleasePacket;
 
@@ -18,6 +19,7 @@ import java.awt.event.KeyListener;
 
 public class KeyboardHandler implements KeyListener {
     private Client client;
+    private Player player;
 
     public KeyboardHandler(Client client) {
         this.client = client;
@@ -58,11 +60,18 @@ public class KeyboardHandler implements KeyListener {
     }
 
     private void startMovementAnimation(boolean value) {
-        World.getThisPlayer().getPhysAttr().setMoving(value);
+        getPlayer().getPhysAttr().setMoving(value);
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
         // Do nothing
+    }
+
+    private Player getPlayer() {
+        if (player == null) {
+            player = World.getThisPlayer();
+        }
+        return player;
     }
 }

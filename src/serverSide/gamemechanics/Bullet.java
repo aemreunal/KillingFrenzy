@@ -16,14 +16,12 @@ public class Bullet extends Entity {
         type = EntityType.ENTITY_BULLET;
     }
 
-//    public Bullet(float angle) {
-//        this.velocity = new Vector2D(angle);
-//    }
-
     public Bullet(float angle, float x, float y) {
+        super(Settings.BULLET_HEIGHT, Settings.BULLET_WIDTH);
         this.velocity = new Vector2D(angle);
         this.physicalAttributes.top = y;
         this.physicalAttributes.left = x;
+        type = EntityType.ENTITY_BULLET;
     }
 
     public float getSpeedX() {

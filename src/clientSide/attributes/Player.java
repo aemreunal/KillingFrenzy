@@ -118,12 +118,4 @@ public class Player extends Entity {
     public void setScore(int score) {
         this.score = score;
     }
-
-    public int getImageWidth() {
-        return imageWidth;
-    }
-
-    public int getImageHeight() {
-        return imageHeight;
-    }
 }

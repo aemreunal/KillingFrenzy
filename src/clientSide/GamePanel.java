@@ -72,11 +72,15 @@ public class GamePanel extends JPanel {
     }
 
     private void paintHealthBar(Graphics g) {
-        HealthBar.paint(g, getPlayer().getHealth());
+        if (getPlayer() != null) {
+            HealthBar.paint(g, getPlayer().getHealth());
+        }
     }
 
     private void paintScoreBoard(Graphics g) {
-        ScoreBoard.paint(g, getPlayer().getScore());
+        if (getPlayer() != null) {
+            ScoreBoard.paint(g, getPlayer().getScore());
+        }
     }
 
     private Player getPlayer() {

@@ -2,7 +2,6 @@ package serverSide.gamemechanics;
 
 import global.EntityType;
 import global.Settings;
-import packets.UpdateEntityPacket;
 import serverSide.client.Client;
 
 /**
@@ -61,12 +60,6 @@ public class Player extends Entity implements Collidable {
                 this.physicalAttributes.updateHorizontalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
             }
         }
-
-        if (upKeyPressed || leftKeyPress || downKeyPressed || rightKeyPressed) {
-            UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, true);
-            updateEntity.entityID = getId();
-            client.getServer().broadcast(updateEntity);
-        }
     }
 
     public void onKeyPressed(int keyCode) {
@@ -91,10 +84,16 @@ public class Player extends Entity implements Collidable {
         } else if (keyCode == Settings.KEY_EAST) {
             rightKeyPressed = false;
         }
+    }
 
-        UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, false);
-        updateEntity.entityID = getId();
-        client.getServer().broadcast(updateEntity);
+//    public void updateEntityPacket() {
+//        UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, upKeyPressed || leftKeyPress || downKeyPressed || rightKeyPressed);
+//        updateEntity.entityID = getId();
+//        client.getServer().broadcast(updateEntity);
+//    }
+
+    public boolean isMoving() {
+        return upKeyPressed || leftKeyPress || downKeyPressed || rightKeyPressed;
     }
 
     public int getHealth() {

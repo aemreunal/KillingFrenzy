@@ -29,7 +29,9 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
+        gamePanel.hideCursor();
+        gamePanel.updateCrosshair(e.getX(), e.getY());
         shootBullet();
     }
 
@@ -61,12 +63,12 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mouseReleased(MouseEvent e) {
         // Do nothing
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {
         // Do nothing
     }
 
