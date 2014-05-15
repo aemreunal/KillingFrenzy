@@ -95,4 +95,10 @@ public class Settings {
     public static final int SCORE_BOARD_WIDTH = 50;
     public static final int SCORE_BOARD_POS_X = GAME_WINDOW_WIDTH - SCORE_BOARD_WIDTH;
     public static final int SCORE_BOARD_POS_Y = 20;
+    
+    /**
+     * Sounds
+     */
+    public static final String GUN_SOUND_FILE_PATH = "sounds/gunshot.wav";
+    
 }

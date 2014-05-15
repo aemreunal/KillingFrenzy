@@ -4,6 +4,7 @@ import clientSide.Client;
 import clientSide.GamePanel;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
+import clientSide.sounds.Gun;
 import packets.BulletShotPacket;
 
 import java.awt.event.MouseEvent;
@@ -33,6 +34,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
         gamePanel.hideCursor();
         gamePanel.updateCrosshair(e.getX(), e.getY());
         shootBullet();
+        Gun gun = new Gun();
+        gun.playSound();
     }
 
     private void shootBullet() {
