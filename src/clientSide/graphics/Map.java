@@ -28,10 +28,10 @@ public class Map {
         Wall.paintWalls(g, 90, 240, false, 9);
         Wall.paintWalls(g, 170, 220, true, 7);
         Wall.paintWalls(g, 180, 240, false, 2);
-        Wall.paintWalls(g, 180, 150, false, 5);
+       // Wall.paintWalls(g, 180, 150, false, 5);
         Wall.paintWalls(g, 270, 150, false, 5);
         Wall.paintWalls(g, 380, 150, false, 6);
-        Wall.paintWalls(g, 330, 200, false, 6);
+      //  Wall.paintWalls(g, 330, 200, false, 6);
         Wall.paintWalls(g, 260, 240, false, 16);
         Wall.paintWalls(g, 40, 380, false, 11);
         Wall.paintWalls(g, 80, 320, true, 6);
