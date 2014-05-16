@@ -33,7 +33,7 @@ public class Player extends Entity implements Collidable {
 
         if (health < 0) {
 //            this.die();
-            ((Player) World.getInstance().idToEntityMap.get(shooterId)).changeScore(5);
+            ((Player) World.getInstance().idToEntityMap.get(shooterId)).changeScore(Settings.KILLING_BONUS);
             this.respawnPlayer();
         }
     }
@@ -95,7 +95,8 @@ public class Player extends Entity implements Collidable {
     }
 
     public UpdateEntityPacket createUpdatePacket() {
-        UpdateEntityPacket packet = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, isMoving());
+        UpdateEntityPacket packet = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top,
+                physicalAttributes.angle, isMoving());
         packet.health = health;
         packet.score = score;
         return packet;
@@ -104,8 +105,9 @@ public class Player extends Entity implements Collidable {
     public void respawnPlayer(){
         this.setAlive(true);
         this.health = Settings.PLAYER_MAX_HEALTH;
-        this.physicalAttributes = new PhysicalAttributes(450, 350, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
-        this.score -= 5;
+        this.physicalAttributes = new PhysicalAttributes(Settings.RESPAWN_POSITION_X, Settings.RESPAWN_POSITION_Y,
+                Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
+        this.changeScore(Settings.DYING_PENALTY);
     }
 
     public int getScore() {

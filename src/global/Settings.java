@@ -30,6 +30,13 @@ public class Settings {
     public static final int HEALTH_BAR_POS_X = 10;
     public static final int HEALTH_BAR_POS_Y = 10;
 
+    public static final int KILLING_BONUS = 10;
+    public static final int DYING_PENALTY = -5;
+
+    public static final int RESPAWN_POSITION_X = 450;
+    public static final int RESPAWN_POSITION_Y = 350;
+
+
     /**
      * Speeds & frequencies
      */
@@ -95,10 +102,10 @@ public class Settings {
     public static final int SCORE_BOARD_WIDTH = 50;
     public static final int SCORE_BOARD_POS_X = GAME_WINDOW_WIDTH - SCORE_BOARD_WIDTH;
     public static final int SCORE_BOARD_POS_Y = 20;
-    
+
     /**
      * Sounds
      */
     public static final String GUN_SOUND_FILE_PATH = "sounds/gunshot.wav";
-    
+
 }
