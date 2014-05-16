@@ -50,6 +50,10 @@ public abstract class Entity {
         return this.isAlive;
     }
 
+    public void setAlive(boolean isAlive){
+        this.isAlive = isAlive;
+    }
+
     public CreateEntityPacket getCreationPacket() {
         CreateEntityPacket toSend = new CreateEntityPacket();
         toSend.x = physicalAttributes.left;

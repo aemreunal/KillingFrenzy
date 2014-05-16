@@ -96,4 +96,11 @@ public class Player extends Entity implements Collidable {
         packet.health = health;
         return packet;
     }
+
+    public void respawnPlayer(){
+        this.setAlive(true);
+        this.health = Settings.PLAYER_MAX_HEALTH;
+        this.physicalAttributes = new PhysicalAttributes(50, 50, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
+
+    }
 }

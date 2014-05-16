@@ -66,10 +66,14 @@ public class GameLogic {
         while (iter.hasNext()) {
             Map.Entry<Integer, Entity> entry = iter.next();
             if (!entry.getValue().isAlive()) {
-                DestroyEntityPacket destroyEntityPacket = new DestroyEntityPacket();
-                destroyEntityPacket.entityID = entry.getValue().getId();
-                server.broadcast(destroyEntityPacket);
-                iter.remove();
+                if(entry.getValue() instanceof Player){
+                    ((Player) entry.getValue()).respawnPlayer();
+                } else {
+                    DestroyEntityPacket destroyEntityPacket = new DestroyEntityPacket();
+                    destroyEntityPacket.entityID = entry.getValue().getId();
+                    server.broadcast(destroyEntityPacket);
+                    iter.remove();
+                }
             }
         }
     }
