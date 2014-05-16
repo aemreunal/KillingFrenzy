@@ -3,6 +3,5 @@ package global;
 public enum EntityType {
     ENTITY_PLAYER,
     ENTITY_BULLET,
-    ENTITY_WALL,
-    ENTITY_BOX
+    ENTITY_WALL
 }

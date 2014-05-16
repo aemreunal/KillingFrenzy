@@ -36,6 +36,11 @@ public class Settings {
     public static final int RESPAWN_POSITION_X = 450;
     public static final int RESPAWN_POSITION_Y = 350;
 
+    public static final int SCORE_BOARD_WIDTH = 50;
+    public static final int SCORE_BOARD_POS_X = GAME_WINDOW_WIDTH - SCORE_BOARD_WIDTH;
+    public static final int SCORE_BOARD_POS_Y = 20;
+
+    public static final int WALL_BLOCK_SIZE = 10;
 
     /**
      * Speeds & frequencies
@@ -99,13 +104,10 @@ public class Settings {
     public static final String WALL_IMAGE_FILE_PATH = IMG_PATH + "Wall/wall.png";
     public static final String MOVING_IMAGE_FILE_EXTENSION = ".png";
 
-    public static final int SCORE_BOARD_WIDTH = 50;
-    public static final int SCORE_BOARD_POS_X = GAME_WINDOW_WIDTH - SCORE_BOARD_WIDTH;
-    public static final int SCORE_BOARD_POS_Y = 20;
-
     /**
      * Sounds
      */
+
     public static final String GUN_SOUND_FILE_PATH = "sounds/gunshot.wav";
 
 }

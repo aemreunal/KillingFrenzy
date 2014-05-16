@@ -22,8 +22,6 @@ public class CreateEntityHandler extends PacketHandler {
                 break;
             case ENTITY_WALL:
                 break;
-            case ENTITY_BOX:
-                break;
             default:
                 break;
         }
