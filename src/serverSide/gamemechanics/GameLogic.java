@@ -1,10 +1,12 @@
 package serverSide.gamemechanics;
 
+import packets.DestroyEntityPacket;
 import serverSide.client.Client;
 import packets.Packet;
 import serverSide.server.Server;
 
 import java.nio.channels.SelectionKey;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -23,7 +25,8 @@ public class GameLogic {
     }
 
     public void update() {
-        for (Entity e : World.getInstance().idToEntityMap.values()) {
+        Collection<Entity> entities = World.getInstance().idToEntityMap.values();
+        for (Entity e : entities) {
 
     		/*UpdateEntityPacket packet = new UpdateEntityPacket();
             packet.ownerID = e.getId();
@@ -31,17 +34,26 @@ public class GameLogic {
     		server.broadcast(packet);*/
 
             e.update();
-            server.broadcast(e.getUpdatePacket());
     	}
+        checkForAllCollisions(entities); //Don't mind the ugliness
+
+        for (Entity e : entities) {
+            server.broadcast(e.getUpdatePacket());
+        }
+
+        cleanDeadObjects(entities);
 
     }
 
-    public void checkForAllCollisions(Entity[] entities) {
-        for (int i = 0; i < entities.length; i++) {
-            for (int j = 0; j < entities.length; j++) {
-                if (i != j) {
-                    if (existsACollisionBetween(entities[i], entities[j])) {
-                        handleCollision(entities[i], entities[j]);
+    public void checkForAllCollisions(Collection<Entity> entities) {
+        for (Entity e1 : entities) {
+            for (Entity e2 : entities) {
+                if (!e1.equals(e2)) {
+                    if (existsACollisionBetween(e1, e2)) {
+                        System.out.println("Collision!");
+                        System.out.println(e1.getClass());
+                        System.out.println(e2.getClass());
+                        handleCollision(e1, e2);
                     }
                 }
             }
@@ -49,9 +61,12 @@ public class GameLogic {
         }
     }
 
-    private void cleanDeadObjects(Entity[] entities){
+    private void cleanDeadObjects(Collection<Entity> entities){
         for(Entity e : entities){
             if(!e.isAlive()){
+                DestroyEntityPacket destroyEntityPacket = new DestroyEntityPacket();
+                destroyEntityPacket.entityID = e.getId();
+                server.broadcast(destroyEntityPacket);
                 World.getInstance().removeEntity(e);
             }
         }
@@ -61,18 +76,25 @@ public class GameLogic {
     private void handleCollision(Entity entity1, Entity entity2) {
         if (isBulletPlayerCollision(entity1, entity2)) {
             handleBulletPlayerCollision(entity1, entity2);
+            System.out.println("BULLET - PLAYER!");
         } else if (isBulletWallCollision(entity1, entity2)) {
             handleBulletWallCollision(entity1, entity2);
+            System.out.println("BULLET - WALL!");
         } else if (isPlayerWallCollision(entity1, entity2)) {
             handlePlayerWallCollision(entity1, entity2);
+            System.out.println("PLAYER - WALL!");
+        } else{
+            System.out.println("PLAYER - PLAYER!");
         }
     }
 
     private void handleBulletPlayerCollision(Entity entity1, Entity entity2) { //TODO handle deaths
         if (entity1 instanceof Bullet) {
             ((Bullet) entity1).damagePlayer((Player) entity2);
+            System.out.println("SHOT!");
         } else {
             ((Bullet) entity2).damagePlayer((Player) entity1);
+            System.out.println("SHOT!");
         }
     }
 
