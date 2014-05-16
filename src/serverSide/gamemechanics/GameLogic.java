@@ -1,5 +1,6 @@
 package serverSide.gamemechanics;
 
+import global.Settings;
 import packets.DestroyEntityPacket;
 import serverSide.client.Client;
 import packets.Packet;
@@ -18,6 +19,17 @@ public class GameLogic {
 
     public GameLogic(Server server){
         this.server = server;
+        this.addWalls(Settings.WALL_XS, Settings.WALL_YS);
+    }
+
+    public void addWalls(int[] x, int[] y){
+        for(int i = 0; i < x.length; i++){
+            Wall wall = new Wall(x[i],y[i]);
+            World.getInstance().addEntity(wall);
+            for(Client client : clients){
+                client.getServer().broadcast(wall.getCreationPacket());
+            }
+        }
     }
 
     public void receivePacket(Packet packet, SelectionKey key) {
@@ -32,11 +44,12 @@ public class GameLogic {
         checkForAllCollisions(entities); //Don't mind the ugliness
 
         for (Entity e : entities) {
-            server.broadcast(e.getUpdatePacket());
+            if(!(e instanceof Wall)) {
+                server.broadcast(e.getUpdatePacket());
+            }
         }
 
         cleanDeadObjects();
-
     }
 
     public void checkForAllCollisions(Collection<Entity> entities) {
@@ -111,9 +124,7 @@ public class GameLogic {
             ((Player) entity1).discardLastPositionChange();
         } else {
             ((Player) entity2).discardLastPositionChange();
-
         }
-
     }
 
     private boolean isPlayerWallCollision(Entity entity1, Entity entity2) {

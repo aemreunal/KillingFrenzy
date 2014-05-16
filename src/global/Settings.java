@@ -110,4 +110,10 @@ public class Settings {
 
     public static final String GUN_SOUND_FILE_PATH = "sounds/gunshot.wav";
 
+    /**
+     * Wall positions
+     */
+
+    public static final int[] WALL_XS = {10, 20, 30, 40};
+    public static final int[] WALL_YS = {10, 10, 10, 10};
 }

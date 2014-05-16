@@ -1,23 +1,19 @@
 package serverSide.gamemechanics;
 
+import global.Settings;
+
 /**
  * Created by Eren Sezener
  */
 public class Wall extends Entity implements Collidable {
-    private static final int WIDTH = 10;
-    private static final int HEIGHT = 10;
-    
-    public Wall(int x, int y, boolean isVertical, int size) {
-    	if(isVertical){
-    		this.physicalAttributes = new PhysicalAttributes(x, y, size*HEIGHT, WIDTH);
-    	}else{
-    		this.physicalAttributes = new PhysicalAttributes(x, y, HEIGHT,size*WIDTH);
-    	}
+
+    public Wall(int x, int y) {
+        this.physicalAttributes = new PhysicalAttributes(x, y, Settings.WALL_BLOCK_SIZE, Settings.WALL_BLOCK_SIZE);
     }
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
