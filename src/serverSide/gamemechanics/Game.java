@@ -20,6 +20,11 @@ public class Game {
         clients = new CopyOnWriteArrayList<>();
         initPacketHandlers(server);
     }
+    
+    public synchronized void disconnectClient(Client client) {
+        
+        clients.remove(client);
+    }
 
     private void initPacketHandlers(Server server) {
         packetHandlerMap = new EnumMap<>(PacketType.class);

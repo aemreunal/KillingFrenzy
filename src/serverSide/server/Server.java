@@ -91,6 +91,7 @@ public class Server implements Runnable {
 
             } catch (IOException ex) {
                 System.out.println("Client disconnected : " + key);
+                
                 resetKey(key);
             }
         }
@@ -219,7 +220,7 @@ public class Server implements Runnable {
     protected void resetKey(SelectionKey key) {
         key.cancel();
         Client client = clientMap.get(key);
-        game.clients.remove(client);
+        game.disconnectClient(client);
         clientMap.remove(key);
         readBuffers.remove(key);
     }
