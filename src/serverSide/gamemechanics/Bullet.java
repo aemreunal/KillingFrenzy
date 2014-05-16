@@ -8,7 +8,7 @@ import global.Settings;
  */
 public class Bullet extends Entity {
     private Vector2D velocity;
-    private int ownerID; // TODO Bullets must have owners to assign scores!
+    private int ownerID;
 
     public Bullet() {
         super(Settings.BULLET_HEIGHT, Settings.BULLET_WIDTH);
@@ -16,9 +16,10 @@ public class Bullet extends Entity {
         type = EntityType.ENTITY_BULLET;
     }
 
-    public Bullet(float angle, float x, float y) {
+    public Bullet(int ownerID, float angle, float x, float y) {
         super(Settings.BULLET_HEIGHT, Settings.BULLET_WIDTH);
         this.velocity = new Vector2D(angle);
+        this.ownerID = ownerID;
         this.physicalAttributes.top = y;
         this.physicalAttributes.left = x;
         type = EntityType.ENTITY_BULLET;
@@ -41,5 +42,9 @@ public class Bullet extends Entity {
     public void update() {
         super.physicalAttributes.updateVerticalPosition(getSpeedY());
         super.physicalAttributes.updateHorizontalPosition(getSpeedX());
+    }
+
+    public int getOwnerID() {
+        return ownerID;
     }
 }
