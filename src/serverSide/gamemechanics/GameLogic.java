@@ -6,8 +6,8 @@ import packets.Packet;
 import serverSide.server.Server;
 
 import java.nio.channels.SelectionKey;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
+import java.util.Map;
 
 /**
  * Created by Eren Sezener
@@ -41,7 +41,7 @@ public class GameLogic {
             server.broadcast(e.getUpdatePacket());
         }
 
-        cleanDeadObjects(entities);
+        cleanDeadObjects();
 
     }
 
@@ -61,13 +61,15 @@ public class GameLogic {
         }
     }
 
-    private void cleanDeadObjects(Collection<Entity> entities){
-        for(Entity e : entities){
-            if(!e.isAlive()){
+    private void cleanDeadObjects(){
+        Iterator<java.util.Map.Entry<Integer, Entity>> iter = World.getInstance().idToEntityMap.entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry<Integer, Entity> entry = iter.next();
+            if (!entry.getValue().isAlive()) {
                 DestroyEntityPacket destroyEntityPacket = new DestroyEntityPacket();
-                destroyEntityPacket.entityID = e.getId();
+                destroyEntityPacket.entityID = entry.getValue().getId();
                 server.broadcast(destroyEntityPacket);
-                World.getInstance().removeEntity(e);
+                iter.remove();
             }
         }
     }
