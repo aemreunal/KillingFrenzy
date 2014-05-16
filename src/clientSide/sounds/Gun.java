@@ -7,13 +7,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class Gun {
-    private File soundFile;
-    private AudioInputStream stream;
-    private AudioFormat format;
-    private DataLine.Info info;
-    private Clip clip;
+    private static File soundFile;
+    private static AudioInputStream stream;
+    private static AudioFormat format;
+    private static DataLine.Info info;
+    private static Clip clip;
 
-    public Gun() {
+    private static void initGunSoundFile() {
         try {
             soundFile = new File(Settings.GUN_SOUND_FILE_PATH);
             stream = AudioSystem.getAudioInputStream(soundFile);
@@ -33,7 +33,11 @@ public class Gun {
         }
     }
 
-    public void playSound() {
+    public static void playSound() {
+        if (clip == null) {
+            initGunSoundFile();
+        }
+        clip.setFramePosition(0);
         clip.start();
     }
 }
