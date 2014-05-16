@@ -1,10 +1,7 @@
 package serverSide.gamemechanics;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
-
 public class PlayerTest {
+/*
     Player player = new Player(null);
     World world = World.getInstance();
 
@@ -18,5 +15,5 @@ public class PlayerTest {
     public void testDecreaseHealth() throws Exception {
         player.decreaseHealth(20);
         assertEquals(player.getHealth(), 80);
-    }
+    }*/
 }

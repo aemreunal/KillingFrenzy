@@ -15,4 +15,8 @@ public abstract class PacketHandler {
     protected synchronized void removeEntity(int entityID) {
         World.getInstance().removeEntity(entityID);
     }
+
+    protected synchronized Entity getEntity(int entityID) {
+        return World.getInstance().getEntity(entityID);
+    }
 }

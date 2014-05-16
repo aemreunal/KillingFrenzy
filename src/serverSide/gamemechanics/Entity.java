@@ -61,10 +61,13 @@ public abstract class Entity {
     }
 
     public UpdateEntityPacket getUpdatePacket() {
-        UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, isMoving());
-        updateEntity.entityID = getId();
+        UpdateEntityPacket updatePacket = createUpdatePacket();
+        updatePacket.entityID = getId();
+        return updatePacket;
+    }
 
-        return updateEntity;
+    public UpdateEntityPacket createUpdatePacket() {
+        return new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, isMoving());
     }
 
     public boolean isMoving() {

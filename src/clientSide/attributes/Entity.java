@@ -38,10 +38,13 @@ public abstract class Entity {
     }
 
     public void update(UpdateEntityPacket updatePacket) {
+        physAttr.update(updatePacket.x, updatePacket.y, updatePacket.isMoving);
         if (updatePacket.entityID != World.getThisPlayer().getId()) {
-            physAttr.update(updatePacket.x, updatePacket.y, updatePacket.angle, updatePacket.isMoving);
-        } else {
-            physAttr.update(updatePacket.x, updatePacket.y, updatePacket.isMoving);
+            physAttr.setAngle(updatePacket.angle);
+        }
+        if(this instanceof Player) {
+            Player thisPlayer = (Player) this;
+            thisPlayer.setHealth(updatePacket.health);
         }
     }
 

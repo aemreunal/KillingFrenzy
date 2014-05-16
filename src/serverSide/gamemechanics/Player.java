@@ -2,19 +2,16 @@ package serverSide.gamemechanics;
 
 import global.EntityType;
 import global.Settings;
-import serverSide.client.Client;
+import packets.UpdateEntityPacket;
 
 /**
  * Created by Eren Sezener
  */
 public class Player extends Entity implements Collidable {
     private int health;
-    private float angle; //in radians
-    private Client client;
     private boolean leftKeyPress, rightKeyPressed, upKeyPressed, downKeyPressed;
 
-    public Player(Client client) {
-        this.client = client;
+    public Player() {
         this.leftKeyPress = false;
         this.rightKeyPressed = false;
         this.upKeyPressed = false;
@@ -86,12 +83,6 @@ public class Player extends Entity implements Collidable {
         }
     }
 
-//    public void updateEntityPacket() {
-//        UpdateEntityPacket updateEntity = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, upKeyPressed || leftKeyPress || downKeyPressed || rightKeyPressed);
-//        updateEntity.entityID = getId();
-//        client.getServer().broadcast(updateEntity);
-//    }
-
     public boolean isMoving() {
         return upKeyPressed || leftKeyPress || downKeyPressed || rightKeyPressed;
     }
@@ -100,8 +91,9 @@ public class Player extends Entity implements Collidable {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public UpdateEntityPacket createUpdatePacket() {
+        UpdateEntityPacket packet = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, isMoving());
+        packet.health = health;
+        return packet;
     }
-
 }

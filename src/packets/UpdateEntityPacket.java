@@ -8,6 +8,7 @@ public class UpdateEntityPacket extends Packet {
     public float x;
     public float y;
     public float angle;
+    public float health;
     public boolean isMoving = false;
 
     public UpdateEntityPacket(float x, float y, float angle, boolean isMoving) {

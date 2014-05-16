@@ -22,7 +22,7 @@ public class JoinGameHandler extends PacketHandler {
     public void handle(Client client, Packet pk) {
         sendMapInfo(client);
 
-        Player player = new Player(client);
+        Player player = new Player();
         World.getInstance().addEntity(player);
         client.setPlayer(player);
         player.physicalAttributes = new PhysicalAttributes((float) Math.random() * 100.0f, (float) Math.random() * 100.0f, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
