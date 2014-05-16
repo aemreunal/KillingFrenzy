@@ -46,7 +46,6 @@ public class WorldGround {
             g.setColor(Settings.DEFAULT_GROUND_COLOR);
             g.fillRect(0, 0, Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
         }
-        Map.printMap(g);
     }
 
 

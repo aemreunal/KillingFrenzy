@@ -2,6 +2,7 @@ package clientSide.packetHandlers;
 
 import clientSide.attributes.Bullet;
 import clientSide.attributes.Player;
+import clientSide.attributes.Wall;
 import packets.CreateEntityPacket;
 import packets.Packet;
 
@@ -21,6 +22,8 @@ public class CreateEntityHandler extends PacketHandler {
                 addEntity(packet.entityID, bullet);
                 break;
             case ENTITY_WALL:
+                Wall wall = new Wall(packet.x, packet.y);
+                addEntity(packet.entityID, wall);
                 break;
             default:
                 break;
