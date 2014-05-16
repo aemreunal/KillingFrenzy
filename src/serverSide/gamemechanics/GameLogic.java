@@ -26,6 +26,7 @@ public class GameLogic {
 
     public void update() {
         Collection<Entity> entities = World.getInstance().idToEntityMap.values();
+        System.out.println("Number of entities: " + entities.size());
         for (Entity e : entities) {
 
     		/*UpdateEntityPacket packet = new UpdateEntityPacket();
