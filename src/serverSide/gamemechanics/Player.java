@@ -32,8 +32,9 @@ public class Player extends Entity implements Collidable {
         health -= damage;
 
         if (health < 0) {
-            this.die();
+//            this.die();
             ((Player) World.getInstance().idToEntityMap.get(shooterId)).changeScore(5);
+            this.respawnPlayer();
         }
     }
 
@@ -103,7 +104,7 @@ public class Player extends Entity implements Collidable {
     public void respawnPlayer(){
         this.setAlive(true);
         this.health = Settings.PLAYER_MAX_HEALTH;
-        this.physicalAttributes = new PhysicalAttributes(50, 50, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
+        this.physicalAttributes = new PhysicalAttributes(450, 350, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
         this.score -= 5;
     }
 
