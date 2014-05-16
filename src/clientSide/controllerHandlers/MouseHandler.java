@@ -34,12 +34,12 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
         gamePanel.hideCursor();
         gamePanel.updateCrosshair(e.getX(), e.getY());
         shootBullet();
-        Gun gun = new Gun();
-        gun.playSound();
     }
 
     private void shootBullet() {
         client.sendPacket(new BulletShotPacket(getPlayer().getTipOfGun()));
+        Gun gun = new Gun();
+        gun.playSound();
     }
 
     @Override

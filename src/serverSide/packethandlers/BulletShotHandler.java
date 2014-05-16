@@ -15,7 +15,7 @@ public class BulletShotHandler extends PacketHandler {
         }
         BulletShotPacket packet = (BulletShotPacket) pk;
 
-        Bullet bullet = client.player.fireGun(packet.angle, packet.xCoor, packet.yCoor);
+        Bullet bullet = client.player.fireGun(client.player.getId(), packet.angle, packet.xCoor, packet.yCoor);
         client.getServer().broadcast(bullet.getCreationPacket());
     }
 
