@@ -22,6 +22,8 @@ public class Bullet extends Entity {
         this.ownerID = ownerID;
         this.physicalAttributes.top = y;
         this.physicalAttributes.left = x;
+        this.physicalAttributes.right = x + Settings.BULLET_WIDTH;
+        this.physicalAttributes.bottom = y + Settings.BULLET_HEIGHT;
         type = EntityType.ENTITY_BULLET;
     }
 
