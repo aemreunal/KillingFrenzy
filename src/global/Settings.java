@@ -63,7 +63,7 @@ public class Settings {
      * Misc.
      */
 
-    public static final int BULLET_DAMAGE = 2;
+    public static final int BULLET_DAMAGE = 20;
 
     public static final int PLAYER_MAX_HEALTH = 100;
 

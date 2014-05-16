@@ -27,12 +27,6 @@ public class GameLogic {
     public void update() {
         Collection<Entity> entities = World.getInstance().idToEntityMap.values();
         for (Entity e : entities) {
-
-            /*UpdateEntityPacket packet = new UpdateEntityPacket();
-            packet.ownerID = e.getId();
-    		packet.attrib = e.physAttr;
-    		server.broadcast(packet);*/
-
             e.update();
         }
         checkForAllCollisions(entities); //Don't mind the ugliness
@@ -113,6 +107,12 @@ public class GameLogic {
 
 
     private void handlePlayerWallCollision(Entity entity1, Entity entity2) {
+        if (entity1 instanceof Player) {
+            ((Player) entity1).discardLastPositionChange();
+        } else {
+            ((Player) entity2).discardLastPositionChange();
+
+        }
 
     }
 

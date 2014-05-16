@@ -11,6 +11,7 @@ public class Player extends Entity implements Collidable {
     private int health;
     private boolean leftKeyPress, rightKeyPressed, upKeyPressed, downKeyPressed;
     private int score;
+    private float prev_X, prev_Y;
 
     public Player() {
         this.leftKeyPress = false;
@@ -32,7 +33,6 @@ public class Player extends Entity implements Collidable {
         health -= damage;
 
         if (health < 0) {
-//            this.die();
             ((Player) World.getInstance().idToEntityMap.get(shooterId)).changeScore(Settings.KILLING_BONUS);
             this.respawnPlayer();
         }
@@ -42,24 +42,33 @@ public class Player extends Entity implements Collidable {
     public void update() {
         if (upKeyPressed) {
             if (this.physicalAttributes.top > 0) {
+                savePreviousPosition();
                 this.physicalAttributes.updateVerticalPosition(-1 * Settings.PLAYER_LOC_UPDATE_AMOUNT);
             }
         }
         if (leftKeyPress) {
             if (this.physicalAttributes.left > 0) {
+                savePreviousPosition();
                 this.physicalAttributes.updateHorizontalPosition(-1 * Settings.PLAYER_LOC_UPDATE_AMOUNT);
             }
         }
         if (downKeyPressed) {
             if (this.physicalAttributes.bottom < Settings.GAME_WINDOW_HEIGHT) {
+                savePreviousPosition();
                 this.physicalAttributes.updateVerticalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
             }
         }
         if (rightKeyPressed) {
             if (this.physicalAttributes.right < Settings.GAME_WINDOW_WIDTH) {
+                savePreviousPosition();
                 this.physicalAttributes.updateHorizontalPosition(Settings.PLAYER_LOC_UPDATE_AMOUNT);
             }
         }
+    }
+
+    private void savePreviousPosition() {
+        this.prev_X = this.physicalAttributes.left;
+        this.prev_Y = this.physicalAttributes.top;
     }
 
     public void onKeyPressed(int keyCode) {
@@ -121,5 +130,12 @@ public class Player extends Entity implements Collidable {
 
     public void changeScore(int score) {
         this.score += score;
+    }
+
+    public void discardLastPositionChange() {
+        this.physicalAttributes.left = prev_X;
+        this.physicalAttributes.top = prev_Y;
+        this.physicalAttributes.right = prev_X + Settings.PLAYER_SIZE;
+        this.physicalAttributes.bottom = prev_Y + Settings.PLAYER_SIZE;
     }
 }
