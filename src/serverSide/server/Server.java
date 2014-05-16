@@ -3,6 +3,9 @@ package serverSide.server;
 import packets.Packet;
 import serverSide.client.Client;
 import serverSide.gamemechanics.Game;
+import serverSide.gamemechanics.Wall;
+import serverSide.gamemechanics.World;
+import serverSide.gamemechanics.Entity;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -40,14 +43,14 @@ public class Server implements Runnable {
 
 
     private final AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
-    
+
 
     protected ServerSocketChannel serverSocket;
     protected Selector keySelector;
     public ConcurrentHashMap<SelectionKey, Client> clientMap;
     private ConcurrentHashMap<SelectionKey, ByteBuffer> readBuffers;
     private Game game;
-    
+
     public AtomicReference<State> getState() {
         return state;
     }
@@ -91,7 +94,7 @@ public class Server implements Runnable {
 
             } catch (IOException ex) {
                 System.out.println("Client disconnected : " + key);
-                
+
                 resetKey(key);
             }
         }
@@ -205,16 +208,25 @@ public class Server implements Runnable {
     }
 
     private void acceptConnection() throws IOException {
-        SocketChannel client = serverSocket.accept();
-        client.configureBlocking(false);
-        client.socket().setTcpNoDelay(true);
+        SocketChannel clientSocket = serverSocket.accept();
+        clientSocket.configureBlocking(false);
+        clientSocket.socket().setTcpNoDelay(true);
 
-        SelectionKey newkey = client.register(keySelector, SelectionKey.OP_READ);
+        SelectionKey newkey = clientSocket.register(keySelector, SelectionKey.OP_READ);
         readBuffers.put(newkey, ByteBuffer.allocate(DEFAULT_MESSAGE_SIZE));
-        Client cli = new Client(newkey, this);
-        clientMap.put(newkey, cli);
-        game.clients.add(cli);
+        Client client = new Client(newkey, this);
+        clientMap.put(newkey, client);
+        game.clients.add(client);
+        broadcastWalls(client);
         System.out.println("New connection: " + newkey);
+    }
+
+    private void broadcastWalls(Client client) {
+        for (Entity entity : World.getInstance().idToEntityMap.values()) {
+            if(entity instanceof Wall) {
+                client.getServer().broadcast(entity.getCreationPacket());
+            }
+        }
     }
 
     protected void resetKey(SelectionKey key) {

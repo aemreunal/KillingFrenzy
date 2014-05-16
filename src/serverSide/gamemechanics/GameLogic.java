@@ -26,9 +26,6 @@ public class GameLogic {
         for(int i = 0; i < x.length; i++){
             Wall wall = new Wall(x[i],y[i]);
             World.getInstance().addEntity(wall);
-            for(Client client : clients){
-                client.getServer().broadcast(wall.getCreationPacket());
-            }
         }
     }
 
@@ -113,7 +110,7 @@ public class GameLogic {
         if (entity1 instanceof Bullet) {
             entity1.die();
         } else {
-            ((Bullet) entity2).damagePlayer((Player) entity1);
+            entity2.die();
         }
 
     }

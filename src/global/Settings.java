@@ -101,7 +101,7 @@ public class Settings {
     public static final String FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/moving";
     public static final String ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/standing.png";
     public static final String ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/moving";
-    public static final String WALL_IMAGE_FILE_PATH = IMG_PATH + "Wall/wall.png";
+    public static final String WALL_IMAGE_FILE_PATH = IMG_PATH + "wall/wall.png";
     public static final String MOVING_IMAGE_FILE_EXTENSION = ".png";
 
     /**
@@ -114,6 +114,6 @@ public class Settings {
      * Wall positions
      */
 
-    public static final int[] WALL_XS = {10, 20, 30, 40};
+    public static final int[] WALL_XS = {10, 25, 40, 55};
     public static final int[] WALL_YS = {10, 10, 10, 10};
 }
