@@ -10,12 +10,14 @@ import packets.UpdateEntityPacket;
 public class Player extends Entity implements Collidable {
     private int health;
     private boolean leftKeyPress, rightKeyPressed, upKeyPressed, downKeyPressed;
+    private int score;
 
     public Player() {
         this.leftKeyPress = false;
         this.rightKeyPressed = false;
         this.upKeyPressed = false;
         this.downKeyPressed = false;
+        this.score = 0;
         this.health = Settings.PLAYER_MAX_HEALTH;
         type = EntityType.ENTITY_PLAYER;
     }
@@ -26,12 +28,12 @@ public class Player extends Entity implements Collidable {
         return bullet;
     }
 
-    public void decreaseHealth(float damage) {
+    public void decreaseHealth(float damage, int shooterId) {
         health -= damage;
 
         if (health < 0) {
             this.die();
-
+            ((Player) World.getInstance().idToEntityMap.get(shooterId)).changeScore(5);
         }
     }
 
@@ -94,6 +96,7 @@ public class Player extends Entity implements Collidable {
     public UpdateEntityPacket createUpdatePacket() {
         UpdateEntityPacket packet = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, isMoving());
         packet.health = health;
+        packet.score = score;
         return packet;
     }
 
@@ -101,6 +104,19 @@ public class Player extends Entity implements Collidable {
         this.setAlive(true);
         this.health = Settings.PLAYER_MAX_HEALTH;
         this.physicalAttributes = new PhysicalAttributes(50, 50, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
+        this.score -= 5;
+    }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+
+    public void changeScore(int score) {
+        this.score += score;
     }
 }

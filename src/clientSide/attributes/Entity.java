@@ -45,6 +45,7 @@ public abstract class Entity {
         if(this instanceof Player) {
             Player thisPlayer = (Player) this;
             thisPlayer.setHealth(updatePacket.health);
+            thisPlayer.setScore(updatePacket.score);
         }
     }
 
