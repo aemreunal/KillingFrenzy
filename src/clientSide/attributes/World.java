@@ -4,7 +4,6 @@ import clientSide.graphics.WorldGround;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -28,7 +27,7 @@ public class World {
         ground = new WorldGround();
     }
 
-    public void addEntity(Entity entity, int entityId) {
+    public synchronized void addEntity(Entity entity, int entityId) {
         entity.setId(entityId);
         idToEntityMap.put(entity.getId(), entity);
     }
@@ -37,7 +36,7 @@ public class World {
         return idToEntityMap;
     }
 
-    public Entity getEntity(int id) {
+    public synchronized Entity getEntity(int id) {
         return idToEntityMap.get(id);
     }
 
@@ -57,7 +56,7 @@ public class World {
         World.thisPlayer = thisPlayer;
     }
 
-    public void removeEntity(int entityID) {
+    public synchronized void removeEntity(int entityID) {
         idToEntityMap.remove(entityID);
     }
 }

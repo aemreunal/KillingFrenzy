@@ -1,9 +1,7 @@
 package clientSide.packetHandlers;
 
 import clientSide.attributes.Bullet;
-import clientSide.attributes.Entity;
 import clientSide.attributes.Player;
-import clientSide.attributes.World;
 import packets.CreateEntityPacket;
 import packets.Packet;
 
@@ -30,11 +28,5 @@ public class CreateEntityHandler extends PacketHandler {
                 break;
         }
 
-    }
-
-    private synchronized void addEntity(int entityID, Entity entity) {
-        synchronized (World.getInstance().getEntityMap()) {
-            World.getInstance().addEntity(entity, entityID);
-        }
     }
 }
