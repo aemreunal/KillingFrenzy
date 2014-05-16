@@ -28,13 +28,13 @@ public class GameLogic {
         Collection<Entity> entities = World.getInstance().idToEntityMap.values();
         for (Entity e : entities) {
 
-    		/*UpdateEntityPacket packet = new UpdateEntityPacket();
+            /*UpdateEntityPacket packet = new UpdateEntityPacket();
             packet.ownerID = e.getId();
     		packet.attrib = e.physAttr;
     		server.broadcast(packet);*/
 
             e.update();
-    	}
+        }
         checkForAllCollisions(entities); //Don't mind the ugliness
 
         for (Entity e : entities) {
@@ -66,14 +66,12 @@ public class GameLogic {
         while (iter.hasNext()) {
             Map.Entry<Integer, Entity> entry = iter.next();
             if (!entry.getValue().isAlive()) {
-                if(entry.getValue() instanceof Player){
-                    ((Player) entry.getValue()).respawnPlayer();
-                } else {
-                    DestroyEntityPacket destroyEntityPacket = new DestroyEntityPacket();
-                    destroyEntityPacket.entityID = entry.getValue().getId();
-                    server.broadcast(destroyEntityPacket);
-                    iter.remove();
-                }
+
+                DestroyEntityPacket destroyEntityPacket = new DestroyEntityPacket();
+                destroyEntityPacket.entityID = entry.getValue().getId();
+                server.broadcast(destroyEntityPacket);
+                iter.remove();
+
             }
         }
     }

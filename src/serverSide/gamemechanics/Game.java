@@ -22,7 +22,7 @@ public class Game {
     }
     
     public synchronized void disconnectClient(Client client) {
-        
+        client.player.setAlive(false);
         clients.remove(client);
     }
 
