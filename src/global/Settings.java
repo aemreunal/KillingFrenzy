@@ -89,7 +89,7 @@ public class Settings {
     public static final String IMG_PATH = "images/";
 
     // Ground
-    public static final String GROUND_IMAGE_FILE_PATH = IMG_PATH + "grass.jpg";
+    public static final String GROUND_IMAGE_FILE_PATH = IMG_PATH + "mapSample.png";
 
     public static final Color DEFAULT_GROUND_COLOR = new Color(110, 133, 61);
     public static final Color DEFAULT_WALL_COLOR = Color.BLACK;
@@ -114,6 +114,6 @@ public class Settings {
      * Wall positions
      */
 
-    public static final int[] WALL_XS = {10, 25, 40, 55};
-    public static final int[] WALL_YS = {10, 10, 10, 10};
+    public static final int[] WALL_XS = {60, 60, 60, 60, 60, 60, 60};
+    public static final int[] WALL_YS = {0, 10, 20, 30, 40, 50, 60};
 }

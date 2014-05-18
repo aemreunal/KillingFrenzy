@@ -19,7 +19,9 @@ public class GameLogic {
 
     public GameLogic(Server server){
         this.server = server;
-        this.addWalls(Settings.WALL_XS, Settings.WALL_YS);
+        GameMap map = new GameMap();
+        this.addWalls(map.getWallXCoordinates(), map.getWallYCoordinates());
+        
     }
 
     public void addWalls(int[] x, int[] y){
