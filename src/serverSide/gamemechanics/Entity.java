@@ -77,4 +77,8 @@ public abstract class Entity {
     public boolean isMoving() {
         return false;
     }
+
+    public EntityType getType() {
+        return type;
+    }
 }

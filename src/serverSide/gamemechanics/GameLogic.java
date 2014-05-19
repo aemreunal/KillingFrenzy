@@ -1,18 +1,21 @@
 package serverSide.gamemechanics;
 
-import global.Settings;
+import global.EntityType;
 import packets.DestroyEntityPacket;
-import serverSide.client.Client;
 import packets.Packet;
+import serverSide.client.Client;
 import serverSide.server.Server;
 
 import java.nio.channels.SelectionKey;
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Eren Sezener
  */
+
 public class GameLogic {
     private Server server;
     private List<Client> clients;
@@ -21,7 +24,7 @@ public class GameLogic {
         this.server = server;
         GameMap map = new GameMap();
         this.addWalls(map.getWallXCoordinates(), map.getWallYCoordinates());
-        
+
     }
 
     public void addWalls(int[] x, int[] y){
@@ -54,7 +57,7 @@ public class GameLogic {
     public void checkForAllCollisions(Collection<Entity> entities) {
         for (Entity e1 : entities) {
             for (Entity e2 : entities) {
-                if (!e1.equals(e2)) {
+                if (!(e1.type == EntityType.ENTITY_WALL && e2.type == EntityType.ENTITY_WALL) && !e1.equals(e2)) {
                     if (existsACollisionBetween(e1, e2)) {
                         System.out.println("Collision!");
                         System.out.println(e1.getClass());
@@ -93,8 +96,6 @@ public class GameLogic {
         } else if (isPlayerWallCollision(entity1, entity2)) {
             handlePlayerWallCollision(entity1, entity2);
             System.out.println("PLAYER - WALL!");
-        } else{
-            System.out.println("PLAYER - PLAYER!");
         }
     }
 

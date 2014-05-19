@@ -61,7 +61,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     public void mouseMoved(MouseEvent e) {
         gamePanel.hideCursor();
         gamePanel.updateCrosshair(e.getX(), e.getY());
-        World.getThisPlayer().updateAngle(e.getX(), e.getY());
+        getPlayer().updateAngle(e.getX(), e.getY());
     }
 
     @Override

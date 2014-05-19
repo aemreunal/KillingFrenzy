@@ -3,9 +3,6 @@ package serverSide.server;
 import packets.Packet;
 import serverSide.client.Client;
 import serverSide.gamemechanics.Game;
-import serverSide.gamemechanics.Wall;
-import serverSide.gamemechanics.World;
-import serverSide.gamemechanics.Entity;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -217,16 +214,7 @@ public class Server implements Runnable {
         Client client = new Client(newkey, this);
         clientMap.put(newkey, client);
         game.clients.add(client);
-        broadcastWalls(client);
         System.out.println("New connection: " + newkey);
-    }
-
-    private void broadcastWalls(Client client) {
-        for (Entity entity : World.getInstance().idToEntityMap.values()) {
-            if(entity instanceof Wall) {
-                client.getServer().broadcast(entity.getCreationPacket());
-            }
-        }
     }
 
     protected void resetKey(SelectionKey key) {

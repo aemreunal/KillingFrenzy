@@ -49,7 +49,7 @@ public class JoinGameHandler extends PacketHandler {
             toSend.y = e.physicalAttributes.top;
             toSend.angle = 10.0f;
             toSend.entityID = e.getId();
-            toSend.entityType = EntityType.ENTITY_PLAYER;
+            toSend.entityType = e.getType();
             client.sendPacket(toSend);
         }
     }

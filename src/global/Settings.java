@@ -80,8 +80,6 @@ public class Settings {
     public static final int KEY_WEST = KeyEvent.VK_A;
     public static final int KEY_EAST = KeyEvent.VK_D;
 
-    public static final int MOUSE_CLICK = -1;
-
     /**
      * Images (locations, etc.)
      */
@@ -109,11 +107,4 @@ public class Settings {
      */
 
     public static final String GUN_SOUND_FILE_PATH = "sounds/gunshot.wav";
-
-    /**
-     * Wall positions
-     */
-
-    public static final int[] WALL_XS = {60, 60, 60, 60, 60, 60, 60};
-    public static final int[] WALL_YS = {0, 10, 20, 30, 40, 50, 60};
 }
