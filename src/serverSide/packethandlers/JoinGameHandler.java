@@ -30,12 +30,7 @@ public class JoinGameHandler extends PacketHandler {
     }
 
     private void sendNewPlayer(Client client, Player player) {
-        CreateEntityPacket toSend = new CreateEntityPacket();
-        toSend.x = player.physicalAttributes.left;
-        toSend.y = player.physicalAttributes.top;
-        toSend.angle = 10.0f;
-        toSend.entityID = player.getId();
-        toSend.entityType = EntityType.ENTITY_PLAYER;
+        CreateEntityPacket toSend = player.getCreationPacket();
         toSend.isMine = true;
         client.sendPacket(toSend);
         toSend.isMine = false;
@@ -44,13 +39,7 @@ public class JoinGameHandler extends PacketHandler {
 
     private void sendMapInfo(Client client) {
         for (Entity e : World.getInstance().idToEntityMap.values()) {
-            CreateEntityPacket toSend = new CreateEntityPacket();
-            toSend.x = e.physicalAttributes.left;
-            toSend.y = e.physicalAttributes.top;
-            toSend.angle = 10.0f;
-            toSend.entityID = e.getId();
-            toSend.entityType = e.getType();
-            client.sendPacket(toSend);
+            client.sendPacket(e.getCreationPacket());
         }
     }
 
