@@ -31,6 +31,7 @@ public class GameLogic {
         for(int i = 0; i < x.length; i++){
             Wall wall = new Wall(x[i],y[i]);
             World.getInstance().addEntity(wall);
+            System.out.println("Wall coordinates: "+wall.physicalAttributes.left + " " +wall.physicalAttributes.right);
         }
     }
 

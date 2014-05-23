@@ -87,7 +87,7 @@ public class Settings {
     public static final String IMG_PATH = "images/";
 
     // Ground
-    public static final String GROUND_IMAGE_FILE_PATH = IMG_PATH + "mapSample.png";
+    public static final String GROUND_IMAGE_FILE_PATH = IMG_PATH + "grass.jpg";
 
     public static final Color DEFAULT_GROUND_COLOR = new Color(110, 133, 61);
     public static final Color DEFAULT_WALL_COLOR = Color.BLACK;

@@ -21,6 +21,8 @@ public class Player extends Entity implements Collidable {
         this.score = 0;
         this.health = Settings.PLAYER_MAX_HEALTH;
         type = EntityType.ENTITY_PLAYER;
+        this.physicalAttributes = new PhysicalAttributes(Settings.RESPAWN_POSITION_X, Settings.RESPAWN_POSITION_Y,
+                Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
     }
 
     public Bullet fireGun(int ownerID, float angle, float x,float y) {

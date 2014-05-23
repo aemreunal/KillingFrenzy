@@ -20,7 +20,7 @@ public class Wall extends Entity {
 
     public Wall(float xCoor, float yCoor) {
         physAttr.setxCoor(xCoor);
-        physAttr.setxCoor(yCoor);
+        physAttr.setyCoor(yCoor);
         try {
             wallBlockImage = ImageIO.read(new File(Settings.WALL_IMAGE_FILE_PATH));
         } catch (IOException e) {
@@ -34,8 +34,10 @@ public class Wall extends Entity {
     public void paint(Graphics g) {
         if (errorOccurred) {
             g.setColor(Settings.DEFAULT_WALL_COLOR);
+            g.fillRect((int) physAttr.getxCoor(), (int) physAttr.getyCoor(), Settings.WALL_BLOCK_SIZE, Settings.WALL_BLOCK_SIZE);
         } else {
             g.drawImage(wallBlockImage, (int) physAttr.getxCoor(), (int) physAttr.getyCoor(), Settings.WALL_BLOCK_SIZE, Settings.WALL_BLOCK_SIZE, null);
+            System.out.println("X is: " + physAttr.getxCoor() + " Y is: " + physAttr.getyCoor());
         }
     }
 }

@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class GameMap {
 	private static Scanner scanner;
-	private static int[] wallXCoordinates = new int[257];
-	private static int[] wallYCoordinates = new int[257];
+	private static int[] wallXCoordinates = new int[5];
+	private static int[] wallYCoordinates = new int[5];
 	public GameMap() {
 
 		try {
