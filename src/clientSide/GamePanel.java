@@ -63,9 +63,7 @@ public class GamePanel extends JPanel {
         World world = World.getInstance();
         world.getGround().paint(g);
         for (Entity entity : world.getEntities()) {
-//            if(!(entity instanceof Wall)) {
-                entity.paint(g);
-//            }
+            entity.paint(g);
         }
     }
 
