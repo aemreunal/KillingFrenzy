@@ -8,13 +8,13 @@ package clientSide.processors;
 
 import clientSide.Client;
 import clientSide.GamePanel;
-import global.Settings;
 import clientSide.packetHandlers.CreateEntityHandler;
 import clientSide.packetHandlers.DestroyEntityHandler;
 import clientSide.packetHandlers.PacketHandler;
 import clientSide.packetHandlers.UpdateEntityHandler;
-import packets.Packet;
 import global.PacketType;
+import global.Settings;
+import packets.Packet;
 
 import java.util.EnumMap;
 import java.util.concurrent.TimeUnit;

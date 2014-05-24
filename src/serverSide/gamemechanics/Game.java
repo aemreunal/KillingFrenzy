@@ -1,7 +1,7 @@
 package serverSide.gameMechanics;
 
-import packets.Packet;
 import global.PacketType;
+import packets.Packet;
 import serverSide.client.Client;
 import serverSide.packetHandlers.*;
 import serverSide.server.Server;
@@ -51,7 +51,7 @@ public class Game {
 
     public void updateClients() {
         Iterator<Client> clientIterator = clients.iterator();
-        while(clientIterator.hasNext()) {
+        while (clientIterator.hasNext()) {
             Client client = clientIterator.next();
             if (!client.getSocket().isValid()) {
                 clientIterator.remove();

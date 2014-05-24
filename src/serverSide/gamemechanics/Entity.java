@@ -42,15 +42,15 @@ public abstract class Entity {
         this.id = id;
     }
 
-    public void die(){
+    public void die() {
         isAlive = false;
     }
 
-    public boolean isAlive(){
+    public boolean isAlive() {
         return this.isAlive;
     }
 
-    public void setAlive(boolean isAlive){
+    public void setAlive(boolean isAlive) {
         this.isAlive = isAlive;
     }
 

@@ -13,9 +13,9 @@ public class Wall extends Entity implements Collidable {
         this.physicalAttributes = new PhysicalAttributes(x, y, Settings.WALL_BLOCK_SIZE, Settings.WALL_BLOCK_SIZE);
     }
 
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
 
-	}
+    }
 }

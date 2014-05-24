@@ -25,7 +25,7 @@ public class Player extends Entity implements Collidable {
                 Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
     }
 
-    public Bullet fireGun(int ownerID, float angle, float x,float y) {
+    public Bullet fireGun(int ownerID, float angle, float x, float y) {
         Bullet bullet = new Bullet(ownerID, angle, x, y);
         World.getInstance().addEntity(bullet);
         return bullet;
@@ -111,7 +111,7 @@ public class Player extends Entity implements Collidable {
         return packet;
     }
 
-    public void respawnPlayer(){
+    public void respawnPlayer() {
         this.setAlive(true);
         this.health = Settings.PLAYER_MAX_HEALTH;
         this.physicalAttributes = new PhysicalAttributes(Settings.RESPAWN_POSITION_X, Settings.RESPAWN_POSITION_Y,

@@ -28,7 +28,7 @@ public class World {
         idToEntityMap.put(entity.getId(), entity);
     }
 
-    public void removeEntity(Entity entity){
+    public void removeEntity(Entity entity) {
         idToEntityMap.remove(entity.getId());
     }
 

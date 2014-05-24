@@ -6,37 +6,37 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameMap {
-	private Scanner scanner;
-	private ArrayList<Integer> wallXCoordinates;
-	private ArrayList<Integer> wallYCoordinates;
+    private Scanner scanner;
+    private ArrayList<Integer> wallXCoordinates;
+    private ArrayList<Integer> wallYCoordinates;
 
-	public GameMap() {
+    public GameMap() {
         wallXCoordinates = new ArrayList<>();
         wallYCoordinates = new ArrayList<>();
 
-		try {
-			scanner = new Scanner(new File("Mapdata.txt"));
+        try {
+            scanner = new Scanner(new File("Mapdata.txt"));
 
-			while (scanner.hasNextInt()) {
-				wallXCoordinates.add(scanner.nextInt());
-				wallYCoordinates.add(scanner.nextInt());
-			}
+            while (scanner.hasNextInt()) {
+                wallXCoordinates.add(scanner.nextInt());
+                wallYCoordinates.add(scanner.nextInt());
+            }
 
-		} catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.err.println("Map file not found! No walls will be present.");
 //			e.printStackTrace();
-		}
-	}
+        }
+    }
 
-	public Integer[] getWallXCoordinates() {
+    public Integer[] getWallXCoordinates() {
         Integer[] xCoordinates = new Integer[wallXCoordinates.size()];
         xCoordinates = wallXCoordinates.toArray(xCoordinates);
         return xCoordinates;
-	}
+    }
 
-	public Integer[] getWallYCoordinates() {
+    public Integer[] getWallYCoordinates() {
         Integer[] yCoordinates = new Integer[wallYCoordinates.size()];
         yCoordinates = wallYCoordinates.toArray(yCoordinates);
         return yCoordinates;
-	}
+    }
 }

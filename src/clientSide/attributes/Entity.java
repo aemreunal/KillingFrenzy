@@ -42,7 +42,7 @@ public abstract class Entity {
         if (updatePacket.entityID != World.getThisPlayer().getId()) {
             physAttr.setAngle(updatePacket.angle);
         }
-        if(this instanceof Player) {
+        if (this instanceof Player) {
             Player thisPlayer = (Player) this;
             thisPlayer.setHealth(updatePacket.health);
             thisPlayer.setScore(updatePacket.score);

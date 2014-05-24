@@ -7,9 +7,9 @@ package clientSide.processors;
  */
 
 import clientSide.Client;
-import global.Settings;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
+import global.Settings;
 import packets.AngleUpdatePacket;
 
 import java.util.concurrent.TimeUnit;
