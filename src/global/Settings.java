@@ -60,7 +60,7 @@ public class Settings {
     public static final int PLAYER_ANIMATION_SPEED = (int) ((70 * PLAYER_SPEED) / FPS);
 
     // Bullet
-    public static final int BULLET_SPEED = 5;
+    public static final int BULLET_SPEED = 8;
 
     public static final float TEST_ERROR_ALLOWANCE = 0.0001f;
 
