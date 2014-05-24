@@ -1,4 +1,4 @@
-package serverSide.packethandlers;
+package serverSide.packetHandlers;
 
 import packets.Packet;
 import serverSide.client.Client;

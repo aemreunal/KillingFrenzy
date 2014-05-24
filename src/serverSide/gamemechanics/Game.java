@@ -3,7 +3,7 @@ package serverSide.gameMechanics;
 import packets.Packet;
 import global.PacketType;
 import serverSide.client.Client;
-import serverSide.packethandlers.*;
+import serverSide.packetHandlers.*;
 import serverSide.server.Server;
 
 import java.util.EnumMap;

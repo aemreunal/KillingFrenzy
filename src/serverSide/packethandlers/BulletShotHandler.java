@@ -1,4 +1,4 @@
-package serverSide.packethandlers;
+package serverSide.packetHandlers;
 
 import packets.BulletShotPacket;
 import packets.Packet;

@@ -33,6 +33,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     public void mousePressed(MouseEvent e) {
         gamePanel.hideCursor();
         gamePanel.updateCrosshair(e.getX(), e.getY());
+        getPlayer().updateAngle(e.getX(), e.getY());
         shootBullet();
     }
 
@@ -55,6 +56,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     public void mouseDragged(MouseEvent e) {
         gamePanel.hideCursor();
         gamePanel.updateCrosshair(e.getX(), e.getY());
+        getPlayer().updateAngle(e.getX(), e.getY());
     }
 
     @Override

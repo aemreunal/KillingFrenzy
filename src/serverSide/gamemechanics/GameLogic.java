@@ -53,8 +53,6 @@ public class GameLogic {
             for (Entity e2 : entities) {
                 if (!(e1.type == EntityType.ENTITY_WALL && e2.type == EntityType.ENTITY_WALL) && !e1.equals(e2)) {
                     if (existsACollisionBetween(e1, e2)) {
-                        System.out.println(e1.getClass());
-                        System.out.println(e2.getClass());
                         handleCollision(e1, e2);
                     }
                 }
