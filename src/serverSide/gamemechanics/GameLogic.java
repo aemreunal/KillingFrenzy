@@ -1,12 +1,10 @@
-package serverSide.gamemechanics;
+package serverSide.gameMechanics;
 
 import global.EntityType;
 import packets.DestroyEntityPacket;
-import packets.Packet;
 import serverSide.client.Client;
 import serverSide.server.Server;
 
-import java.nio.channels.SelectionKey;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -20,23 +18,18 @@ public class GameLogic {
     private Server server;
     private List<Client> clients;
 
-    public GameLogic(Server server){
+    public GameLogic(Server server) {
         this.server = server;
         GameMap map = new GameMap();
         this.addWalls(map.getWallXCoordinates(), map.getWallYCoordinates());
 
     }
 
-    public void addWalls(int[] x, int[] y){
-        for(int i = 0; i < x.length; i++){
-            Wall wall = new Wall(x[i],y[i]);
+    public void addWalls(Integer[] x, Integer[] y) {
+        for (int i = 0; i < x.length; i++) {
+            Wall wall = new Wall(x[i].intValue(), y[i].intValue());
             World.getInstance().addEntity(wall);
-            System.out.println("Wall coordinates: "+wall.physicalAttributes.left + " " +wall.physicalAttributes.right);
         }
-    }
-
-    public void receivePacket(Packet packet, SelectionKey key) {
-
     }
 
     public void update() {
@@ -47,7 +40,7 @@ public class GameLogic {
         checkForAllCollisions(entities); //Don't mind the ugliness
 
         for (Entity e : entities) {
-            if(!(e instanceof Wall)) {
+            if (!(e instanceof Wall)) {
                 server.broadcast(e.getUpdatePacket());
             }
         }
@@ -60,7 +53,6 @@ public class GameLogic {
             for (Entity e2 : entities) {
                 if (!(e1.type == EntityType.ENTITY_WALL && e2.type == EntityType.ENTITY_WALL) && !e1.equals(e2)) {
                     if (existsACollisionBetween(e1, e2)) {
-                        System.out.println("Collision!");
                         System.out.println(e1.getClass());
                         System.out.println(e2.getClass());
                         handleCollision(e1, e2);
@@ -71,7 +63,7 @@ public class GameLogic {
         }
     }
 
-    private void cleanDeadObjects(){
+    private void cleanDeadObjects() {
         Iterator<java.util.Map.Entry<Integer, Entity>> iter = World.getInstance().idToEntityMap.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<Integer, Entity> entry = iter.next();
@@ -90,23 +82,18 @@ public class GameLogic {
     private void handleCollision(Entity entity1, Entity entity2) {
         if (isBulletPlayerCollision(entity1, entity2)) {
             handleBulletPlayerCollision(entity1, entity2);
-            System.out.println("BULLET - PLAYER!");
         } else if (isBulletWallCollision(entity1, entity2)) {
             handleBulletWallCollision(entity1, entity2);
-            System.out.println("BULLET - WALL!");
         } else if (isPlayerWallCollision(entity1, entity2)) {
             handlePlayerWallCollision(entity1, entity2);
-            System.out.println("PLAYER - WALL!");
         }
     }
 
     private void handleBulletPlayerCollision(Entity entity1, Entity entity2) { //TODO handle deaths
         if (entity1 instanceof Bullet) {
             ((Bullet) entity1).damagePlayer((Player) entity2);
-            System.out.println("SHOT!");
         } else {
             ((Bullet) entity2).damagePlayer((Player) entity1);
-            System.out.println("SHOT!");
         }
     }
 

@@ -1,4 +1,4 @@
-package serverSide.gamemechanics;
+package serverSide.gameMechanics;
 
 import java.net.BindException;
 
@@ -15,5 +15,5 @@ public class ServerTest {
         server.run();
         //Thread.sleep(2000);
         assertEquals(Server.State.RUNNING, server.getState().get());
-    } 
+    }
 }

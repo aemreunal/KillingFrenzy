@@ -2,7 +2,7 @@ package serverSide.server;
 
 import packets.Packet;
 import serverSide.client.Client;
-import serverSide.gamemechanics.Game;
+import serverSide.gameMechanics.Game;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

@@ -1,7 +1,7 @@
 package serverSide.client;
 
 import packets.Packet;
-import serverSide.gamemechanics.Player;
+import serverSide.gameMechanics.Player;
 import serverSide.server.Server;
 
 import java.nio.channels.SelectionKey;
@@ -22,7 +22,7 @@ public class Client {
         packetQueue = new ConcurrentLinkedQueue<Packet>();
         keys = new boolean[256];
     }
-    
+
     public SelectionKey getSocket() {
         return socket;
     }
@@ -34,7 +34,7 @@ public class Client {
     public void sendPacket(Packet pk) {
         server.sendPacket(socket, pk);
     }
-    
+
     public Server getServer() {
         return server;
     }

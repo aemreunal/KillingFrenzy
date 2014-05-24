@@ -1,4 +1,4 @@
-package serverSide.gamemechanics;
+package serverSide.gameMechanics;
 
 import packets.Packet;
 import global.PacketType;
@@ -20,7 +20,7 @@ public class Game {
         clients = new CopyOnWriteArrayList<>();
         initPacketHandlers(server);
     }
-    
+
     public synchronized void disconnectClient(Client client) {
         client.player.setAlive(false);
         clients.remove(client);

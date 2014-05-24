@@ -1,33 +1,42 @@
-package serverSide.gamemechanics;
+package serverSide.gameMechanics;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameMap {
-	private static Scanner scanner;
-	private static int[] wallXCoordinates = new int[5];
-	private static int[] wallYCoordinates = new int[5];
+	private Scanner scanner;
+	private ArrayList<Integer> wallXCoordinates;
+	private ArrayList<Integer> wallYCoordinates;
+
 	public GameMap() {
+        wallXCoordinates = new ArrayList<>();
+        wallYCoordinates = new ArrayList<>();
 
 		try {
 			scanner = new Scanner(new File("Mapdata.txt"));
 
-			int i = 0;
 			while (scanner.hasNextInt()) {
-				wallXCoordinates[i] = scanner.nextInt();
-				wallYCoordinates[i] = scanner.nextInt();
-				i++;
+				wallXCoordinates.add(scanner.nextInt());
+				wallYCoordinates.add(scanner.nextInt());
 			}
+
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+            System.err.println("Map file not found! No walls will be present.");
+//			e.printStackTrace();
 		}
 	}
-	public int[] getWallXCoordinates() {
-		return wallXCoordinates;
+
+	public Integer[] getWallXCoordinates() {
+        Integer[] xCoordinates = new Integer[wallXCoordinates.size()];
+        xCoordinates = wallXCoordinates.toArray(xCoordinates);
+        return xCoordinates;
 	}
 
-	public int[] getWallYCoordinates() {
-		return wallYCoordinates;
+	public Integer[] getWallYCoordinates() {
+        Integer[] yCoordinates = new Integer[wallYCoordinates.size()];
+        yCoordinates = wallYCoordinates.toArray(yCoordinates);
+        return yCoordinates;
 	}
 }

@@ -1,4 +1,4 @@
-package serverSide.gamemechanics;
+package serverSide.gameMechanics;
 
 public class PhysicalAttributes {
     public float left;

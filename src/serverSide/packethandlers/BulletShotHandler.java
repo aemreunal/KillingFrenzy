@@ -3,8 +3,7 @@ package serverSide.packethandlers;
 import packets.BulletShotPacket;
 import packets.Packet;
 import serverSide.client.Client;
-import serverSide.gamemechanics.Bullet;
-import serverSide.gamemechanics.World;
+import serverSide.gameMechanics.Bullet;
 
 public class BulletShotHandler extends PacketHandler {
 

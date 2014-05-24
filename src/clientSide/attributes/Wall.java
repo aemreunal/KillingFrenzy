@@ -37,7 +37,6 @@ public class Wall extends Entity {
             g.fillRect((int) physAttr.getxCoor(), (int) physAttr.getyCoor(), Settings.WALL_BLOCK_SIZE, Settings.WALL_BLOCK_SIZE);
         } else {
             g.drawImage(wallBlockImage, (int) physAttr.getxCoor(), (int) physAttr.getyCoor(), Settings.WALL_BLOCK_SIZE, Settings.WALL_BLOCK_SIZE, null);
-            System.out.println("X is: " + physAttr.getxCoor() + " Y is: " + physAttr.getyCoor());
         }
     }
 }

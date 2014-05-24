@@ -1,4 +1,4 @@
-package serverSide.gamemechanics;
+package serverSide.gameMechanics;
 
 import java.util.TreeMap;
 

@@ -1,4 +1,4 @@
-package serverSide.gamemechanics;
+package serverSide.gameMechanics;
 
 /**
  * Created by Eren Sezener
