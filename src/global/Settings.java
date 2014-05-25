@@ -107,4 +107,5 @@ public class Settings {
      */
 
     public static final String GUN_SOUND_FILE_PATH = "sounds/gunshot.wav";
+    public static final String DEATH_SOUND_FILE_PATH = "sounds/death.wav";
 }
