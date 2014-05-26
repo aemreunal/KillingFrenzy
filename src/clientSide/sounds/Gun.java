@@ -1,11 +1,10 @@
 package clientSide.sounds;
 
+import global.Settings;
+
 import java.io.File;
 import java.io.IOException;
-
 import javax.sound.sampled.*;
-
-import global.Settings;
 
 public class Gun {
     private static File soundFile;

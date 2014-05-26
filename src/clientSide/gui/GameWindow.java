@@ -7,11 +7,11 @@ package clientSide.gui;
  * emre.unal@ozu.edu.tr
  */
 
-import javax.swing.*;
-
 import clientSide.Client;
 import clientSide.controllerHandlers.KeyboardHandler;
 import global.Settings;
+
+import javax.swing.*;
 
 public class GameWindow extends JFrame {
     public GameWindow(Client client, GamePanel panel) {

@@ -1,14 +1,14 @@
 package clientSide.controllerHandlers;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import packets.KeyPressPacket;
-import packets.KeyReleasePacket;
 import clientSide.Client;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
 import global.Settings;
+import packets.KeyPressPacket;
+import packets.KeyReleasePacket;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /*
  * This code belongs to:

@@ -1,8 +1,8 @@
 package clientSide.packetHandlers;
 
+import clientSide.attributes.World;
 import packets.DestroyEntityPacket;
 import packets.Packet;
-import clientSide.attributes.World;
 
 public class DestroyEntityHandler extends PacketHandler {
 

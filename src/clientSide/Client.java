@@ -11,7 +11,6 @@ import global.Settings;
 import packets.JoinGamePacket;
 import packets.Packet;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -24,6 +23,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.swing.*;
 
 public class Client extends Thread implements Runnable {
     public static InetAddress IP;

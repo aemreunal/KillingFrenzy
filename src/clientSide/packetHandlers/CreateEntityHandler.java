@@ -1,10 +1,10 @@
 package clientSide.packetHandlers;
 
-import packets.CreateEntityPacket;
-import packets.Packet;
 import clientSide.attributes.Bullet;
 import clientSide.attributes.Player;
 import clientSide.attributes.Wall;
+import packets.CreateEntityPacket;
+import packets.Packet;
 
 public class CreateEntityHandler extends PacketHandler {
 

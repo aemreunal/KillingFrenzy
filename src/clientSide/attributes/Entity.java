@@ -1,9 +1,9 @@
 package clientSide.attributes;
 
+import packets.UpdateEntityPacket;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
-import packets.UpdateEntityPacket;
 
 /**
  * Created by Eren Sezener

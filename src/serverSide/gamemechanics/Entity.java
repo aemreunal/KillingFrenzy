@@ -1,8 +1,8 @@
 package serverSide.gamemechanics;
 
+import global.EntityType;
 import packets.CreateEntityPacket;
 import packets.UpdateEntityPacket;
-import global.EntityType;
 
 /**
  * Created by Eren Sezener

@@ -7,14 +7,13 @@ package clientSide.attributes;
  * emre.unal@ozu.edu.tr
  */
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
-import org.junit.Test;
-
-import packets.UpdateEntityPacket;
 import clientSide.packetHandlers.UpdateEntityHandler;
 import global.Settings;
+import org.junit.Test;
+import packets.UpdateEntityPacket;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class PhysicalAttributesTest {
 

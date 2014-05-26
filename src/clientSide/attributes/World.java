@@ -1,10 +1,10 @@
 package clientSide.attributes;
 
+import clientSide.graphics.WorldGround;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import clientSide.graphics.WorldGround;
 
 /**
  * Created by Eren Sezener

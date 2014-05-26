@@ -1,12 +1,12 @@
 package serverSide.client;
 
-import java.nio.channels.SelectionKey;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 import packets.Packet;
 import serverSide.gamemechanics.Player;
 import serverSide.server.Server;
+
+import java.nio.channels.SelectionKey;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Client {
     public Queue<Packet> packetQueue;

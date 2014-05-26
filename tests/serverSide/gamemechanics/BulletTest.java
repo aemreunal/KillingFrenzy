@@ -1,10 +1,9 @@
 package serverSide.gamemechanics;
 
-import static org.junit.Assert.assertTrue;
-
+import global.Settings;
 import org.junit.Test;
 
-import global.Settings;
+import static org.junit.Assert.assertTrue;
 
 public class BulletTest {
     Bullet bullet = new Bullet();

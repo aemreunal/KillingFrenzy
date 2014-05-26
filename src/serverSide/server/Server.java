@@ -1,5 +1,10 @@
 package serverSide.server;
 
+import global.Settings;
+import packets.Packet;
+import serverSide.client.Client;
+import serverSide.gamemechanics.Game;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -10,11 +15,6 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
-
-import packets.Packet;
-import serverSide.client.Client;
-import serverSide.gamemechanics.Game;
-import global.Settings;
 
 public class Server extends Thread implements Runnable {
     private final AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
@@ -57,7 +57,7 @@ public class Server extends Thread implements Runnable {
 
     private void runServer() throws Exception {
         keySelector.select(0);
-        for (Iterator<SelectionKey> i = keySelector.selectedKeys().iterator(); i.hasNext();) {
+        for (Iterator<SelectionKey> i = keySelector.selectedKeys().iterator(); i.hasNext(); ) {
             SelectionKey key = i.next();
             try {
                 i.remove();

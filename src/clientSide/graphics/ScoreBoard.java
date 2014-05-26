@@ -7,9 +7,9 @@ package clientSide.graphics;
  * emre.unal@ozu.edu.tr
  */
 
-import java.awt.*;
-
 import global.Settings;
+
+import java.awt.*;
 
 public class ScoreBoard {
     public static void paint(Graphics g, int score) {

@@ -1,14 +1,14 @@
 package serverSide.gamemechanics;
 
+import global.EntityType;
+import packets.DestroyEntityPacket;
+import serverSide.client.Client;
+import serverSide.server.Server;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import packets.DestroyEntityPacket;
-import serverSide.client.Client;
-import serverSide.server.Server;
-import global.EntityType;
 
 /**
  * Created by Eren Sezener

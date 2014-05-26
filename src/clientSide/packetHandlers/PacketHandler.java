@@ -1,8 +1,8 @@
 package clientSide.packetHandlers;
 
-import packets.Packet;
 import clientSide.attributes.Entity;
 import clientSide.attributes.World;
+import packets.Packet;
 
 public abstract class PacketHandler {
 

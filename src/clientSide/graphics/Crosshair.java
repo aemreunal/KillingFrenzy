@@ -1,8 +1,8 @@
 package clientSide.graphics;
 
-import java.awt.*;
-
 import global.Settings;
+
+import java.awt.*;
 
 /*
  * This code belongs to:
