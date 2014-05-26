@@ -1,4 +1,4 @@
-package serverSide.gameMechanics;
+package serverSide.gamemechanics;
 
 import java.io.File;
 import java.io.FileNotFoundException;

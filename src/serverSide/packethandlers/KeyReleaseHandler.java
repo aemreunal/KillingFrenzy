@@ -1,4 +1,4 @@
-package serverSide.packetHandlers;
+package serverSide.packethandlers;
 
 import packets.KeyReleasePacket;
 import packets.Packet;

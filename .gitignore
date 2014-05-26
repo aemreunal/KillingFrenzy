@@ -23,7 +23,7 @@ bin/
 
 *.xml
 
-.classpathl
+.classpath/
 /.classpath
 
 Backlogs/~*

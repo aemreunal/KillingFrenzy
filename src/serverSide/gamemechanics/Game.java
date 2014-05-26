@@ -1,9 +1,9 @@
-package serverSide.gameMechanics;
+package serverSide.gamemechanics;
 
 import global.PacketType;
 import packets.Packet;
 import serverSide.client.Client;
-import serverSide.packetHandlers.*;
+import serverSide.packethandlers.*;
 import serverSide.server.Server;
 
 import java.util.EnumMap;

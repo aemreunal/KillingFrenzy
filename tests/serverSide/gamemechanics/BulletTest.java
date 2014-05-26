@@ -1,4 +1,4 @@
-package serverSide.gameMechanics;
+package serverSide.gamemechanics;
 
 import global.Settings;
 import org.junit.Test;

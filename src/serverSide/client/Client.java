@@ -1,7 +1,7 @@
 package serverSide.client;
 
 import packets.Packet;
-import serverSide.gameMechanics.Player;
+import serverSide.gamemechanics.Player;
 import serverSide.server.Server;
 
 import java.nio.channels.SelectionKey;

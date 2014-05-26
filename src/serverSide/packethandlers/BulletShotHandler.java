@@ -1,9 +1,9 @@
-package serverSide.packetHandlers;
+package serverSide.packethandlers;
 
 import packets.BulletShotPacket;
 import packets.Packet;
 import serverSide.client.Client;
-import serverSide.gameMechanics.Bullet;
+import serverSide.gamemechanics.Bullet;
 
 public class BulletShotHandler extends PacketHandler {
 

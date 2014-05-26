@@ -1,4 +1,4 @@
-package serverSide.gameMechanics;
+package serverSide.gamemechanics;
 
 public class PlayerTest {
 /*

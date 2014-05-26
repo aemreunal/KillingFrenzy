@@ -1,13 +1,13 @@
-package serverSide.packetHandlers;
+package serverSide.packethandlers;
 
 import global.Settings;
 import packets.CreateEntityPacket;
 import packets.Packet;
 import serverSide.client.Client;
-import serverSide.gameMechanics.Entity;
-import serverSide.gameMechanics.PhysicalAttributes;
-import serverSide.gameMechanics.Player;
-import serverSide.gameMechanics.World;
+import serverSide.gamemechanics.Entity;
+import serverSide.gamemechanics.PhysicalAttributes;
+import serverSide.gamemechanics.Player;
+import serverSide.gamemechanics.World;
 import serverSide.server.Server;
 
 public class JoinGameHandler extends PacketHandler {
