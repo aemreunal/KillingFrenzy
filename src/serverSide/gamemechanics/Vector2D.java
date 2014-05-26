@@ -11,7 +11,7 @@ public class Vector2D {
     }
 
     /*
-    Creates a cartesian vector from polar coordinates
+     * Creates a cartesian vector from polar coordinates
      */
     public Vector2D(float angle) {
         speed = Settings.BULLET_SPEED;

@@ -1,6 +1,5 @@
 package serverSide.packethandlers;
 
-import global.Settings;
 import packets.CreateEntityPacket;
 import packets.Packet;
 import serverSide.client.Client;
@@ -9,6 +8,7 @@ import serverSide.gamemechanics.PhysicalAttributes;
 import serverSide.gamemechanics.Player;
 import serverSide.gamemechanics.World;
 import serverSide.server.Server;
+import global.Settings;
 
 public class JoinGameHandler extends PacketHandler {
     private Server server;

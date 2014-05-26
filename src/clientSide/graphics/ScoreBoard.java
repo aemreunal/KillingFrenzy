@@ -1,4 +1,5 @@
 package clientSide.graphics;
+
 /*
  * This code belongs to:
  * Ahmet Emre Unal
@@ -6,9 +7,9 @@ package clientSide.graphics;
  * emre.unal@ozu.edu.tr
  */
 
-import global.Settings;
-
 import java.awt.*;
+
+import global.Settings;
 
 public class ScoreBoard {
     public static void paint(Graphics g, int score) {

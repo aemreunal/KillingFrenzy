@@ -1,4 +1,5 @@
 package clientSide.processors;
+
 /*
  * This code belongs to:
  * Ahmet Emre Unal
@@ -6,6 +7,10 @@ package clientSide.processors;
  * emre.unal@ozu.edu.tr
  */
 
+import java.util.EnumMap;
+import java.util.concurrent.TimeUnit;
+
+import packets.Packet;
 import clientSide.Client;
 import clientSide.gui.GamePanel;
 import clientSide.packetHandlers.CreateEntityHandler;
@@ -14,10 +19,6 @@ import clientSide.packetHandlers.PacketHandler;
 import clientSide.packetHandlers.UpdateEntityHandler;
 import global.PacketType;
 import global.Settings;
-import packets.Packet;
-
-import java.util.EnumMap;
-import java.util.concurrent.TimeUnit;
 
 public class GameMechanicsProcessor extends Thread implements Runnable {
     private Client client;

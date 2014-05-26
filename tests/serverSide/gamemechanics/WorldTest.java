@@ -1,16 +1,16 @@
 package serverSide.gamemechanics;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
+
+import org.junit.Test;
 
 public class WorldTest {
     World world = World.getInstance();
 
     @Test
     public void testGetInstance() throws Exception {
-        //Can only create one instance
+        // Can only create one instance
         World world2 = World.getInstance();
         assertSame(world, world2);
     }

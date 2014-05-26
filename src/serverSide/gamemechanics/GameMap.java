@@ -24,7 +24,7 @@ public class GameMap {
 
         } catch (FileNotFoundException e) {
             System.err.println("Map file not found! No walls will be present.");
-//			e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 

@@ -1,5 +1,9 @@
 package clientSide.gui;
 
+import java.awt.*;
+
+import javax.swing.*;
+
 import clientSide.Client;
 import clientSide.attributes.Entity;
 import clientSide.attributes.Player;
@@ -10,9 +14,6 @@ import clientSide.graphics.Crosshair;
 import clientSide.graphics.HealthBar;
 import clientSide.graphics.ScoreBoard;
 import global.Settings;
-
-import javax.swing.*;
-import java.awt.*;
 
 /*
  * This code belongs to:

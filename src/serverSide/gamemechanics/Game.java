@@ -1,14 +1,14 @@
 package serverSide.gamemechanics;
 
-import global.PacketType;
+import java.util.EnumMap;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import packets.Packet;
 import serverSide.client.Client;
 import serverSide.packethandlers.*;
 import serverSide.server.Server;
-
-import java.util.EnumMap;
-import java.util.Iterator;
-import java.util.concurrent.CopyOnWriteArrayList;
+import global.PacketType;
 
 public class Game {
     public CopyOnWriteArrayList<Client> clients;

@@ -1,8 +1,8 @@
 package clientSide.packetHandlers;
 
-import clientSide.attributes.Entity;
 import packets.Packet;
 import packets.UpdateEntityPacket;
+import clientSide.attributes.Entity;
 
 public class UpdateEntityHandler extends PacketHandler {
 

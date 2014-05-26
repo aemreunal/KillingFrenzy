@@ -1,10 +1,11 @@
 package clientSide.sounds;
 
-import global.Settings;
-
-import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+
+import javax.sound.sampled.*;
+
+import global.Settings;
 
 public class Death {
     private static File soundFile;

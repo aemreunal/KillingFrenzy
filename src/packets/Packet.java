@@ -1,8 +1,8 @@
 package packets;
 
-import global.PacketType;
-
 import java.io.*;
+
+import global.PacketType;
 
 /* Packet ID (type)  - Packet Name
  * 0x00 - KeyPressPacket

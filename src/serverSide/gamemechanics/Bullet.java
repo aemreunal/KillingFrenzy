@@ -37,15 +37,14 @@ public class Bullet extends Entity {
 
     public void damagePlayer(Player player) {
         player.decreaseHealth(Settings.BULLET_DAMAGE, ownerID);
-        this.die(); //Destroy the bullet
+        this.die(); // Destroy the bullet
     }
 
     @Override
     public void update() {
         super.physicalAttributes.updateVerticalPosition(getSpeedY());
         super.physicalAttributes.updateHorizontalPosition(getSpeedX());
-        if (physicalAttributes.left > Settings.GAME_WINDOW_WIDTH || physicalAttributes.left < 0 ||
-                physicalAttributes.top > Settings.GAME_WINDOW_HEIGHT || physicalAttributes.top < 0) {
+        if (physicalAttributes.left > Settings.GAME_WINDOW_WIDTH || physicalAttributes.left < 0 || physicalAttributes.top > Settings.GAME_WINDOW_HEIGHT || physicalAttributes.top < 0) {
             this.die();
         }
     }

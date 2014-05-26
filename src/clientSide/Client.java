@@ -115,7 +115,6 @@ public class Client extends Thread implements Runnable {
         receiveBuffer = ByteBuffer.allocate(1000);
     }
 
-
     private List<ByteBuffer> readIncomingMessage(SocketChannel sock) {
         try {
             if (sock.read(receiveBuffer) == -1) {
@@ -176,7 +175,7 @@ public class Client extends Thread implements Runnable {
     public synchronized boolean sendPacket(Packet pk) {
         byte[] bufferByteArray = pk.toByteArray();
         int bufferLength = bufferByteArray.length;
-        byte[] lengthBytes = new byte[]{(byte) ((bufferLength >>> 8) & 0xff), (byte) (bufferLength & 0xff)};
+        byte[] lengthBytes = new byte[] { (byte) ((bufferLength >>> 8) & 0xff), (byte) (bufferLength & 0xff) };
         try {
             byte[] outBuffer = new byte[bufferLength + Settings.PACKET_HEADER_BYTES];
             System.arraycopy(lengthBytes, 0, outBuffer, 0, Settings.PACKET_HEADER_BYTES);

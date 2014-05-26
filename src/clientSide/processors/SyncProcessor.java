@@ -1,4 +1,5 @@
 package clientSide.processors;
+
 /*
  * This code belongs to:
  * Ahmet Emre Unal
@@ -6,13 +7,13 @@ package clientSide.processors;
  * emre.unal@ozu.edu.tr
  */
 
+import java.util.concurrent.TimeUnit;
+
+import packets.AngleUpdatePacket;
 import clientSide.Client;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
 import global.Settings;
-import packets.AngleUpdatePacket;
-
-import java.util.concurrent.TimeUnit;
 
 public class SyncProcessor extends Thread implements Runnable {
     private Client client;

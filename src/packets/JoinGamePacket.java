@@ -1,6 +1,5 @@
 package packets;
 
-
 import global.PacketType;
 
 public class JoinGamePacket extends Packet {

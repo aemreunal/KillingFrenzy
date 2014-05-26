@@ -1,6 +1,5 @@
 package packets;
 
-
 import global.PacketType;
 
 public class KeyPressPacket extends Packet {

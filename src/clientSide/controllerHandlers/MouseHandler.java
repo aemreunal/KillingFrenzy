@@ -1,15 +1,15 @@
 package clientSide.controllerHandlers;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
+import packets.BulletShotPacket;
 import clientSide.Client;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
 import clientSide.gui.GamePanel;
 import clientSide.sounds.Gun;
-import packets.BulletShotPacket;
-
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 /*
  * This code belongs to:

@@ -1,4 +1,5 @@
 package clientSide.attributes;
+
 /*
  * This code belongs to:
  * Ahmet Emre Unal
@@ -6,17 +7,18 @@ package clientSide.attributes;
  * emre.unal@ozu.edu.tr
  */
 
-import clientSide.sounds.Death;
-import global.Settings;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+import clientSide.sounds.Death;
+import global.Settings;
 
 public class Player extends Entity {
     protected BufferedImage standingImage;
@@ -99,7 +101,7 @@ public class Player extends Entity {
         float angle = getAngle();
         float heightOffset = (float) (imageWidth * Math.sin(angle));
         float widthOffset = (float) (imageWidth * Math.cos(angle));
-        return new float[]{imageCenterX + widthOffset, imageCenterY + heightOffset, angle};
+        return new float[] { imageCenterX + widthOffset, imageCenterY + heightOffset, angle };
     }
 
     public float getHealth() {

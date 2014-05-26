@@ -8,7 +8,7 @@ import java.util.TreeMap;
 public class World {
     private static World world;
     public TreeMap<Integer, Entity> idToEntityMap;
-    private int nextAvailableId; //Id of new entitites
+    private int nextAvailableId; // Id of new entitites
 
     private World() {
         idToEntityMap = new TreeMap<Integer, Entity>();

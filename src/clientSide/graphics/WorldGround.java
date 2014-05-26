@@ -1,12 +1,13 @@
 package clientSide.graphics;
 
-import global.Settings;
-
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import global.Settings;
 
 /*
  * This code belongs to:
@@ -47,6 +48,5 @@ public class WorldGround {
             g.fillRect(0, 0, Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT);
         }
     }
-
 
 }

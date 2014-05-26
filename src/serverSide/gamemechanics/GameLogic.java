@@ -1,14 +1,14 @@
 package serverSide.gamemechanics;
 
-import global.EntityType;
-import packets.DestroyEntityPacket;
-import serverSide.client.Client;
-import serverSide.server.Server;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import packets.DestroyEntityPacket;
+import serverSide.client.Client;
+import serverSide.server.Server;
+import global.EntityType;
 
 /**
  * Created by Eren Sezener
@@ -37,7 +37,7 @@ public class GameLogic {
         for (Entity e : entities) {
             e.update();
         }
-        checkForAllCollisions(entities); //Don't mind the ugliness
+        checkForAllCollisions(entities); // Don't mind the ugliness
 
         for (Entity e : entities) {
             if (!(e instanceof Wall)) {
@@ -76,7 +76,7 @@ public class GameLogic {
         }
     }
 
-    //There are only 3 types of collisions
+    // There are only 3 types of collisions
     private void handleCollision(Entity entity1, Entity entity2) {
         if (isBulletPlayerCollision(entity1, entity2)) {
             handleBulletPlayerCollision(entity1, entity2);
@@ -87,7 +87,7 @@ public class GameLogic {
         }
     }
 
-    private void handleBulletPlayerCollision(Entity entity1, Entity entity2) { //TODO handle deaths
+    private void handleBulletPlayerCollision(Entity entity1, Entity entity2) { // TODO handle deaths
         if (entity1 instanceof Bullet) {
             ((Bullet) entity1).damagePlayer((Player) entity2);
         } else {
@@ -103,7 +103,6 @@ public class GameLogic {
         }
 
     }
-
 
     private void handlePlayerWallCollision(Entity entity1, Entity entity2) {
         if (entity1 instanceof Player) {

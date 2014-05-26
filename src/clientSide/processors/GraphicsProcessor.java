@@ -1,10 +1,10 @@
 package clientSide.processors;
 
+import java.util.concurrent.TimeUnit;
+
 import clientSide.Client;
 import clientSide.gui.GamePanel;
 import global.Settings;
-
-import java.util.concurrent.TimeUnit;
 
 /*
  * This code belongs to:

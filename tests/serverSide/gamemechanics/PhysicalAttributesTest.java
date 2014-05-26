@@ -1,8 +1,8 @@
 package serverSide.gamemechanics;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 public class PhysicalAttributesTest {
     PhysicalAttributes attr = new PhysicalAttributes(10, 20, 20, 20);

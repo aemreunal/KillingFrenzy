@@ -1,15 +1,16 @@
 package serverSide.gamemechanics;
 
+import packets.UpdateEntityPacket;
 import global.EntityType;
 import global.Settings;
-import packets.UpdateEntityPacket;
 
 /**
  * Created by Eren Sezener
  */
 public class Player extends Entity implements Collidable {
     private int health;
-    private boolean leftKeyPress, rightKeyPressed, upKeyPressed, downKeyPressed;
+    private boolean leftKeyPress, rightKeyPressed, upKeyPressed,
+            downKeyPressed;
     private int score;
     private float prev_X, prev_Y;
 
@@ -21,8 +22,7 @@ public class Player extends Entity implements Collidable {
         this.score = 0;
         this.health = Settings.PLAYER_MAX_HEALTH;
         type = EntityType.ENTITY_PLAYER;
-        this.physicalAttributes = new PhysicalAttributes(Settings.RESPAWN_POSITION_X, Settings.RESPAWN_POSITION_Y,
-                Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
+        this.physicalAttributes = new PhysicalAttributes(Settings.RESPAWN_POSITION_X, Settings.RESPAWN_POSITION_Y, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
     }
 
     public Bullet fireGun(int ownerID, float angle, float x, float y) {
@@ -104,8 +104,7 @@ public class Player extends Entity implements Collidable {
     }
 
     public UpdateEntityPacket createUpdatePacket() {
-        UpdateEntityPacket packet = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top,
-                physicalAttributes.angle, isMoving());
+        UpdateEntityPacket packet = new UpdateEntityPacket(physicalAttributes.left, physicalAttributes.top, physicalAttributes.angle, isMoving());
         packet.health = health;
         packet.score = score;
         return packet;
@@ -114,8 +113,7 @@ public class Player extends Entity implements Collidable {
     public void respawnPlayer() {
         this.setAlive(true);
         this.health = Settings.PLAYER_MAX_HEALTH;
-        this.physicalAttributes = new PhysicalAttributes(Settings.RESPAWN_POSITION_X, Settings.RESPAWN_POSITION_Y,
-                Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
+        this.physicalAttributes = new PhysicalAttributes(Settings.RESPAWN_POSITION_X, Settings.RESPAWN_POSITION_Y, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
         this.changeScore(Settings.DYING_PENALTY);
     }
 
@@ -126,7 +124,6 @@ public class Player extends Entity implements Collidable {
     public void setScore(int score) {
         this.score = score;
     }
-
 
     public void changeScore(int score) {
         this.score += score;
