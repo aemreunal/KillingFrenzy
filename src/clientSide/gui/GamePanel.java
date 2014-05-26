@@ -1,5 +1,6 @@
-package clientSide;
+package clientSide.gui;
 
+import clientSide.Client;
 import clientSide.attributes.Entity;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
@@ -21,6 +22,8 @@ import java.awt.*;
  */
 
 public class GamePanel extends JPanel {
+//    private JPanel mainPanel;
+
     private float mouseX = 100;
     private float mouseY = 100;
 

@@ -1,7 +1,7 @@
 package clientSide.controllerHandlers;
 
 import clientSide.Client;
-import clientSide.GamePanel;
+import clientSide.gui.GamePanel;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
 import clientSide.sounds.Gun;

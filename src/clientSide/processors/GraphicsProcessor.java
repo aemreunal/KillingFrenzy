@@ -1,7 +1,7 @@
 package clientSide.processors;
 
 import clientSide.Client;
-import clientSide.GamePanel;
+import clientSide.gui.GamePanel;
 import global.Settings;
 
 import java.util.concurrent.TimeUnit;

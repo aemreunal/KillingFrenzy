@@ -7,7 +7,7 @@ package clientSide.processors;
  */
 
 import clientSide.Client;
-import clientSide.GamePanel;
+import clientSide.gui.GamePanel;
 import clientSide.packetHandlers.CreateEntityHandler;
 import clientSide.packetHandlers.DestroyEntityHandler;
 import clientSide.packetHandlers.PacketHandler;

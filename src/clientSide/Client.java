@@ -1,6 +1,8 @@
 package clientSide;
 
 import clientSide.controllerHandlers.KeyboardHandler;
+import clientSide.gui.GamePanel;
+import clientSide.gui.MainMenuWindow;
 import clientSide.processors.GameMechanicsProcessor;
 import clientSide.processors.GraphicsProcessor;
 import clientSide.processors.SyncProcessor;
@@ -10,9 +12,6 @@ import packets.JoinGamePacket;
 import packets.Packet;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -27,10 +26,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Client extends Thread implements Runnable {
-    private static Client client;
-
     private JFrame menuWindow;
-    private JPanel menuPanel;
+    private MainMenuWindow menuPanel;
 
     private JFrame gameWindow;
     private GamePanel gamePanel;
@@ -44,81 +41,47 @@ public class Client extends Thread implements Runnable {
     public static InetAddress IP;
     public ByteBuffer receiveBuffer;
     public Queue<Packet> packetQueue;
+    private String ipAddr;
 
     private boolean allowOffline = true;
 
     public static void main(String[] args) {
-        client = new Client();
-        client.start();
+        new Client();
     }
 
     public Client() {
         packetQueue = new ConcurrentLinkedQueue<>();
-        createGameMenu();
         showGameMenu();
     }
 
-    private void createGameMenu() {
-        // Create components
-        menuWindow = new JFrame();
-        menuPanel = new JPanel();
-        createJoinButton();
-        // Set attributes
-        setMenuPanelAttributes();
-        setMenuWindowAttributes();
-    }
-
     private void showGameMenu() {
+        // Create components
+        menuWindow = new MainMenuWindow(this);
         menuWindow.setVisible(true);
     }
 
-    private void createJoinButton() {
-        JButton okButton = new JButton("JOIN THE MADNESS");
-
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sendPacket(new JoinGamePacket());
-                createGame();
-            }
-        });
-
-        menuPanel.add(okButton);
-    }
-
-    private void setMenuPanelAttributes() {
-        menuPanel.setPreferredSize(new Dimension(500, 500));
-        menuPanel.setBackground(Color.GRAY);
-        menuPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 5, true));
-    }
-
-    private void setMenuWindowAttributes() {
-        menuWindow.setTitle("Killing Frenzy");
-        menuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuWindow.add(menuPanel);
-        menuWindow.setSize(500, 500);
-        menuWindow.pack();
-    }
-
-    private void createGame() {
+    public void createGame(String ipAddr) {
+        this.ipAddr = ipAddr;
+        start();
+        sendPacket(new JoinGamePacket());
         createGameComponents();
-        addGameListeners();
+        addKeyListener();
         setGameAttributes();
     }
 
     private void createGameComponents() {
         this.gameWindow = new JFrame("GO GO");
-        this.gamePanel = new GamePanel(client);
-        this.graphicsProcessor = new GraphicsProcessor(client, gamePanel);
+        this.gamePanel = new GamePanel(this);
+        this.graphicsProcessor = new GraphicsProcessor(this, gamePanel);
         this.graphicsProcessor.start();
-        this.gameProcessor = new GameMechanicsProcessor(client, gamePanel);
+        this.gameProcessor = new GameMechanicsProcessor(this, gamePanel);
         this.gameProcessor.start();
-        this.syncProcessor = new SyncProcessor(client);
+        this.syncProcessor = new SyncProcessor(this);
         this.syncProcessor.start();
     }
 
-    private void addGameListeners() {
-        gameWindow.addKeyListener(new KeyboardHandler(client));
+    private void addKeyListener() {
+        gameWindow.addKeyListener(new KeyboardHandler(this));
     }
 
     private void setGameAttributes() {
@@ -139,7 +102,6 @@ public class Client extends Thread implements Runnable {
                 for (ByteBuffer message : byteBufferList) {
                     if (message != null) {
                         packetQueue.add(Packet.fromByteArray(message.array()));
-                        //dispatchMessage(message)
                     }
                 }
             }
@@ -149,7 +111,7 @@ public class Client extends Thread implements Runnable {
     private void createSocket() {
         boolean errorOccurred = false;
         try {
-            IP = InetAddress.getByName("localhost");
+            IP = InetAddress.getByName(ipAddr);
             socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(true);
             socketChannel.connect(new InetSocketAddress(IP, Settings.PORT));
@@ -157,15 +119,12 @@ public class Client extends Thread implements Runnable {
         } catch (SocketException e) {
             System.err.println("An error occurred when trying to interact with the socket!");
             errorOccurred = true;
-//            e.printStackTrace();
         } catch (UnknownHostException e) {
             System.err.println("An error occurred when trying to get the IP address of the host!");
             errorOccurred = true;
-//            e.printStackTrace();
         } catch (IOException e) {
             System.err.println("An error occurred when trying to open the socket!");
             errorOccurred = true;
-//            e.printStackTrace();
         } finally {
             if (errorOccurred && !allowOffline) {
                 System.exit(-1);
@@ -191,8 +150,6 @@ public class Client extends Thread implements Runnable {
 
             return receivedPackets;
         } catch (IOException e) {
-//            System.err.println("An error occurred while trying to read incoming message!");
-//            e.printStackTrace();
             return null;
         }
     }
@@ -207,10 +164,10 @@ public class Client extends Thread implements Runnable {
             if ((readBuffer.limit() - readBuffer.position()) < bytesToRead) {
                 if (readBuffer.limit() == readBuffer.capacity()) {
                     int oldCapacity = readBuffer.capacity();
-                    ByteBuffer tmp = ByteBuffer.allocate(bytesToRead + Settings.PACKET_HEADER_BYTES);
+                    ByteBuffer byteBuffer = ByteBuffer.allocate(bytesToRead + Settings.PACKET_HEADER_BYTES);
                     readBuffer.position(0);
-                    tmp.put(readBuffer);
-                    readBuffer = tmp;
+                    byteBuffer.put(readBuffer);
+                    readBuffer = byteBuffer;
                     readBuffer.position(oldCapacity);
                     readBuffer.limit(readBuffer.capacity());
                     receiveBuffer = readBuffer;
@@ -237,13 +194,13 @@ public class Client extends Thread implements Runnable {
     }
 
     public synchronized boolean sendPacket(Packet pk) {
-        byte[] buffer = pk.toByteArray();
-        int len = buffer.length;
-        byte[] lengthBytes = new byte[]{(byte) ((len >>> 8) & 0xff), (byte) (len & 0xff)};
+        byte[] bufferByteArray = pk.toByteArray();
+        int bufferLength = bufferByteArray.length;
+        byte[] lengthBytes = new byte[]{(byte) ((bufferLength >>> 8) & 0xff), (byte) (bufferLength & 0xff)};
         try {
-            byte[] outBuffer = new byte[len + Settings.PACKET_HEADER_BYTES];
+            byte[] outBuffer = new byte[bufferLength + Settings.PACKET_HEADER_BYTES];
             System.arraycopy(lengthBytes, 0, outBuffer, 0, Settings.PACKET_HEADER_BYTES);
-            System.arraycopy(buffer, 0, outBuffer, Settings.PACKET_HEADER_BYTES, len);
+            System.arraycopy(bufferByteArray, 0, outBuffer, Settings.PACKET_HEADER_BYTES, bufferLength);
             socketChannel.write(ByteBuffer.wrap(outBuffer));
             return true;
         } catch (Exception e) {
