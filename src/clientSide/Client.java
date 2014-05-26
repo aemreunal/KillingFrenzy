@@ -1,8 +1,8 @@
 package clientSide;
 
-import clientSide.controllerHandlers.KeyboardHandler;
 import clientSide.gui.GamePanel;
-import clientSide.gui.MainMenuWindow;
+import clientSide.gui.GameWindow;
+import clientSide.gui.MenuWindow;
 import clientSide.processors.GameMechanicsProcessor;
 import clientSide.processors.GraphicsProcessor;
 import clientSide.processors.SyncProcessor;
@@ -27,7 +27,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Client extends Thread implements Runnable {
     private JFrame menuWindow;
-    private MainMenuWindow menuPanel;
 
     private JFrame gameWindow;
     private GamePanel gamePanel;
@@ -56,7 +55,7 @@ public class Client extends Thread implements Runnable {
 
     private void showGameMenu() {
         // Create components
-        menuWindow = new MainMenuWindow(this);
+        menuWindow = new MenuWindow(this);
         menuWindow.setVisible(true);
     }
 
@@ -65,31 +64,17 @@ public class Client extends Thread implements Runnable {
         start();
         sendPacket(new JoinGamePacket());
         createGameComponents();
-        addKeyListener();
-        setGameAttributes();
     }
 
     private void createGameComponents() {
-        this.gameWindow = new JFrame("GO GO");
         this.gamePanel = new GamePanel(this);
+        this.gameWindow = new GameWindow(this, gamePanel);
         this.graphicsProcessor = new GraphicsProcessor(this, gamePanel);
         this.graphicsProcessor.start();
         this.gameProcessor = new GameMechanicsProcessor(this, gamePanel);
         this.gameProcessor.start();
         this.syncProcessor = new SyncProcessor(this);
         this.syncProcessor.start();
-    }
-
-    private void addKeyListener() {
-        gameWindow.addKeyListener(new KeyboardHandler(this));
-    }
-
-    private void setGameAttributes() {
-        gameWindow.getContentPane().add(gamePanel);
-        gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameWindow.setSize(Settings.GAME_WINDOW_WIDTH, Settings.GAME_WINDOW_HEIGHT + gameWindow.getBounds().y);
-        gameWindow.setVisible(true);
-        gameWindow.setLocationRelativeTo(null);
     }
 
     @Override
@@ -140,14 +125,12 @@ public class Client extends Thread implements Runnable {
                 throw new IOException("Receive error");
             }
             receiveBuffer.flip();
-
             List<ByteBuffer> receivedPackets = new ArrayList<>();
             ByteBuffer message = readMessage(receiveBuffer);
             while (message != null) {
                 receivedPackets.add(message);
                 message = readMessage(receiveBuffer);
             }
-
             return receivedPackets;
         } catch (IOException e) {
             return null;

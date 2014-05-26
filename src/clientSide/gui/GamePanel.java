@@ -22,8 +22,6 @@ import java.awt.*;
  */
 
 public class GamePanel extends JPanel {
-//    private JPanel mainPanel;
-
     private float mouseX = 100;
     private float mouseY = 100;
 

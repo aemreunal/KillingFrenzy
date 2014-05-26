@@ -14,11 +14,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenuWindow extends JFrame {
+public class MenuWindow extends JFrame {
     private Client client;
     private JPanel mainPanel;
 
-    public MainMenuWindow(Client client) {
+    public MenuWindow(Client client) {
         this.client = client;
         mainPanel = new JPanel();
         createButtons();
