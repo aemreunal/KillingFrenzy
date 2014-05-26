@@ -23,13 +23,10 @@ public class Gun {
             clip.open(stream);
         } catch (IOException e) {
             System.out.println("Unable to read the sound file!");
-//			  e.printStackTrace();
         } catch (UnsupportedAudioFileException e) {
             System.out.println("Unsupported audio type!");
-//            e.printStackTrace();
         } catch (LineUnavailableException e) {
             System.out.println("Unable to get audio line!");
-//            e.printStackTrace();
         }
     }
 

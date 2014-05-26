@@ -34,9 +34,8 @@ public class Player extends Entity implements Collidable {
 
     public void decreaseHealth(float damage, int shooterId) {
         health -= damage;
-        
+
         if (health < 0) {
-        	Death.playSound();
             ((Player) World.getInstance().idToEntityMap.get(shooterId)).changeScore(Settings.KILLING_BONUS);
             this.respawnPlayer();
         }

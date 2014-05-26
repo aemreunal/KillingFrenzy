@@ -40,7 +40,7 @@ public class MenuWindow extends JFrame {
     }
 
     private void setMenuPanelAttributes() {
-        mainPanel.setPreferredSize(new Dimension(500, 500));
+        mainPanel.setPreferredSize(new Dimension(200, 50));
         mainPanel.setBackground(Color.GRAY);
         mainPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 5, true));
     }

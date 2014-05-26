@@ -6,6 +6,7 @@ package clientSide.attributes;
  * emre.unal@ozu.edu.tr
  */
 
+import clientSide.sounds.Death;
 import global.Settings;
 
 import javax.imageio.ImageIO;
@@ -116,6 +117,10 @@ public class Player extends Entity {
     }
 
     public void setScore(int score) {
+        if(this.score + Settings.DYING_PENALTY == score) {
+            // This means that the player died
+            Death.playSound();
+        }
         this.score = score;
     }
 }
