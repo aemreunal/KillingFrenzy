@@ -2,10 +2,10 @@ package serverSide.gameMechanics;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PhysicalAttributesTest {
-    PhysicalAttributes attr = new PhysicalAttributes(10, 20,20, 20);
+    PhysicalAttributes attr = new PhysicalAttributes(10, 20, 20, 20);
 
     @Test
     public void testUpdateVerticalPosition() throws Exception {

@@ -3,9 +3,8 @@ package serverSide.gameMechanics;
 import global.Settings;
 
 public class Vector2D {
-    private float speed;
-
     public float[] v = new float[2];
+    private float speed;
 
     public Vector2D() {
         this(0);

@@ -6,9 +6,14 @@ import java.util.TreeMap;
  * Created by Eren Sezener
  */
 public class World {
+    private static World world;
     public TreeMap<Integer, Entity> idToEntityMap;
     private int nextAvailableId; //Id of new entitites
-    private static World world;
+
+    private World() {
+        idToEntityMap = new TreeMap<Integer, Entity>();
+        nextAvailableId = 0;
+    }
 
     public static World getInstance() {
         if (world == null) {
@@ -16,11 +21,6 @@ public class World {
         }
 
         return world;
-    }
-
-    private World() {
-        idToEntityMap = new TreeMap<Integer, Entity>();
-        nextAvailableId = 0;
     }
 
     public void addEntity(Entity entity) {

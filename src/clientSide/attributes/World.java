@@ -10,10 +10,15 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by Eren Sezener
  */
 public class World {
-    private Map<Integer, Entity> idToEntityMap;
     private static World world;
-    private WorldGround ground;
     private static Player thisPlayer;
+    private Map<Integer, Entity> idToEntityMap;
+    private WorldGround ground;
+
+    private World() {
+        idToEntityMap = new ConcurrentHashMap<>();
+        ground = new WorldGround();
+    }
 
     public static World getInstance() {
         if (world == null) {
@@ -22,9 +27,12 @@ public class World {
         return world;
     }
 
-    private World() {
-        idToEntityMap = new ConcurrentHashMap<>();
-        ground = new WorldGround();
+    public static Player getThisPlayer() {
+        return thisPlayer;
+    }
+
+    public static void setThisPlayer(Player thisPlayer) {
+        World.thisPlayer = thisPlayer;
     }
 
     public synchronized void addEntity(Entity entity, int entityId) {
@@ -46,14 +54,6 @@ public class World {
 
     public WorldGround getGround() {
         return ground;
-    }
-
-    public static Player getThisPlayer() {
-        return thisPlayer;
-    }
-
-    public static void setThisPlayer(Player thisPlayer) {
-        World.thisPlayer = thisPlayer;
     }
 
     public synchronized void removeEntity(int entityID) {

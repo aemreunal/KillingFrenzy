@@ -24,7 +24,7 @@ public class JoinGameHandler extends PacketHandler {
         Player player = new Player();
         World.getInstance().addEntity(player);
         client.setPlayer(player);
-        player.physicalAttributes = new PhysicalAttributes( 20.0f, 20.0f, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
+        player.physicalAttributes = new PhysicalAttributes(20.0f, 20.0f, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE);
         sendNewPlayer(client, player);
     }
 

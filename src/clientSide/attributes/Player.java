@@ -19,14 +19,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class Player extends Entity {
-    private float health;
-    private int score;
-
     protected BufferedImage standingImage;
     protected BufferedImage[] movingImages = new BufferedImage[Settings.NUM_PLAYER_ANIMATION_IMAGES];
     protected int imageWidth;
     protected int imageHeight;
-
     protected int currentMovingImage = 0;
     protected Timer animationTimer = new Timer(Settings.PLAYER_ANIMATION_SPEED, new ActionListener() {
         @Override
@@ -34,6 +30,16 @@ public class Player extends Entity {
             currentMovingImage = (currentMovingImage + 1) % Settings.NUM_PLAYER_ANIMATION_IMAGES;
         }
     });
+    private float health;
+    private int score;
+
+    private Player(String standingImageFilePath, String movingImageFilePath, float xCoor, float yCoor, float angle) {
+        super(xCoor, yCoor, angle);
+        health = Settings.PLAYER_MAX_HEALTH;
+        score = 0;
+        loadImages(standingImageFilePath, movingImageFilePath);
+
+    }
 
     public static Player createPlayer(boolean isMine) {
         return createPlayer(isMine, 10, 10, 0);
@@ -47,14 +53,6 @@ public class Player extends Entity {
         } else {
             return new Player(Settings.ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH, Settings.ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH, xCoor, yCoor, angle);
         }
-    }
-
-    private Player(String standingImageFilePath, String movingImageFilePath, float xCoor, float yCoor, float angle) {
-        super(xCoor, yCoor, angle);
-        health = Settings.PLAYER_MAX_HEALTH;
-        score = 0;
-        loadImages(standingImageFilePath, movingImageFilePath);
-
     }
 
     private void loadImages(String standingImageFilePath, String movingImageFilePath) {
@@ -117,7 +115,7 @@ public class Player extends Entity {
     }
 
     public void setScore(int score) {
-        if(this.score + Settings.DYING_PENALTY == score) {
+        if (this.score + Settings.DYING_PENALTY == score) {
             // This means that the player died
             Death.playSound();
         }

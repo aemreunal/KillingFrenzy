@@ -26,31 +26,28 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Client extends Thread implements Runnable {
+    public static InetAddress IP;
+    private final AtomicReference<GameState> state = new AtomicReference<>(GameState.STOPPED);
+    public SocketChannel socketChannel;
+    public ByteBuffer receiveBuffer;
+    public Queue<Packet> packetQueue;
     private JFrame menuWindow;
-
     private JFrame gameWindow;
     private GamePanel gamePanel;
-
     private GameMechanicsProcessor gameProcessor;
     private GraphicsProcessor graphicsProcessor;
     private SyncProcessor syncProcessor;
-
-    private final AtomicReference<GameState> state = new AtomicReference<>(GameState.STOPPED);
-    public SocketChannel socketChannel;
-    public static InetAddress IP;
-    public ByteBuffer receiveBuffer;
-    public Queue<Packet> packetQueue;
     private String ipAddr;
 
     private boolean allowOffline = true;
 
-    public static void main(String[] args) {
-        new Client();
-    }
-
     public Client() {
         packetQueue = new ConcurrentLinkedQueue<>();
         showGameMenu();
+    }
+
+    public static void main(String[] args) {
+        new Client();
     }
 
     private void showGameMenu() {

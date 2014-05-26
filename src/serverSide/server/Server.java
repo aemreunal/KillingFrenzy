@@ -1,5 +1,6 @@
 package serverSide.server;
 
+import global.Settings;
 import packets.Packet;
 import serverSide.client.Client;
 import serverSide.gameMechanics.Game;
@@ -15,45 +16,25 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Server implements Runnable {
-
-    public static void main(String[] args) {
-        Server server = new Server();
-        Game game = new Game(server);
-        server.setGame(game);
-        new Thread(server).start();
-        game.run();
-    }
+public class Server extends Thread implements Runnable {
+    private final AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
+    public ConcurrentHashMap<SelectionKey, Client> clientMap;
+    protected ServerSocketChannel serverSocket;
+    protected Selector keySelector;
+    private ConcurrentHashMap<SelectionKey, ByteBuffer> readBuffers;
+    private Game game;
 
     public Server() {
         readBuffers = new ConcurrentHashMap<>();
         clientMap = new ConcurrentHashMap<>();
     }
 
-    public enum State {
-        STOPPED, STOPPING, RUNNING
-    }
-
-    public static final short PORT = 17001;
-    private final int PACKET_HEADER_BYTES = 2;
-    private static short DEFAULT_MESSAGE_SIZE = 20024;
-
-
-    private final AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
-
-
-    protected ServerSocketChannel serverSocket;
-    protected Selector keySelector;
-    public ConcurrentHashMap<SelectionKey, Client> clientMap;
-    private ConcurrentHashMap<SelectionKey, ByteBuffer> readBuffers;
-    private Game game;
-
-    public AtomicReference<State> getState() {
-        return state;
-    }
-
-    public Game getGame() {
-        return game;
+    public static void main(String[] args) {
+        Server server = new Server();
+        Game game = new Game(server);
+        server.setGame(game);
+        server.start();
+        game.run();
     }
 
     public void setGame(Game game) {
@@ -78,7 +59,6 @@ public class Server implements Runnable {
         keySelector.select(0);
         for (Iterator<SelectionKey> i = keySelector.selectedKeys().iterator(); i.hasNext(); ) {
             SelectionKey key = i.next();
-
             try {
                 i.remove();
 
@@ -91,7 +71,6 @@ public class Server implements Runnable {
 
             } catch (IOException ex) {
                 System.out.println("Client disconnected : " + key);
-
                 resetKey(key);
             }
         }
@@ -123,17 +102,17 @@ public class Server implements Runnable {
     // Keep reading until a meaningful packet is read
     private ByteBuffer readFullMessage(SelectionKey key, ByteBuffer readBuffer) {
         int bytesToRead;
-        if (readBuffer.remaining() > PACKET_HEADER_BYTES) {
-            byte[] lengthBytes = new byte[PACKET_HEADER_BYTES];
+        if (readBuffer.remaining() > Settings.PACKET_HEADER_BYTES) {
+            byte[] lengthBytes = new byte[Settings.PACKET_HEADER_BYTES];
             readBuffer.get(lengthBytes);
             bytesToRead = (int) (((long) (lengthBytes[0] & 0xff) << 8) + (long) (lengthBytes[1] & 0xff));
             if ((readBuffer.limit() - readBuffer.position()) < bytesToRead) {
                 if (readBuffer.limit() == readBuffer.capacity()) {
                     int oldCapacity = readBuffer.capacity();
-                    ByteBuffer tmp = ByteBuffer.allocate(bytesToRead + PACKET_HEADER_BYTES);
+                    ByteBuffer byteBuffer = ByteBuffer.allocate(bytesToRead + Settings.PACKET_HEADER_BYTES);
                     readBuffer.position(0);
-                    tmp.put(readBuffer);
-                    readBuffer = tmp;
+                    byteBuffer.put(readBuffer);
+                    readBuffer = byteBuffer;
                     readBuffer.position(oldCapacity);
                     readBuffer.limit(readBuffer.capacity());
                     readBuffers.put(key, readBuffer);
@@ -159,16 +138,15 @@ public class Server implements Runnable {
         return ByteBuffer.wrap(resultMessage);
     }
 
-
     public synchronized void sendPacket(SelectionKey channelKey, Packet pk) {
-        byte[] buffer = pk.toByteArray();
-        short len = (short) buffer.length;
-        byte[] lengthBytes = new byte[]{(byte) ((len >>> 8) & 0xff), (byte) (len & 0xff)};
-        ByteBuffer writeBuffer = ByteBuffer.allocate(len + lengthBytes.length);
+        byte[] bufferByteArray = pk.toByteArray();
+        int bufferLength = bufferByteArray.length;
+        byte[] lengthBytes = new byte[]{(byte) ((bufferLength >>> 8) & 0xff), (byte) (bufferLength & 0xff)};
+        ByteBuffer writeBuffer = ByteBuffer.allocate(bufferLength + lengthBytes.length);
         writeBuffer.put(lengthBytes);
-        writeBuffer.put(buffer);
+        writeBuffer.put(bufferByteArray);
         writeBuffer.flip();
-        if (buffer != null && state.get() == State.RUNNING) {
+        if (bufferByteArray != null && state.get() == State.RUNNING) {
             try {
                 forceSendPacket(channelKey, writeBuffer);
             } catch (Exception e) {
@@ -210,7 +188,7 @@ public class Server implements Runnable {
         clientSocket.socket().setTcpNoDelay(true);
 
         SelectionKey newkey = clientSocket.register(keySelector, SelectionKey.OP_READ);
-        readBuffers.put(newkey, ByteBuffer.allocate(DEFAULT_MESSAGE_SIZE));
+        readBuffers.put(newkey, ByteBuffer.allocate(Settings.DEFAULT_MESSAGE_SIZE));
         Client client = new Client(newkey, this);
         clientMap.put(newkey, client);
         game.clients.add(client);
@@ -228,7 +206,7 @@ public class Server implements Runnable {
     private void setupSockets() throws IOException {
         keySelector = Selector.open();
         serverSocket = ServerSocketChannel.open();
-        serverSocket.socket().bind(new InetSocketAddress(PORT));
+        serverSocket.socket().bind(new InetSocketAddress(Settings.PORT));
         serverSocket.configureBlocking(false);
         serverSocket.register(keySelector, SelectionKey.OP_ACCEPT);
         System.out.println("Server has started");
@@ -239,5 +217,9 @@ public class Server implements Runnable {
         serverSocket.socket().close();
         serverSocket.close();
         System.out.println("Server has been closed.");
+    }
+
+    public enum State {
+        STOPPED, RUNNING
     }
 }

@@ -1,9 +1,9 @@
 package clientSide.controllerHandlers;
 
 import clientSide.Client;
-import clientSide.gui.GamePanel;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
+import clientSide.gui.GamePanel;
 import clientSide.sounds.Gun;
 import packets.BulletShotPacket;
 

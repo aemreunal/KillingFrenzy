@@ -72,9 +72,6 @@ public class Settings {
 
     public static final int PLAYER_MAX_HEALTH = 100;
 
-    public static final int PACKET_HEADER_BYTES = 2;
-    public static final int PORT = 17001;
-
     public static final int KEY_NORTH = KeyEvent.VK_W;
     public static final int KEY_SOUTH = KeyEvent.VK_S;
     public static final int KEY_WEST = KeyEvent.VK_A;
@@ -88,18 +85,15 @@ public class Settings {
 
     // Ground
     public static final String GROUND_IMAGE_FILE_PATH = IMG_PATH + "grass.jpg";
-
-    public static final Color DEFAULT_GROUND_COLOR = new Color(110, 133, 61);
-    public static final Color DEFAULT_WALL_COLOR = Color.BLACK;
-
-    // Player
-    public static final int NUM_PLAYER_ANIMATION_IMAGES = 4;
-
     public static final String FRIENDLY_PLAYER_STANDING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/standing.png";
     public static final String FRIENDLY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "friendlyPlayer/moving";
     public static final String ENEMY_PLAYER_STANDING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/standing.png";
     public static final String ENEMY_PLAYER_MOVING_IMAGE_FILE_PATH = IMG_PATH + "enemyPlayer/moving";
     public static final String WALL_IMAGE_FILE_PATH = IMG_PATH + "wall/wall.png";
+    public static final Color DEFAULT_GROUND_COLOR = new Color(110, 133, 61);
+    public static final Color DEFAULT_WALL_COLOR = Color.BLACK;
+    // Player
+    public static final int NUM_PLAYER_ANIMATION_IMAGES = 4;
     public static final String MOVING_IMAGE_FILE_EXTENSION = ".png";
 
     /**
@@ -108,4 +102,12 @@ public class Settings {
 
     public static final String GUN_SOUND_FILE_PATH = "sounds/gunshot.wav";
     public static final String DEATH_SOUND_FILE_PATH = "sounds/death.wav";
+
+    /**
+     * Server
+     */
+
+    public static final int PORT = 17001;
+    public static final int PACKET_HEADER_BYTES = 2;
+    public static short DEFAULT_MESSAGE_SIZE = 20024;
 }

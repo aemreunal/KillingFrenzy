@@ -1,6 +1,5 @@
 package serverSide.gameMechanics;
 
-import clientSide.sounds.Death;
 import global.EntityType;
 import global.Settings;
 import packets.UpdateEntityPacket;

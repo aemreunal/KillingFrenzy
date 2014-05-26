@@ -9,12 +9,11 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Client {
-    private Server server;
-    private SelectionKey socket;
     public Queue<Packet> packetQueue;
     public Player player;
-
     public boolean keys[];
+    private Server server;
+    private SelectionKey socket;
 
     public Client(SelectionKey key, Server server) {
         this.server = server;
