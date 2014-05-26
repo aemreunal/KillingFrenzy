@@ -9,8 +9,7 @@ import global.Settings;
  */
 public class Player extends Entity implements Collidable {
     private int health;
-    private boolean leftKeyPress, rightKeyPressed, upKeyPressed,
-            downKeyPressed;
+    private boolean leftKeyPress, rightKeyPressed, upKeyPressed, downKeyPressed;
     private int score;
     private float prev_X, prev_Y;
 

@@ -25,8 +25,9 @@ public abstract class Packet implements Serializable {
             ObjectInput input = new ObjectInputStream(inputStream);
             Object readObject = input.readObject();
             inputStream.close();
-            if (input != null)
+            if (input != null) {
                 input.close();
+            }
             return (Packet) readObject;
         } catch (IOException | ClassNotFoundException e) {
             if (e instanceof StreamCorruptedException) {

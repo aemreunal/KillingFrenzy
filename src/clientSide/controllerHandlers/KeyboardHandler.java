@@ -28,26 +28,26 @@ public class KeyboardHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-        case Settings.KEY_NORTH:
-        case Settings.KEY_EAST:
-        case Settings.KEY_SOUTH:
-        case Settings.KEY_WEST:
-            startMovementAnimation(true);
-            broadcastKeyPressed(e);
-            break;
+            case Settings.KEY_NORTH:
+            case Settings.KEY_EAST:
+            case Settings.KEY_SOUTH:
+            case Settings.KEY_WEST:
+                startMovementAnimation(true);
+                broadcastKeyPressed(e);
+                break;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
-        case Settings.KEY_NORTH:
-        case Settings.KEY_EAST:
-        case Settings.KEY_SOUTH:
-        case Settings.KEY_WEST:
-            startMovementAnimation(false);
-            broadcastKeyReleased(e);
-            break;
+            case Settings.KEY_NORTH:
+            case Settings.KEY_EAST:
+            case Settings.KEY_SOUTH:
+            case Settings.KEY_WEST:
+                startMovementAnimation(false);
+                broadcastKeyReleased(e);
+                break;
         }
     }
 

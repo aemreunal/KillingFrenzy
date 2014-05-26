@@ -85,8 +85,9 @@ public class Server extends Thread implements Runnable {
 
     private List<ByteBuffer> readMessageFromSocket(SelectionKey key) throws IOException {
         ByteBuffer readBuffer = readBuffers.get(key);
-        if (((ReadableByteChannel) key.channel()).read(readBuffer) == -1)
+        if (((ReadableByteChannel) key.channel()).read(readBuffer) == -1) {
             throw new IOException("Read on closed key");
+        }
 
         readBuffer.flip();
         List<ByteBuffer> result = new ArrayList<>();
@@ -164,8 +165,9 @@ public class Server extends Thread implements Runnable {
                 resetKey(channelKey);
             }
 
-            if (bytesWritten == 0)
+            if (bytesWritten == 0) {
                 Thread.sleep(5);
+            }
         }
     }
 
@@ -177,8 +179,9 @@ public class Server extends Thread implements Runnable {
 
     public void broadcast(Packet pk, Client except) {
         for (Entry<SelectionKey, Client> o : clientMap.entrySet()) {
-            if (o.getValue() != except)
+            if (o.getValue() != except) {
                 sendPacket(o.getKey(), pk);
+            }
         }
     }
 
