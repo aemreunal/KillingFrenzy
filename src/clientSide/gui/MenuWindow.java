@@ -1,18 +1,19 @@
 package clientSide.gui;
 
-/*
- * This code belongs to:
- * Ahmet Emre Unal
- * S001974
- * emre.unal@ozu.edu.tr
- */
-
 import clientSide.Client;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
 
 public class MenuWindow extends JFrame {
     private Client client;

@@ -8,6 +8,14 @@ import java.nio.channels.SelectionKey;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
+
 public class Client {
     public Queue<Packet> packetQueue;
     public Player player;

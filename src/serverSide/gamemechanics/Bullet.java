@@ -3,9 +3,14 @@ package serverSide.gamemechanics;
 import global.EntityType;
 import global.Settings;
 
-/**
- * Created by Eren Sezener
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
  */
+
 public class Bullet extends Entity {
     private Vector2D velocity;
     private int ownerID;

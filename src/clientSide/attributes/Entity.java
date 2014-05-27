@@ -5,8 +5,12 @@ import packets.UpdateEntityPacket;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
- * Created by Eren Sezener
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
  */
 
 public abstract class Entity {

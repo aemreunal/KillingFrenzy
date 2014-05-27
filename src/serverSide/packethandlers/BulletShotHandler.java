@@ -5,6 +5,14 @@ import packets.Packet;
 import serverSide.client.Client;
 import serverSide.gamemechanics.Bullet;
 
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
+
 public class BulletShotHandler extends PacketHandler {
 
     @Override

@@ -1,5 +1,13 @@
 package clientSide.attributes;
 
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
+
 public class PhysicalAttributes {
     private float xCoor;
     private float yCoor;

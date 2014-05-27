@@ -1,12 +1,5 @@
 package clientSide.processors;
 
-/*
- * This code belongs to:
- * Ahmet Emre Unal
- * S001974
- * emre.unal@ozu.edu.tr
- */
-
 import clientSide.Client;
 import clientSide.gui.GamePanel;
 import clientSide.packetHandlers.CreateEntityHandler;
@@ -19,6 +12,14 @@ import packets.Packet;
 
 import java.util.EnumMap;
 import java.util.concurrent.TimeUnit;
+
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
 
 public class GameMechanicsProcessor extends Thread implements Runnable {
     private Client client;

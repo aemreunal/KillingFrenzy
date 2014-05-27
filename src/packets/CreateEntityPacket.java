@@ -1,12 +1,15 @@
 package packets;
 
-// Server sends this packet to client(s), commanding them to
-// create entity with ID specified in the packet, the ID is essential and
-// ALL ENTITIES IN THE CLIENT must be created through this packet
-// a client can't create an entity with "random" id
-
 import global.EntityType;
 import global.PacketType;
+
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
 
 public class CreateEntityPacket extends Packet {
     public int entityID;

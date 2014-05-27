@@ -1,12 +1,5 @@
 package clientSide.processors;
 
-/*
- * This code belongs to:
- * Ahmet Emre Unal
- * S001974
- * emre.unal@ozu.edu.tr
- */
-
 import clientSide.Client;
 import clientSide.attributes.Player;
 import clientSide.attributes.World;
@@ -14,6 +7,14 @@ import global.Settings;
 import packets.AngleUpdatePacket;
 
 import java.util.concurrent.TimeUnit;
+
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
 
 public class SyncProcessor extends Thread implements Runnable {
     private Client client;

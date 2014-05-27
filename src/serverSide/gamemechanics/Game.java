@@ -10,6 +10,14 @@ import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
+
 public class Game {
     public CopyOnWriteArrayList<Client> clients;
     private GameLogic gameLogic;

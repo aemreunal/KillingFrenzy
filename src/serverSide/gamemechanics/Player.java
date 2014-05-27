@@ -4,9 +4,14 @@ import global.EntityType;
 import global.Settings;
 import packets.UpdateEntityPacket;
 
-/**
- * Created by Eren Sezener
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
  */
+
 public class Player extends Entity implements Collidable {
     private int health;
     private boolean leftKeyPress, rightKeyPressed, upKeyPressed, downKeyPressed;

@@ -1,12 +1,5 @@
 package clientSide.attributes;
 
-/*
- * This code belongs to:
- * Ahmet Emre Unal
- * S001974
- * emre.unal@ozu.edu.tr
- */
-
 import clientSide.sounds.Death;
 import global.Settings;
 
@@ -18,6 +11,14 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
 
 public class Player extends Entity {
     protected BufferedImage standingImage;

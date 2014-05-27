@@ -1,13 +1,14 @@
 package packets;
 
+import global.PacketType;
+
 /*
  * This code belongs to:
  * Ahmet Emre Unal
- * S001974
- * emre.unal@ozu.edu.tr
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
  */
-
-import global.PacketType;
 
 public class BulletShotPacket extends Packet {
     public float xCoor;

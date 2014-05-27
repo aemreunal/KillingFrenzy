@@ -4,6 +4,14 @@ import clientSide.attributes.Entity;
 import clientSide.attributes.World;
 import packets.Packet;
 
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
+
 public abstract class PacketHandler {
 
     public abstract void handle(Packet pk);

@@ -4,12 +4,12 @@ import global.PacketType;
 
 import java.io.*;
 
-/* Packet ID (type)  - Packet Name
- * 0x00 - KeyPressPacket
- * 0x01 - KeyReleasePacket
- * 0x02 - CreateEntityPacket
- * 0x03 - UpdateEntityPacket
- * 0x04 - JoinGamePacket
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
  */
 
 public abstract class Packet implements Serializable {

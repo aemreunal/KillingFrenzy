@@ -6,6 +6,14 @@ import clientSide.attributes.Wall;
 import packets.CreateEntityPacket;
 import packets.Packet;
 
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
+
 public class CreateEntityHandler extends PacketHandler {
 
     @Override

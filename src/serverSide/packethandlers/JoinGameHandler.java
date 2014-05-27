@@ -10,6 +10,14 @@ import serverSide.gamemechanics.Player;
 import serverSide.gamemechanics.World;
 import serverSide.server.Server;
 
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
+
 public class JoinGameHandler extends PacketHandler {
     private Server server;
 

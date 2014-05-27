@@ -1,17 +1,18 @@
 package clientSide.gui;
 
-/*
- * This code belongs to:
- * Ahmet Emre Unal
- * S001974
- * emre.unal@ozu.edu.tr
- */
-
 import clientSide.Client;
 import clientSide.controllerHandlers.KeyboardHandler;
 import global.Settings;
 
 import javax.swing.*;
+
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
 
 public class GameWindow extends JFrame {
     public GameWindow(Client client, GamePanel panel) {

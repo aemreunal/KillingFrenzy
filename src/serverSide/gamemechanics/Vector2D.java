@@ -2,6 +2,14 @@ package serverSide.gamemechanics;
 
 import global.Settings;
 
+/*
+ * This code belongs to:
+ * Ahmet Emre Unal
+ * Eren Sezener
+ * Deniz Sokmen
+ * Erdi Gultekin
+ */
+
 public class Vector2D {
     public float[] v = new float[2];
     private float speed;
