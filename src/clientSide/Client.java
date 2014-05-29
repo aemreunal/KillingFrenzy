@@ -36,9 +36,9 @@ import javax.swing.*;
 public class Client extends Thread implements Runnable {
     public static InetAddress IP;
     private final AtomicReference<GameState> state = new AtomicReference<>(GameState.STOPPED);
-    public SocketChannel socketChannel;
-    public ByteBuffer receiveBuffer;
-    public Queue<Packet> packetQueue;
+    private SocketChannel socketChannel;
+    private ByteBuffer receiveBuffer;
+    private Queue<Packet> packetQueue;
     private JFrame menuWindow;
     private JFrame gameWindow;
     private GamePanel gamePanel;
@@ -198,5 +198,9 @@ public class Client extends Thread implements Runnable {
 
     public boolean stopGame() {
         return state.compareAndSet(GameState.RUNNING, GameState.STOPPING);
+    }
+
+    public Queue<Packet> getPacketQueue() {
+        return packetQueue;
     }
 }

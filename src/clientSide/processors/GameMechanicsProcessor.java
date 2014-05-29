@@ -11,6 +11,7 @@ import global.Settings;
 import packets.Packet;
 
 import java.util.EnumMap;
+import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 /*
@@ -54,8 +55,9 @@ public class GameMechanicsProcessor extends Thread implements Runnable {
     }
 
     private void receiveUpdates() {
-        while (!client.packetQueue.isEmpty()) {
-            Packet packet = client.packetQueue.poll();
+        Queue<Packet> queue = client.getPacketQueue();
+        while (!queue.isEmpty()) {
+            Packet packet = queue.poll();
             packetHandlerMap.get(packet.getType()).handle(packet);
         }
     }
