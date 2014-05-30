@@ -45,10 +45,6 @@ public class World {
         idToEntityMap.put(entity.getId(), entity);
     }
 
-    public Map<Integer, Entity> getEntityMap() {
-        return idToEntityMap;
-    }
-
     public synchronized Entity getEntity(int id) {
         return idToEntityMap.get(id);
     }
