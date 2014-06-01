@@ -85,7 +85,7 @@ public class Client extends Thread implements Runnable {
     @Override
     public void run() {
         state.set(GameState.RUNNING);
-        createSocket();
+        createSocketAndConnect();
         while (state.get() == GameState.RUNNING) {
             List<ByteBuffer> byteBufferList = readIncomingMessage(socketChannel);
             if (byteBufferList != null) {
@@ -98,7 +98,7 @@ public class Client extends Thread implements Runnable {
         }
     }
 
-    private void createSocket() {
+    private void createSocketAndConnect() {
         boolean errorOccurred = false;
         try {
             IP = InetAddress.getByName(ipAddr);
