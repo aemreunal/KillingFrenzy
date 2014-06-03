@@ -1,198 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.6" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="serverSide.gamemechanics.GameMap" project="KillingFrenzy" 
-    file="/KillingFrenzy/src/serverSide/gamemechanics/GameMap.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="207" x="464" y="58"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="serverSide.gamemechanics.Entity" project="KillingFrenzy" 
+  <class id="1" language="java" name="serverSide.gamemechanics.Entity" project="KillingFrenzy" 
     file="/KillingFrenzy/src/serverSide/gamemechanics/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="226" x="567" y="287"/>    
+    <position height="-1" width="-1" x="120" y="337"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="serverSide.gamemechanics.GameLogic" project="KillingFrenzy" 
-    file="/KillingFrenzy/src/serverSide/gamemechanics/GameLogic.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="369" width="249" x="118" y="287"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="serverSide.gamemechanics.Bullet" project="KillingFrenzy" 
+  <class id="2" language="java" name="serverSide.gamemechanics.Bullet" project="KillingFrenzy" 
     file="/KillingFrenzy/src/serverSide/gamemechanics/Bullet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="155" x="118" y="696"/>    
+    <position height="-1" width="-1" x="127" y="625"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="serverSide.gamemechanics.Wall" project="KillingFrenzy" 
+  <class id="3" language="java" name="serverSide.gamemechanics.Wall" project="KillingFrenzy" 
     file="/KillingFrenzy/src/serverSide/gamemechanics/Wall.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="126" x="567" y="696"/>    
+    <position height="-1" width="-1" x="430" y="441"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="serverSide.gamemechanics.Vector2D" project="KillingFrenzy" 
-    file="/KillingFrenzy/src/serverSide/gamemechanics/Vector2D.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="135" x="118" y="1213"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="serverSide.gamemechanics.PhysicalAttributes" project="KillingFrenzy" 
+  <class id="4" language="java" name="serverSide.gamemechanics.PhysicalAttributes" project="KillingFrenzy" 
     file="/KillingFrenzy/src/serverSide/gamemechanics/PhysicalAttributes.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="214" x="313" y="696"/>    
+    <position height="-1" width="-1" x="422" y="607"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="8" language="java" name="serverSide.gamemechanics.Collidable" project="KillingFrenzy" 
+  <interface id="5" language="java" name="serverSide.gamemechanics.Collidable" project="KillingFrenzy" 
     file="/KillingFrenzy/src/serverSide/gamemechanics/Collidable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="63" width="126" x="650" y="1213"/>    
+    <position height="-1" width="-1" x="648" y="480"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </interface>  
-  <class id="9" language="java" name="serverSide.gamemechanics.Player" project="KillingFrenzy" 
+  <class id="6" language="java" name="serverSide.gamemechanics.Player" project="KillingFrenzy" 
     file="/KillingFrenzy/src/serverSide/gamemechanics/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="477" width="226" x="733" y="696"/>    
+    <position height="-1" width="-1" x="872" y="440"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="serverSide.gamemechanics.Game" project="KillingFrenzy" 
+  <class id="7" language="java" name="serverSide.gamemechanics.Game" project="KillingFrenzy" 
     file="/KillingFrenzy/src/serverSide/gamemechanics/Game.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="306" x="118" y="58"/>    
+    <position height="-1" width="-1" x="299" y="146"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="serverSide.gamemechanics.World" project="KillingFrenzy" 
+  <class id="8" language="java" name="serverSide.gamemechanics.World" project="KillingFrenzy" 
     file="/KillingFrenzy/src/serverSide/gamemechanics/World.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="145" x="711" y="58"/>    
+    <position height="-1" width="-1" x="620" y="270"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="serverSide.client.Client" project="KillingFrenzy" 
+  <class id="9" language="java" name="serverSide.client.Client" project="KillingFrenzy" 
     file="/KillingFrenzy/src/serverSide/client/Client.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="172" x="839" y="291"/>    
+    <position height="-1" width="-1" x="892" y="155"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <association id="10">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="11" name="idToEntityMap"/>      
+      <multiplicity id="12" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="13">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="14" name="clients"/>      
-      <multiplicity id="15" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="14" name="world"/>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="16">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="17" name="physicalAttributes"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="19">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <generalization id="20">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="22">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="23" name="gameLogic"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="25">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="26" name="clients"/>      
-      <multiplicity id="27" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="28">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <association id="29">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="30" name="velocity"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="33" name="idToEntityMap"/>      
-      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="35">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="36">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="37" name="world"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="40" name="player"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
+  <association id="17">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="18" name="clients"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="21" name="physicalAttributes"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="23">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="25">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="26" name="player"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <realization id="29">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
